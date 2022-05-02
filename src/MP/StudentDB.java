@@ -8,7 +8,7 @@ public class StudentDB implements DBInterface{
 	static String name, address;
 	static int id, num;
 	
-	public boolean addData() {
+	public void addData() {
 		// This function adds new database entry by printing it to a .txt file.
 		// Note: I removed the parameter for now.
 		
@@ -28,7 +28,6 @@ public class StudentDB implements DBInterface{
 		pw.close();
 		
 		br.close();
-		
 	}
 	
 	public static Integer parseTest (String str) {
@@ -41,8 +40,23 @@ public class StudentDB implements DBInterface{
 		}
 	}
 	
-	//Delete Method – given the name of the Student to delete
-	abstract boolean deleteData(String name);
+	public void deleteData(String name) {
+		// This function deletes a database entry.
+		
+		/* Note: This is an alternative to using a parameter.
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		System.out.print("\nEnter student name: ");
+		name = br.readLine();
+		*/
+		
+		if(new File(name + ".txt").delete()){
+			System.out.println("\n" + name + "'s record has been deleted.");
+		} else System.out.println("\nStudent record does not exist.");
+		
+		// br.close();
+	}
+	
 	// Search Data – given any substring to search- must retrieve all
 	// Students with the substring passed in the parameter
 	abstract boolean searchData(String toSearch);
