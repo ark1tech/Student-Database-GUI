@@ -217,3 +217,121 @@ java.net.BindException: Couldn't bind to any port in the range `1593:1598`.
 	at com.genuitec.eclipse.codetogether.ui.teams.comms.TeamChangeService.start(TeamChangeService.java:100)
 	at com.genuitec.eclipse.codetogether.ui.CodeTogetherStartup$2.run(CodeTogetherStartup.java:150)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2022-05-03 14:41:04.526 -----------------------------------------------
+eclipse.buildId=4.22.0.I20211124-1800
+java.version=17.0.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_PH
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/ray/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data /Users/ray/Documents/Coding Journey/Github Collab/java-files-dump/MP1 -product org.eclipse.epp.package.java.product -keyring /Users/ray/.eclipse_keyring
+
+!ENTRY org.eclipse.jface 2 0 2022-05-03 14:41:09.738
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-05-03 14:41:09.738
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@62b0792,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2fd409c1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-05-03 14:41:09.738
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@121c1a08,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3013e1e8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.ui.workbench 4 2 2022-05-03 14:41:11.202
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.workbench".
+!STACK 0
+java.lang.UnsatisfiedLinkError: /private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp: dlopen(/private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp, 1): no suitable image found.  Did find:
+	/private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp: no matching architecture in universal wrapper
+	/private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp: no matching architecture in universal wrapper
+	at java.base/jdk.internal.loader.NativeLibraries.load(Native Method)
+	at java.base/jdk.internal.loader.NativeLibraries$NativeLibraryImpl.open(NativeLibraries.java:384)
+	at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:228)
+	at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:170)
+	at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2389)
+	at java.base/java.lang.Runtime.load0(Runtime.java:755)
+	at java.base/java.lang.System.load(System.java:1953)
+	at com.sun.jna.Native.loadNativeDispatchLibraryFromClasspath(Native.java:947)
+	at com.sun.jna.Native.loadNativeDispatchLibrary(Native.java:922)
+	at com.sun.jna.Native.<clinit>(Native.java:190)
+	at club.minnced.discord.rpc.DiscordRPC.<clinit>(DiscordRPC.java:42)
+	at fr.kazejiyu.discord.rpc.integration.core.DiscordRpcProxy.initialize(DiscordRpcProxy.java:37)
+	at fr.kazejiyu.discord.rpc.integration.Activator.connectToDiscord(Activator.java:98)
+	at fr.kazejiyu.discord.rpc.integration.Activator.earlyStartup(Activator.java:66)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.Workbench$40.run(Workbench.java:2667)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.ui 4 0 2022-05-03 14:41:11.204
+!MESSAGE Unable to execute early startup code for the org.eclipse.ui.IStartup extension contributed by the 'fr.kazejiyu.discord.rpc.integration' plug-in.
+!STACK 0
+java.lang.UnsatisfiedLinkError: /private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp: dlopen(/private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp, 1): no suitable image found.  Did find:
+	/private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp: no matching architecture in universal wrapper
+	/private/var/folders/7v/lh4dpmwx58b8f4ly3bvf48000000gn/T/jna-112682/jna11915175614340483665.tmp: no matching architecture in universal wrapper
+	at java.base/jdk.internal.loader.NativeLibraries.load(Native Method)
+	at java.base/jdk.internal.loader.NativeLibraries$NativeLibraryImpl.open(NativeLibraries.java:384)
+	at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:228)
+	at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:170)
+	at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2389)
+	at java.base/java.lang.Runtime.load0(Runtime.java:755)
+	at java.base/java.lang.System.load(System.java:1953)
+	at com.sun.jna.Native.loadNativeDispatchLibraryFromClasspath(Native.java:947)
+	at com.sun.jna.Native.loadNativeDispatchLibrary(Native.java:922)
+	at com.sun.jna.Native.<clinit>(Native.java:190)
+	at club.minnced.discord.rpc.DiscordRPC.<clinit>(DiscordRPC.java:42)
+	at fr.kazejiyu.discord.rpc.integration.core.DiscordRpcProxy.initialize(DiscordRpcProxy.java:37)
+	at fr.kazejiyu.discord.rpc.integration.Activator.connectToDiscord(Activator.java:98)
+	at fr.kazejiyu.discord.rpc.integration.Activator.earlyStartup(Activator.java:66)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.Workbench$40.run(Workbench.java:2667)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.oomph.ui 4 0 2022-05-03 14:41:19.661
+!MESSAGE Invalid thread access
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4907)
+	at org.eclipse.swt.SWT.error(SWT.java:4822)
+	at org.eclipse.swt.SWT.error(SWT.java:4793)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1148)
+	at org.eclipse.swt.widgets.Display.createDisplay(Display.java:899)
+	at org.eclipse.swt.widgets.Display.create(Display.java:883)
+	at org.eclipse.swt.graphics.Device.<init>(Device.java:131)
+	at org.eclipse.swt.widgets.Display.<init>(Display.java:739)
+	at org.eclipse.swt.widgets.Display.<init>(Display.java:730)
+	at org.eclipse.swt.widgets.Display.getDefault(Display.java:1482)
+	at org.eclipse.oomph.setup.ui.SetupUIPlugin.performStartup(SetupUIPlugin.java:218)
+	at org.eclipse.oomph.setup.ui.EarlyStartup.earlyStartup(EarlyStartup.java:22)
+	at org.eclipse.oomph.internal.ui.EarlyStart.run(EarlyStart.java:118)
+	at org.eclipse.oomph.internal.ui.EarlyStart$1.run(EarlyStart.java:97)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
