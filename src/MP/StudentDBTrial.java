@@ -70,11 +70,10 @@ public class StudentDBTrial {
         			System.out.print("\n" + datum);
         		}
         	} System.out.println();
-        	
         }
 	}
 	
-	public static void showData() {
+	public static void showData() throws FileNotFoundException {
 		// This function shows all available text files.
 		
 		File f = new File(".");
@@ -82,7 +81,14 @@ public class StudentDBTrial {
 		
 		int n = 1;
 		for (File file : files) {
-			System.out.print("\n" + n + " " + file.getName().replace(".txt", "")); n++;
+			System.out.print("\nEntry " + n); n++;
+			Scanner sc = new Scanner(new File(file.getName()));
+        	String dataLine = sc.nextLine(); sc.close();
+        	String [] data = dataLine.split("\\s");
+        	for (String datum : data) {
+        		System.out.print("\n" + datum);
+        	}
+        	System.out.println();
 		} System.out.println();
 	}
 	
