@@ -16,15 +16,15 @@ public class StudentDB implements DBInterface{
 		
 		System.out.print("\nEnter student name: ");
 		name = br.readLine();
-		System.out.print("\nEnter SAIS ID: ");
+		System.out.print("Enter SAIS ID: ");
 		id = parseTest(br.readLine());
-		System.out.print("\nEnter student number: ");
+		System.out.print("Enter student number: ");
 		num = parseTest(br.readLine());
-		System.out.print("\nEnter student address: ");
+		System.out.print("Enter student address: ");
 		address = br.readLine();
 		
 		PrintWriter pw = new PrintWriter (name + ".txt");
-		pw.print(id + " " + num + " " + address);
+		pw.print(name + " " + id + " " + num + " " + address);
 		pw.close();
 		
 		br.close();

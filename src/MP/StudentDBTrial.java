@@ -16,15 +16,15 @@ public class StudentDBTrial {
 		
 		System.out.print("\nEnter student name: ");
 		name = br.readLine();
-		System.out.print("\nEnter SAIS ID: ");
+		System.out.print("Enter SAIS ID: ");
 		id = parseTest(br.readLine());
-		System.out.print("\nEnter student number: ");
+		System.out.print("Enter student number: ");
 		num = parseTest(br.readLine());
-		System.out.print("\nEnter student address: ");
+		System.out.print("Enter student address: ");
 		address = br.readLine();
 		
 		PrintWriter pw = new PrintWriter (name + ".txt");
-		pw.print(id + " " + num + " " + address);
+		pw.print(name + " " + id + " " + num + " " + address);
 		pw.close();
 		
 		// br.close();
@@ -51,17 +51,56 @@ public class StudentDBTrial {
 		*/
 		
 		if(new File(name + ".txt").delete()){
-			System.out.println("\n" + name + "'s record has been deleted.");
-		} else System.out.println("\nStudent record does not exist.");
+			System.out.println(name + "'s record has been deleted.");
+		} else System.out.println("Student record does not exist.");
 		
 		// br.close();
 	}
+
+	public static void searchData(String toSearch) throws FileNotFoundException {
+		// This function shows all available text files and searches through them.
+		
+		File f = new File(".");
+
+        FilenameFilter textFilter = new FilenameFilter() {
+            public boolean accept(File dir, String filename) {
+                return filename.toLowerCase().endsWith(".txt");
+            }
+        };
+        
+        
+        
+        File [] files = f.listFiles(textFilter);
+        for (File file : files) {
+        	Scanner sc = new Scanner(new File(file.getName()));
+        	String dataLine = sc.nextLine();
+        	if (dataLine.toLowerCase().contains(toSearch)) {
+        		String [] data = dataLine.split("\\s");
+        		for (String datum : data) {
+        			System.out.print("\n" + datum);
+        		}
+        	} System.out.println();
+        	
+        }
+	}
 	
-	// Search Data – given any substring to search- must retrieve all
-	// Students with the substring passed in the parameter
-	//abstract boolean searchData(String toSearch);
-	// Prints all the contents of the Database list
-	//abstract void showData();
+	public static void showData() {
+		// This function shows all available text files.
+		
+		File f = new File(".");
+			
+		FilenameFilter textFilter = new FilenameFilter() {
+			public boolean accept(File dir, String filename) {
+				return filename.toLowerCase().endsWith(".txt");
+			}
+		};
+		
+		int n = 1;
+		File[] files = f.listFiles(textFilter);
+		for (File file : files) {
+			System.out.print("\n" + n + " " + file.getName().replace(".txt", "")); n++;
+		} System.out.println();
+	}
 	// Edit Data - given the name of the Student to edit
 	//abstract boolean editData(String name);
 	
@@ -69,7 +108,7 @@ public class StudentDBTrial {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		while (!ans.equals("0")) {
-			System.out.print("\nWhat do you want to do?\n[1] Set new allocations.\n[2] Input student's grade.\n[3] Modify student's grade.\n[4] Display student's grade.\n[5] Delete student record.\n[0] End program.\n   Prompt: ");
+			System.out.print("\nWhat do you want to test?\n[1] addData().\n[2] deleteData().\n[3] searchData().\n[4] showData().\n[5] editData().\n[0] End program.\n   Prompt: ");
 			ans = br.readLine();
 			
 			if (ans.equals("0")) {
@@ -82,16 +121,16 @@ public class StudentDBTrial {
 			
 			if (ans.equals("2")) {
 				System.out.print("\nEnter student name: ");
-				name = br.readLine();
-				deleteData(name);
+				deleteData(br.readLine());
 			}
 			
 			if (ans.equals("3")) {
-				
+				System.out.print("\nEnter search entry: ");
+				searchData(br.readLine());
 			}
 			
 			if (ans.equals("4")) {
-				
+				showData();
 			}
 			
 			if (ans.equals("5")) {
