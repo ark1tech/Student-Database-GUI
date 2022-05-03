@@ -23,14 +23,12 @@ public class StudentDBTrial {
 		System.out.print("Enter student address: ");
 		address = br.readLine();
 		
-		PrintWriter pw = new PrintWriter (name + ".txt");
-		pw.print(name + " " + id + " " + num + " " + address);
-		pw.close();
+		printFile(name, Integer.toString(id), Integer.toString(num), address);
 		
 		// br.close();
 	}
 	
-	public static Integer parseTest (String str) {
+	public static Integer parseTest(String str) {
 		// This function checks if the user input can be parsed to an integer.
 		// Refer to https://stackoverflow.com/questions/1486077/good-way-to-encapsulate-integer-parseint
 		
@@ -58,51 +56,109 @@ public class StudentDBTrial {
 	}
 
 	public static void searchData(String toSearch) throws FileNotFoundException {
-		// This function shows all available text files and searches through them.
+		// This function shows all available text files and searches through them.        
 		
 		File f = new File(".");
-
-        FilenameFilter textFilter = new FilenameFilter() {
-            public boolean accept(File dir, String filename) {
-                return filename.toLowerCase().endsWith(".txt");
-            }
-        };
-        
-        
-        
-        File [] files = f.listFiles(textFilter);
+		File [] files = f.listFiles(filter());
+		
         for (File file : files) {
         	Scanner sc = new Scanner(new File(file.getName()));
-        	String dataLine = sc.nextLine();
+        	String dataLine = sc.nextLine(); sc.close();
         	if (dataLine.toLowerCase().contains(toSearch)) {
         		String [] data = dataLine.split("\\s");
         		for (String datum : data) {
         			System.out.print("\n" + datum);
         		}
         	} System.out.println();
-        	
         }
 	}
 	
-	public static void showData() {
+	public static void showData() throws FileNotFoundException {
 		// This function shows all available text files.
 		
 		File f = new File(".");
-			
+		File [] files = f.listFiles(filter());
+		
+		int n = 1;
+		for (File file : files) {
+			System.out.print("\nEntry " + n); n++;
+			Scanner sc = new Scanner(new File(file.getName()));
+        	String dataLine = sc.nextLine(); sc.close();
+        	String [] data = dataLine.split("\\s");
+        	for (String datum : data) {
+        		System.out.print("\n" + datum);
+        	}
+        	System.out.println();
+		} System.out.println();
+	}
+	
+	public static void editData() throws IOException {
+		
+		showData();
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		File f = new File(".");
+		File [] files = f.listFiles(filter());
+		
+		System.out.print("\nWhich file do you wish to modify? ");
+		int ans = parseTest(br.readLine());
+		
+		while (ans < 1 || ans > files.length) {
+			System.out.print("\nInvalid input. Which file do you wish to modify? ");
+			ans = parseTest(br.readLine());
+		}
+		
+		Scanner sc = new Scanner(new File(files[ans - 1].getName())); ans = 0;
+		String dataLine = sc.nextLine(); sc.close();
+		String [] data = dataLine.split("\\s");
+		for (String datum : data) {
+			System.out.print("\n" + datum);
+		} System.out.println();
+		
+		while (ans < 1 || ans > 4) {
+			System.out.print("\nWhat do you want to modify?\n[1] Name.\n[2] SAIS ID.\n[3] Student Number.\n[4] Address.\n: ");
+			ans = parseTest(br.readLine());
+		}
+		
+		
+		switch(ans) {
+			case 1:
+				deleteData(data[ans - 1]);
+				System.out.print("\nEnter student name: ");
+				data[ans - 1] = br.readLine(); break;
+			case 2:
+				System.out.print("Enter SAIS ID: ");
+				data[ans - 1] = parseTest(br.readLine()).toString(); break;
+			case 3:
+				System.out.print("Enter student number: ");
+				data[ans - 1] = parseTest(br.readLine()).toString(); break;
+			case 4:
+				System.out.print("Enter student address: ");
+				data[ans - 1] = br.readLine();
+		}
+		
+		printFile(data[0], data[1], data[2], data[3]);
+		
+	}
+	
+	public static FilenameFilter filter () {
+		
 		FilenameFilter textFilter = new FilenameFilter() {
 			public boolean accept(File dir, String filename) {
 				return filename.toLowerCase().endsWith(".txt");
 			}
 		};
 		
-		int n = 1;
-		File[] files = f.listFiles(textFilter);
-		for (File file : files) {
-			System.out.print("\n" + n + " " + file.getName().replace(".txt", "")); n++;
-		} System.out.println();
+		return textFilter;
 	}
-	// Edit Data - given the name of the Student to edit
-	//abstract boolean editData(String name);
+	
+	public static void printFile(String name, String id, String num, String address) throws FileNotFoundException {
+		
+		PrintWriter pw = new PrintWriter(name + ".txt");
+		pw.print(name + " " + id + " " + num + " " + address);
+		pw.close();
+		
+	}
 	
 	public static void main (String [] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -134,7 +190,7 @@ public class StudentDBTrial {
 			}
 			
 			if (ans.equals("5")) {
-				
+				editData();
 			}
 		}
 		
