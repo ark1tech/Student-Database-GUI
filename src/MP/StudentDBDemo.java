@@ -363,7 +363,7 @@ public class StudentDBDemo {
 				displayTitlePage.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/displayPage.png")));
 				
 				JScrollPane scrollPane = new JScrollPane(displayPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-				scrollPane.setBounds(195, 6, 716, 575);
+				scrollPane.setBounds(195, 6, 702, 575);
 				bottomCard.add(scrollPane);
 				
 				JPanel addCard = new JPanel();
