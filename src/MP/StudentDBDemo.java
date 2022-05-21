@@ -166,58 +166,58 @@ public class StudentDBDemo {
 		titleCard.add(displayTitlePage);
 		displayTitlePage.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/displayPage.png")));
 
-		JPanel viewCard = new JPanel();
-		displayPanel.add(viewCard, "view");
-		viewCard.setLayout(null);
-
-		JPanel entryPanel_1 = new JPanel();
-		entryPanel_1.setBackground(new Color(230, 230, 250));
-		entryPanel_1.setBounds(6, 6, 672, 142);
-		viewCard.add(entryPanel_1);
-		entryPanel_1.setLayout(null);
-
-		JLabel nameLabel_1 = new JLabel("Raymund Klien B. Mañago");
-		nameLabel_1.setFont(new Font("Arial", Font.PLAIN, 25));
-		nameLabel_1.setBounds(31, 18, 455, 48);
-		entryPanel_1.add(nameLabel_1);
-
-		JLabel saisLabel_1 = new JLabel("SAIS ID:");
-		saisLabel_1.setForeground(Color.DARK_GRAY);
-		saisLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisLabel_1.setBounds(31, 69, 57, 24);
-		entryPanel_1.add(saisLabel_1);
-
-		JLabel studNoLabel_1 = new JLabel("STUDENT NUMBER:");
-		studNoLabel_1.setForeground(Color.DARK_GRAY);
-		studNoLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoLabel_1.setBounds(172, 69, 150, 24);
-		entryPanel_1.add(studNoLabel_1);
-
-		JLabel saisInfo_1 = new JLabel("235412");
-		saisInfo_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisInfo_1.setBounds(97, 69, 63, 24);
-		entryPanel_1.add(saisInfo_1);
-
-		JLabel studNoInfo_1 = new JLabel("201054321");
-		studNoInfo_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoInfo_1.setBounds(326, 69, 105, 24);
-		entryPanel_1.add(studNoInfo_1);
-
-		JLabel addressLabel_1 = new JLabel("ADDRESS:");
-		addressLabel_1.setForeground(Color.DARK_GRAY);
-		addressLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressLabel_1.setBounds(31, 90, 91, 24);
-		entryPanel_1.add(addressLabel_1);
-
-		JLabel addressInfo_1 = new JLabel("Ili Sur, San Juan, 2514, La Union");
-		addressInfo_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressInfo_1.setBounds(117, 90, 345, 24);
-		entryPanel_1.add(addressInfo_1);
-
 		JScrollPane scrollPane = new JScrollPane(displayPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setPreferredSize(new Dimension(702, 575));
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
+		
+				JPanel viewCard = new JPanel();
+				displayPanel.add(viewCard, "view");
+				viewCard.setLayout(null);
+				
+						JPanel entryPanel_1 = new JPanel();
+						entryPanel_1.setBackground(new Color(230, 230, 250));
+						entryPanel_1.setBounds(6, 6, 672, 142);
+						viewCard.add(entryPanel_1);
+						entryPanel_1.setLayout(null);
+						
+								JLabel nameLabel_1 = new JLabel("Raymund Klien B. Mañago");
+								nameLabel_1.setFont(new Font("Arial", Font.PLAIN, 25));
+								nameLabel_1.setBounds(31, 18, 455, 48);
+								entryPanel_1.add(nameLabel_1);
+								
+										JLabel saisLabel_1 = new JLabel("SAIS ID:");
+										saisLabel_1.setForeground(Color.DARK_GRAY);
+										saisLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
+										saisLabel_1.setBounds(31, 69, 57, 24);
+										entryPanel_1.add(saisLabel_1);
+										
+												JLabel studNoLabel_1 = new JLabel("STUDENT NUMBER:");
+												studNoLabel_1.setForeground(Color.DARK_GRAY);
+												studNoLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
+												studNoLabel_1.setBounds(172, 69, 150, 24);
+												entryPanel_1.add(studNoLabel_1);
+												
+														JLabel saisInfo_1 = new JLabel("235412");
+														saisInfo_1.setFont(new Font("Arial", Font.PLAIN, 15));
+														saisInfo_1.setBounds(97, 69, 63, 24);
+														entryPanel_1.add(saisInfo_1);
+														
+																JLabel studNoInfo_1 = new JLabel("201054321");
+																studNoInfo_1.setFont(new Font("Arial", Font.PLAIN, 15));
+																studNoInfo_1.setBounds(326, 69, 105, 24);
+																entryPanel_1.add(studNoInfo_1);
+																
+																		JLabel addressLabel_1 = new JLabel("ADDRESS:");
+																		addressLabel_1.setForeground(Color.DARK_GRAY);
+																		addressLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
+																		addressLabel_1.setBounds(31, 90, 91, 24);
+																		entryPanel_1.add(addressLabel_1);
+																		
+																				JLabel addressInfo_1 = new JLabel("Ili Sur, San Juan, 2514, La Union");
+																				addressInfo_1.setFont(new Font("Arial", Font.PLAIN, 15));
+																				addressInfo_1.setBounds(117, 90, 345, 24);
+																				entryPanel_1.add(addressInfo_1);
 
 		JPanel editCard = new JPanel();
 		displayPanel.add(editCard, "edit");
@@ -349,19 +349,18 @@ public class StudentDBDemo {
 		addSuccessLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		addSuccessLabel.setForeground(new Color (0x8c52ff));
 		addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addSuccessLabel.setBounds(209, 403, 266, 24);
-		addPanel.add(addSuccessLabel);
-		
-		boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
+		addSuccessLabel.setBounds(205, 403, 302, 24);
+		addCard.add(addSuccessLabel);
 		
 		JButton addEntryBtn = new JButton("Add");
 		addEntryBtn.setBounds(549, 172, 117, 29);
 		addEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
 				if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
 				}
-				else if (!isIncomplete) {
+				else {
 					addFailLabel.setText("");
 					addSuccessLabel.setText("Your entry has been successfully added.");
 				}
@@ -377,7 +376,8 @@ public class StudentDBDemo {
 				saisAddField.setText("");
 				studNoAddField.setText("");
 				addressAddField.setText("");
-				addFailLabel.setText("Incomplete entry!");
+				addFailLabel.setText("");
+				addSuccessLabel.setText("");
 			}
 		});
 		addPanel.add(btnReset);
@@ -396,7 +396,7 @@ public class StudentDBDemo {
 		JLabel saisLabel_Preview = new JLabel("SAIS ID:");
 		saisLabel_Preview.setForeground(Color.DARK_GRAY);
 		saisLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisLabel_Preview.setBounds(31, 92, 57, 24);
+		saisLabel_Preview.setBounds(31, 92, 74, 24);
 		previewPanel.add(saisLabel_Preview);
 
 		JLabel studNoLabel_Preview = new JLabel("STUDENT NUMBER:");
