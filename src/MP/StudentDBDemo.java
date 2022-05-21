@@ -158,7 +158,7 @@ public class StudentDBDemo {
 		displayPanel.setLayout(cl2);
 
 		JPanel titleCard = new JPanel();
-		displayPanel.add(titleCard, "name_268308325509583");
+		displayPanel.add(titleCard, "title");
 		titleCard.setLayout(null);
 
 		JLabel displayTitlePage = new JLabel("");
@@ -218,143 +218,9 @@ public class StudentDBDemo {
 		scrollPane.setPreferredSize(new Dimension(702, 575));
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
-
-		JPanel addCard = new JPanel();
-		displayPanel.add(addCard, "add");
-		addCard.setLayout(null);
-
-		JPanel addPanel = new JPanel();
-		addPanel.setLayout(null);
-		addPanel.setBackground(new Color(230, 230, 250));
-		addPanel.setBounds(6, 6, 672, 207);
-		addCard.add(addPanel);
-
-		JLabel nameAddLabel = new JLabel("NAME:");
-		nameAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		nameAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		nameAddLabel.setBounds(57, 49, 112, 24);
-		addPanel.add(nameAddLabel);
-
-		nameAddField = new JTextField();
-		nameAddField.setBounds(182, 48, 426, 26);
-		addPanel.add(nameAddField);
-		nameAddField.setColumns(10);
-
-		JLabel saisAddLabel = new JLabel("SAIS ID:");
-		saisAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		saisAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisAddLabel.setBounds(57, 72, 112, 24);
-		addPanel.add(saisAddLabel);
-
-		JLabel studNoAddLabel = new JLabel("STUDENT NO.:");
-		studNoAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		studNoAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoAddLabel.setBounds(57, 95, 112, 24);
-		addPanel.add(studNoAddLabel);
-
-		JLabel addressAddLabel = new JLabel("ADDRESS:");
-		addressAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		addressAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressAddLabel.setBounds(57, 118, 112, 24);
-		addPanel.add(addressAddLabel);
-
-		saisAddField = new JTextField();
-		saisAddField.setColumns(10);
-		saisAddField.setBounds(182, 71, 426, 26);
-		addPanel.add(saisAddField);
-
-		studNoAddField = new JTextField();
-		studNoAddField.setColumns(10);
-		studNoAddField.setBounds(182, 94, 426, 26);
-		addPanel.add(studNoAddField);
-
-		addressAddField = new JTextField();
-		addressAddField.setColumns(10);
-		addressAddField.setBounds(182, 117, 426, 26);
-		addPanel.add(addressAddField);
-
-		JLabel saisInfo_1_1_1_1_1_1 = new JLabel("Kindly enter the information below.");
-		saisInfo_1_1_1_1_1_1.setForeground(Color.DARK_GRAY);
-		saisInfo_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		saisInfo_1_1_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisInfo_1_1_1_1_1_1.setBounds(17, 13, 230, 24);
-		addPanel.add(saisInfo_1_1_1_1_1_1);
-
-		JButton addEntryBtn = new JButton("Add");
-		addEntryBtn.setBounds(549, 172, 117, 29);
-		addPanel.add(addEntryBtn);
-
-		JLabel addFailLabel = new JLabel("Incomplete entry!");
-		addFailLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		addFailLabel.setForeground(Color.RED);
-		addFailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addFailLabel.setBounds(184, 146, 118, 24);
-		addPanel.add(addFailLabel);
-
-		JPanel previewPanel = new JPanel();
-		previewPanel.setLayout(null);
-		previewPanel.setBackground(new Color(230, 230, 250));
-		previewPanel.setBounds(6, 219, 672, 172);
-		addCard.add(previewPanel);
-
-		JLabel nameLabel_Preview = new JLabel("Raymund Klien B. Mañago");
-		nameLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 25));
-		nameLabel_Preview.setBounds(31, 41, 455, 48);
-		previewPanel.add(nameLabel_Preview);
-
-		JLabel saisLabel_Preview = new JLabel("SAIS ID:");
-		saisLabel_Preview.setForeground(Color.DARK_GRAY);
-		saisLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisLabel_Preview.setBounds(31, 92, 57, 24);
-		previewPanel.add(saisLabel_Preview);
-
-		JLabel studNoLabel_Preview = new JLabel("STUDENT NUMBER:");
-		studNoLabel_Preview.setForeground(Color.DARK_GRAY);
-		studNoLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoLabel_Preview.setBounds(172, 92, 150, 24);
-		previewPanel.add(studNoLabel_Preview);
-
-		JLabel saisInfo_Preview = new JLabel("235412");
-		saisInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisInfo_Preview.setBounds(97, 92, 63, 24);
-		previewPanel.add(saisInfo_Preview);
-
-		JLabel studNoInfo_Preview = new JLabel("201054321");
-		studNoInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoInfo_Preview.setBounds(326, 92, 105, 24);
-		previewPanel.add(studNoInfo_Preview);
-
-		JLabel addressLabel_Preview = new JLabel("ADDRESS:");
-		addressLabel_Preview.setForeground(Color.DARK_GRAY);
-		addressLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressLabel_Preview.setBounds(31, 113, 91, 24);
-		previewPanel.add(addressLabel_Preview);
-
-		JLabel addressInfo_Preview = new JLabel("Ili Sur, San Juan, 2514, La Union");
-		addressInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressInfo_Preview.setBounds(117, 113, 345, 24);
-		previewPanel.add(addressInfo_Preview);
-
-		JLabel entryIconLabel_5 = new JLabel("");
-		entryIconLabel_5.setBounds(538, 12, 118, 118);
-		previewPanel.add(entryIconLabel_5);
-
-		JLabel previewLabel = new JLabel("Preview");
-		previewLabel.setForeground(Color.DARK_GRAY);
-		previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		previewLabel.setBounds(17, 12, 57, 24);
-		previewPanel.add(previewLabel);
-		
-		JLabel addSuccessLabel = new JLabel("Your entry has been successfully added.");
-		addSuccessLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		addSuccessLabel.setForeground(new Color (0x8c52ff));
-		addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addSuccessLabel.setBounds(209, 403, 266, 24);
-		addCard.add(addSuccessLabel);
 		
 				JPanel editCard = new JPanel();
-				displayPanel.add(editCard, "name_620026753508541");
+				displayPanel.add(editCard, "edit");
 				editCard.setLayout(null);
 				
 				JPanel viewCard_1_1 = new JPanel();
@@ -410,6 +276,140 @@ public class StudentDBDemo {
 				editBtn.setForeground(Color.BLACK);
 				editBtn.setBounds(549, 107, 117, 29);
 				editPanel.add(editBtn);
+		
+				JPanel addCard = new JPanel();
+				displayPanel.add(addCard, "add");
+				addCard.setLayout(null);
+				
+						JPanel addPanel = new JPanel();
+						addPanel.setLayout(null);
+						addPanel.setBackground(new Color(230, 230, 250));
+						addPanel.setBounds(6, 6, 672, 207);
+						addCard.add(addPanel);
+						
+								JLabel nameAddLabel = new JLabel("NAME:");
+								nameAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+								nameAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+								nameAddLabel.setBounds(57, 49, 112, 24);
+								addPanel.add(nameAddLabel);
+								
+										nameAddField = new JTextField();
+										nameAddField.setBounds(182, 48, 426, 26);
+										addPanel.add(nameAddField);
+										nameAddField.setColumns(10);
+										
+												JLabel saisAddLabel = new JLabel("SAIS ID:");
+												saisAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+												saisAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+												saisAddLabel.setBounds(57, 72, 112, 24);
+												addPanel.add(saisAddLabel);
+												
+														JLabel studNoAddLabel = new JLabel("STUDENT NO.:");
+														studNoAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+														studNoAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+														studNoAddLabel.setBounds(57, 95, 112, 24);
+														addPanel.add(studNoAddLabel);
+														
+																JLabel addressAddLabel = new JLabel("ADDRESS:");
+																addressAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+																addressAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+																addressAddLabel.setBounds(57, 118, 112, 24);
+																addPanel.add(addressAddLabel);
+																
+																		saisAddField = new JTextField();
+																		saisAddField.setColumns(10);
+																		saisAddField.setBounds(182, 71, 426, 26);
+																		addPanel.add(saisAddField);
+																		
+																				studNoAddField = new JTextField();
+																				studNoAddField.setColumns(10);
+																				studNoAddField.setBounds(182, 94, 426, 26);
+																				addPanel.add(studNoAddField);
+																				
+																						addressAddField = new JTextField();
+																						addressAddField.setColumns(10);
+																						addressAddField.setBounds(182, 117, 426, 26);
+																						addPanel.add(addressAddField);
+																						
+																								JLabel saisInfo_1_1_1_1_1_1 = new JLabel("Kindly enter the information below.");
+																								saisInfo_1_1_1_1_1_1.setForeground(Color.DARK_GRAY);
+																								saisInfo_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+																								saisInfo_1_1_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 15));
+																								saisInfo_1_1_1_1_1_1.setBounds(17, 13, 230, 24);
+																								addPanel.add(saisInfo_1_1_1_1_1_1);
+																								
+																										JButton addEntryBtn = new JButton("Add");
+																										addEntryBtn.setBounds(549, 172, 117, 29);
+																										addPanel.add(addEntryBtn);
+																										
+																												JLabel addFailLabel = new JLabel("Incomplete entry!");
+																												addFailLabel.setHorizontalAlignment(SwingConstants.LEFT);
+																												addFailLabel.setForeground(Color.RED);
+																												addFailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+																												addFailLabel.setBounds(184, 146, 118, 24);
+																												addPanel.add(addFailLabel);
+																												
+																														JPanel previewPanel = new JPanel();
+																														previewPanel.setLayout(null);
+																														previewPanel.setBackground(new Color(230, 230, 250));
+																														previewPanel.setBounds(6, 219, 672, 172);
+																														addCard.add(previewPanel);
+																														
+																																JLabel nameLabel_Preview = new JLabel("Raymund Klien B. Mañago");
+																																nameLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 25));
+																																nameLabel_Preview.setBounds(31, 41, 455, 48);
+																																previewPanel.add(nameLabel_Preview);
+																																
+																																		JLabel saisLabel_Preview = new JLabel("SAIS ID:");
+																																		saisLabel_Preview.setForeground(Color.DARK_GRAY);
+																																		saisLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
+																																		saisLabel_Preview.setBounds(31, 92, 57, 24);
+																																		previewPanel.add(saisLabel_Preview);
+																																		
+																																				JLabel studNoLabel_Preview = new JLabel("STUDENT NUMBER:");
+																																				studNoLabel_Preview.setForeground(Color.DARK_GRAY);
+																																				studNoLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
+																																				studNoLabel_Preview.setBounds(172, 92, 150, 24);
+																																				previewPanel.add(studNoLabel_Preview);
+																																				
+																																						JLabel saisInfo_Preview = new JLabel("235412");
+																																						saisInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
+																																						saisInfo_Preview.setBounds(97, 92, 63, 24);
+																																						previewPanel.add(saisInfo_Preview);
+																																						
+																																								JLabel studNoInfo_Preview = new JLabel("201054321");
+																																								studNoInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
+																																								studNoInfo_Preview.setBounds(326, 92, 105, 24);
+																																								previewPanel.add(studNoInfo_Preview);
+																																								
+																																										JLabel addressLabel_Preview = new JLabel("ADDRESS:");
+																																										addressLabel_Preview.setForeground(Color.DARK_GRAY);
+																																										addressLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
+																																										addressLabel_Preview.setBounds(31, 113, 91, 24);
+																																										previewPanel.add(addressLabel_Preview);
+																																										
+																																												JLabel addressInfo_Preview = new JLabel("Ili Sur, San Juan, 2514, La Union");
+																																												addressInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
+																																												addressInfo_Preview.setBounds(117, 113, 345, 24);
+																																												previewPanel.add(addressInfo_Preview);
+																																												
+																																														JLabel entryIconLabel_5 = new JLabel("");
+																																														entryIconLabel_5.setBounds(538, 12, 118, 118);
+																																														previewPanel.add(entryIconLabel_5);
+																																														
+																																																JLabel previewLabel = new JLabel("Preview");
+																																																previewLabel.setForeground(Color.DARK_GRAY);
+																																																previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+																																																previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+																																																previewLabel.setBounds(17, 12, 57, 24);
+																																																previewPanel.add(previewLabel);
+																																																
+																																																JLabel addSuccessLabel = new JLabel("Your entry has been successfully added.");
+																																																addSuccessLabel.setHorizontalAlignment(SwingConstants.LEFT);
+																																																addSuccessLabel.setForeground(new Color (0x8c52ff));
+																																																addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+																																																addSuccessLabel.setBounds(209, 403, 266, 24);
+																																																addCard.add(addSuccessLabel);
 
 		JPanel deleteCard = new JPanel();
 		displayPanel.add(deleteCard, "delete");
@@ -613,8 +613,9 @@ public class StudentDBDemo {
 				deleteIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/deleteIcon.png")));
 				deleteButton.setOpaque(true);
 			}
-
 		});
+		
+		deleteButton.addActionListener(e -> cl2.show(displayPanel, "delete"));
 		deleteButton.setHorizontalAlignment(SwingConstants.LEFT);
 		deleteButton.setBorderPainted(false);
 		deleteButton.setBounds(-2, 170, 200, 58);
@@ -624,6 +625,8 @@ public class StudentDBDemo {
 		deleteButton.setAlignmentX(0.5f); 
 		menuPanel.add(deleteButton); 
 
+		
+		
 		editButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -637,6 +640,8 @@ public class StudentDBDemo {
 				editButton.setOpaque(true);
 			}
 		});
+		
+		editButton.addActionListener(e -> cl2.show(displayPanel, "edit"));
 		editButton.setHorizontalAlignment(SwingConstants.LEFT);
 		editButton.setBorderPainted(false);
 		editButton.setForeground(Color.WHITE);
@@ -659,6 +664,8 @@ public class StudentDBDemo {
 				searchButton.setOpaque(true);
 			}
 		});
+		
+		searchButton.addActionListener(e -> cl2.show(displayPanel, "search"));
 		searchButton.setHorizontalAlignment(SwingConstants.LEFT);
 		searchButton.setBorderPainted(false);
 		searchButton.setBounds(-2, 280, 200, 58);
