@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -726,7 +727,7 @@ private void newPanel(JPanel viewCard) throws FileNotFoundException {
 			addressLabel.setBounds(31, 90, 91, 24);
 			entryPanel.add(addressLabel);
 
-			JLabel addressInfo = new JLabel(data[3]);
+			JLabel addressInfo = new JLabel(String.join(" ", Arrays.copyOfRange(data, 3, data.length)));
 			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			addressInfo.setBounds(117, 90, 345, 24);
 			entryPanel.add(addressInfo);
