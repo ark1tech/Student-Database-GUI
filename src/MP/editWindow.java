@@ -7,11 +7,15 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class editWindow {
 
 	private JFrame frame;
 	private JTextField textField;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -35,7 +39,7 @@ public class editWindow {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 299, 193);
+		frame.setBounds(100, 100, 300, 223);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
@@ -54,5 +58,11 @@ public class editWindow {
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.setBounds(89, 103, 117, 29);
 		frame.getContentPane().add(btnNewButton);
+		
+		lblNewLabel = new JLabel("Incomplete entry!");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(66, 146, 161, 16);
+		frame.getContentPane().add(lblNewLabel);
 	}
 }

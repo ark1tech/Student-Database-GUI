@@ -20,8 +20,10 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,6 +40,8 @@ public class StudentDBDemo {
 	private JTextField studNoAddField;
 	private JTextField addressAddField;
 	private JTextField textField_4;
+	private JTextField editWindowField;
+	private JPanel deleteCard;
 
 	/**
 	 * Launch the application.
@@ -180,21 +184,6 @@ public class StudentDBDemo {
 		displayPanel.add(viewCard, "view");
 		viewCard.setLayout(null);
 
-		JPanel deleteCard = new JPanel();
-		displayPanel.add(deleteCard, "delete");
-		deleteCard.setLayout(null);
-
-		JPanel viewCard_1 = new JPanel();
-		viewCard_1.setLayout(null);
-		viewCard_1.setBounds(0, 0, 702, 573);
-		deleteCard.add(viewCard_1);
-
-		JPanel deletePanel = new JPanel();
-		deletePanel.setLayout(null);
-		deletePanel.setBackground(new Color(230, 230, 250));
-		deletePanel.setBounds(6, 6, 672, 142);
-		viewCard_1.add(deletePanel);
-
 		JPanel editCard = new JPanel();
 		displayPanel.add(editCard, "edit");
 		editCard.setLayout(null);
@@ -209,6 +198,21 @@ public class StudentDBDemo {
 		editPanel.setBackground(new Color(230, 230, 250));
 		editPanel.setBounds(6, 6, 672, 142);
 		viewCard_1_1.add(editPanel);
+		
+		deleteCard = new JPanel();
+		displayPanel.add(deleteCard, "delete");
+		deleteCard.setLayout(null);
+
+		JPanel viewCard_1 = new JPanel();
+		viewCard_1.setLayout(null);
+		viewCard_1.setBounds(0, 0, 702, 573);
+		deleteCard.add(viewCard_1);
+
+		JPanel deletePanel = new JPanel();
+		deletePanel.setLayout(null);
+		deletePanel.setBackground(new Color(230, 230, 250));
+		deletePanel.setBounds(6, 6, 672, 142);
+		viewCard_1.add(deletePanel);
 
 		JPanel addCard = new JPanel();
 		displayPanel.add(addCard, "add");
@@ -320,123 +324,24 @@ public class StudentDBDemo {
 		});
 		addPanel.add(btnReset);
 
-		JPanel previewPanel = new JPanel();
-		previewPanel.setLayout(null);
-		previewPanel.setBackground(new Color(230, 230, 250));
-		previewPanel.setBounds(6, 219, 672, 172);
-		addCard.add(previewPanel);
-
-		JLabel nameLabel_Preview = new JLabel("Raymund Klien B. Mañago");
-		nameLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 25));
-		nameLabel_Preview.setBounds(31, 41, 455, 48);
-		previewPanel.add(nameLabel_Preview);
-
-		JLabel saisLabel_Preview = new JLabel("SAIS ID:");
-		saisLabel_Preview.setForeground(Color.DARK_GRAY);
-		saisLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisLabel_Preview.setBounds(31, 92, 74, 24);
-		previewPanel.add(saisLabel_Preview);
-
-		JLabel studNoLabel_Preview = new JLabel("STUDENT NUMBER:");
-		studNoLabel_Preview.setForeground(Color.DARK_GRAY);
-		studNoLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoLabel_Preview.setBounds(172, 92, 150, 24);
-		previewPanel.add(studNoLabel_Preview);
-
-		JLabel saisInfo_Preview = new JLabel("235412");
-		saisInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisInfo_Preview.setBounds(97, 92, 63, 24);
-		previewPanel.add(saisInfo_Preview);
-
-		JLabel studNoInfo_Preview = new JLabel("201054321");
-		studNoInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoInfo_Preview.setBounds(326, 92, 105, 24);
-		previewPanel.add(studNoInfo_Preview);
-
-		JLabel addressLabel_Preview = new JLabel("ADDRESS:");
-		addressLabel_Preview.setForeground(Color.DARK_GRAY);
-		addressLabel_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressLabel_Preview.setBounds(31, 113, 91, 24);
-		previewPanel.add(addressLabel_Preview);
-
-		JLabel addressInfo_Preview = new JLabel("Ili Sur, San Juan, 2514, La Union");
-		addressInfo_Preview.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressInfo_Preview.setBounds(117, 113, 345, 24);
-		previewPanel.add(addressInfo_Preview);
-
-		JLabel entryIconLabel_5 = new JLabel("");
-		entryIconLabel_5.setBounds(538, 12, 118, 118);
-		previewPanel.add(entryIconLabel_5);
-
-		JLabel previewLabel = new JLabel("Preview");
-		previewLabel.setForeground(Color.DARK_GRAY);
-		previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		previewLabel.setBounds(17, 12, 57, 24);
-		previewPanel.add(previewLabel);
-
 		JPanel searchCard = new JPanel();
 		displayPanel.add(searchCard, "search");
 		searchCard.setLayout(null);
 
-		JPanel entryPanel_1_3_2 = new JPanel();
-		entryPanel_1_3_2.setLayout(null);
-		entryPanel_1_3_2.setBackground(new Color(230, 230, 250));
-		entryPanel_1_3_2.setBounds(6, 6, 672, 39);
-		searchCard.add(entryPanel_1_3_2);
+		JPanel searchEntryPanel = new JPanel();
+		searchEntryPanel.setLayout(null);
+		searchEntryPanel.setBackground(new Color(230, 230, 250));
+		searchEntryPanel.setBounds(6, 6, 672, 39);
+		searchCard.add(searchEntryPanel);
 
 		textField_4 = new JTextField();
 		textField_4.setBounds(6, 6, 535, 26);
-		entryPanel_1_3_2.add(textField_4);
+		searchEntryPanel.add(textField_4);
 		textField_4.setColumns(10);
 
 		JButton btnNewButton_2 = new JButton("Search");
 		btnNewButton_2.setBounds(549, 6, 117, 29);
-		entryPanel_1_3_2.add(btnNewButton_2);
-
-		JPanel entryPanel_1_3_3 = new JPanel();
-		entryPanel_1_3_3.setLayout(null);
-		entryPanel_1_3_3.setBackground(new Color(230, 230, 250));
-		entryPanel_1_3_3.setBounds(6, 51, 672, 142);
-		searchCard.add(entryPanel_1_3_3);
-
-		JLabel nameLabel_1_2_2 = new JLabel("Raymund Klien B. Mañago");
-		nameLabel_1_2_2.setFont(new Font("Arial", Font.PLAIN, 25));
-		nameLabel_1_2_2.setBounds(31, 18, 455, 48);
-		entryPanel_1_3_3.add(nameLabel_1_2_2);
-
-		JLabel saisLabel_1_2_2 = new JLabel("SAIS ID:");
-		saisLabel_1_2_2.setForeground(Color.DARK_GRAY);
-		saisLabel_1_2_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisLabel_1_2_2.setBounds(31, 69, 57, 24);
-		entryPanel_1_3_3.add(saisLabel_1_2_2);
-
-		JLabel studNoLabel_1_2_2 = new JLabel("STUDENT NUMBER:");
-		studNoLabel_1_2_2.setForeground(Color.DARK_GRAY);
-		studNoLabel_1_2_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoLabel_1_2_2.setBounds(172, 69, 150, 24);
-		entryPanel_1_3_3.add(studNoLabel_1_2_2);
-
-		JLabel saisInfo_1_3_2 = new JLabel("235412");
-		saisInfo_1_3_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisInfo_1_3_2.setBounds(97, 69, 63, 24);
-		entryPanel_1_3_3.add(saisInfo_1_3_2);
-
-		JLabel studNoInfo_1_2_2 = new JLabel("201054321");
-		studNoInfo_1_2_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoInfo_1_2_2.setBounds(326, 69, 105, 24);
-		entryPanel_1_3_3.add(studNoInfo_1_2_2);
-
-		JLabel addressLabel_1_2_2 = new JLabel("ADDRESS:");
-		addressLabel_1_2_2.setForeground(Color.DARK_GRAY);
-		addressLabel_1_2_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressLabel_1_2_2.setBounds(31, 90, 91, 24);
-		entryPanel_1_3_3.add(addressLabel_1_2_2);
-
-		JLabel addressInfo_1_2_2 = new JLabel("Ili Sur, San Juan, 2514, La Union");
-		addressInfo_1_2_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressInfo_1_2_2.setBounds(117, 90, 345, 24);
-		entryPanel_1_3_3.add(addressInfo_1_2_2);
+		searchEntryPanel.add(btnNewButton_2);
 
 		JButton addButton = new JButton("          Add an Entry");
 		JButton viewButton = new JButton("          View All Entries");
@@ -620,50 +525,152 @@ public class StudentDBDemo {
 
 		frame.setResizable(false);
 	}
+	
+	public class openEditWindow{
+		openEditWindow(String name) {
+			JFrame editFrame = new JFrame();
+			editFrame.setBounds(100, 100, 300, 223);
+			editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			editFrame.setLocationRelativeTo(null);
+			editFrame.setResizable(false);
+			editFrame.getContentPane().setLayout(null);
+			
+			JComboBox comboBox = new JComboBox();
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Name", "Student Number", "SAIS ID", "Address"}));
+			comboBox.setBounds(36, 35, 226, 27);
+			editFrame.getContentPane().add(comboBox);
+			
+			editWindowField = new JTextField();
+			editWindowField.setBounds(69, 66, 161, 26);
+			editWindowField.setColumns(10);
+			editFrame.getContentPane().add(editWindowField);
+			
+			JLabel incompleteLabel = new JLabel("");
+			incompleteLabel.setForeground(Color.RED);
+			incompleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			incompleteLabel.setBounds(66, 146, 161, 16);
+			frame.getContentPane().add(incompleteLabel);
+			
+			JButton saveEditBtn  = new JButton("Save");
+			saveEditBtn.setBounds(89, 103, 117, 29);
+			saveEditBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					boolean isIncomplete = editWindowField.getText().isEmpty();
+						if(isIncomplete){
+							incompleteLabel.setText("Incomplete Entry!");
+							// not working 
+						}
+						else {
+							try {
+								Scanner sc = new Scanner(new File(name + ".txt"));
+								String name = sc.nextLine();
+								String dataLine = sc.nextLine(); sc.close();
+								String [] data = dataLine.split("\\s");
+								
+								switch(comboBox.getSelectedIndex() - 1) {
+									case 1:
+										new File(name + ".txt").delete();
+										name = editWindowField.getText();
+										break;
+									case 2:
+										data[0] = editWindowField.getText(); break;
+									case 3:
+										data[1] = editWindowField.getText(); break;
+									case 4:
+										data[2] = editWindowField.getText();
+								}
+								
+								printFile(name, data[0], data[1], data[2]);
+							}
+							catch (FileNotFoundException e1) {
+								e1.printStackTrace();
+							}
+							editFrame.dispose();
+						}
+						
+						try {
+							createPanel(deleteCard, 2);
+						} catch (FileNotFoundException e1) {
+							e1.printStackTrace();
+						}
+					}
+			});
+			editFrame.getContentPane().add(saveEditBtn);
+			editFrame.setVisible(true);
+		}
+	}
 
-	private void createPanel(JPanel viewCard, int state) throws FileNotFoundException {
+	private void createPanel(JPanel entryCard, int state) throws FileNotFoundException{
 		Dimension dim = new Dimension(672, 142);
-		viewCard.removeAll();
+		entryCard.removeAll();
 		File f = new File(".");
 		File [] files = f.listFiles(StudentDBTrial.filter());
 
 		int n = 1;
 		for (File file : files) {
-
-			JPanel entryPanel = new JPanel();
-			entryPanel.setBackground(new Color(230, 230, 250));
-			entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
-			entryPanel.setPreferredSize(dim);
-			viewCard.add(entryPanel);
-			entryPanel.setLayout(null);
 			
-			JButton entryBtn = new JButton("");
-			entryBtn.setBounds(549, 107, 117, 29);
-			entryBtn.setVisible(false);
-			entryPanel.add(entryBtn);
-			
-			if (state == 2) {
-				entryBtn.setVisible(true);
-				entryBtn.setForeground(Color.RED);
-				entryBtn.setText("Delete");
-			}
-			else if (state == 3) {
-				entryBtn.setVisible(true);
-				entryBtn.setForeground(Color.BLACK);
-				entryBtn.setText("Edit");
-			}
-
-			System.out.print("\nEntry " + n); n++;
 			Scanner sc = new Scanner(new File(file.getName()));
 			String name = sc.nextLine();
 			String dataLine = sc.nextLine(); sc.close();
 			String [] data = dataLine.split("\\s");
+			
+			JPanel entryPanel = new JPanel();
+			entryPanel.setBackground(new Color(230, 230, 250));
+			entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
+			entryPanel.setPreferredSize(dim);
+			entryPanel.setLayout(null);
+			entryCard.add(entryPanel);
+			
+			/*
+		 		JLabel previewLabel = new JLabel("Preview");
+				previewLabel.setForeground(Color.DARK_GRAY);
+				previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+				previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+				previewLabel.setBounds(17, 12, 57, 24);
+				previewPanel.add(previewLabel);
+				
+			*/
+
+			//System.out.print("\nEntry " + n);
+			n++;
 
 			JLabel nameLabel = new JLabel(name);
 			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 			nameLabel.setBounds(31, 18, 455, 48);
 			entryPanel.add(nameLabel);
-
+			
+			if (state == 2) {
+				JButton deleteEntryBtn = new JButton("Delete");
+				deleteEntryBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(new File(name + ".txt").delete()){
+							System.out.println(name + "'s record has been deleted.");
+						} else System.out.println("Student record does not exist.");
+						try {
+							createPanel(deleteCard, 2);
+						} catch (FileNotFoundException e1) {
+							e1.printStackTrace();
+						}
+						
+					}
+				});
+				deleteEntryBtn.setBounds(549, 107, 117, 29);
+				deleteEntryBtn.setForeground(Color.RED);
+				entryPanel.add(deleteEntryBtn);
+				
+			}
+			else if (state == 3) {
+				JButton editEntryBtn = new JButton("Edit");
+				editEntryBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						new openEditWindow(name);
+					}
+				});
+				editEntryBtn.setBounds(549, 107, 117, 29);
+				editEntryBtn.setForeground(Color.BLACK);
+				entryPanel.add(editEntryBtn);
+			}
+			
 			JLabel saisLabel = new JLabel("SAIS ID:");
 			saisLabel.setForeground(Color.DARK_GRAY);
 			saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -699,14 +706,17 @@ public class StudentDBDemo {
 
 			System.out.println();
 		} System.out.println();
+		
+		entryCard.repaint();
 
 	}
 
-	public static void printFile(String name, String id, String num, String address) throws FileNotFoundException {
+	private void printFile(String name, String id, String num, String address) throws FileNotFoundException {
 
 		PrintWriter pw = new PrintWriter(name + ".txt");
 		pw.print(name + "\n" + id + " " + num + " " + address);
 		pw.close();
 
 	}
+	
 }
