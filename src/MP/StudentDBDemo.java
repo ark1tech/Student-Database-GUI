@@ -338,17 +338,32 @@ public class StudentDBDemo {
 		addInstruc.setBounds(17, 13, 230, 24);
 		addPanel.add(addInstruc);
 		
+		JLabel addFailLabel = new JLabel("");
+		addFailLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		addFailLabel.setForeground(Color.RED);
+		addFailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		addFailLabel.setBounds(184, 146, 118, 24);
+		addPanel.add(addFailLabel);
+		
+		JLabel addSuccessLabel = new JLabel("");
+		addSuccessLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		addSuccessLabel.setForeground(new Color (0x8c52ff));
+		addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		addSuccessLabel.setBounds(209, 403, 266, 24);
+		addPanel.add(addSuccessLabel);
+		
+		boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
+		
 		JButton addEntryBtn = new JButton("Add");
 		addEntryBtn.setBounds(549, 172, 117, 29);
 		addEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (nameAddField.getText() == "" || saisAddField.getText() == "" || studNoAddField.getText() == "" || addressAddField.getText() == "") {
-					JLabel addFailLabel = new JLabel("Incomplete entry!");
-					addFailLabel.setHorizontalAlignment(SwingConstants.LEFT);
-					addFailLabel.setForeground(Color.RED);
-					addFailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-					addFailLabel.setBounds(184, 146, 118, 24);
-					addPanel.add(addFailLabel);
+				if (isIncomplete) {
+					addFailLabel.setText("Incomplete entry!");
+				}
+				else if (!isIncomplete) {
+					addFailLabel.setText("");
+					addSuccessLabel.setText("Your entry has been successfully added.");
 				}
 			}
 		});
@@ -362,6 +377,7 @@ public class StudentDBDemo {
 				saisAddField.setText("");
 				studNoAddField.setText("");
 				addressAddField.setText("");
+				addFailLabel.setText("Incomplete entry!");
 			}
 		});
 		addPanel.add(btnReset);
@@ -420,13 +436,6 @@ public class StudentDBDemo {
 		previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		previewLabel.setBounds(17, 12, 57, 24);
 		previewPanel.add(previewLabel);
-
-		JLabel addSuccessLabel = new JLabel("Your entry has been successfully added.");
-		addSuccessLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		addSuccessLabel.setForeground(new Color (0x8c52ff));
-		addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addSuccessLabel.setBounds(209, 403, 266, 24);
-		addCard.add(addSuccessLabel);
 
 		JPanel deleteCard = new JPanel();
 		displayPanel.add(deleteCard, "delete");
