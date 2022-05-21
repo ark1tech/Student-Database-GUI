@@ -10,12 +10,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.Font;
 
 public class editWindow {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField editWindowField;
 	private JLabel lblNewLabel;
+	private JButton cancelEditBtn;
+	private JButton saveEditBtn;
+	private JLabel entryEditLabel;
 
 	/**
 	 * Launch the application.
@@ -39,7 +43,7 @@ public class editWindow {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 300, 223);
+		frame.setBounds(100, 100, 320, 226);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
@@ -47,22 +51,32 @@ public class editWindow {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Name", "Student Number", "SAIS ID", "Address"}));
-		comboBox.setBounds(36, 35, 226, 27);
+		comboBox.setBounds(36, 35, 246, 27);
 		frame.getContentPane().add(comboBox);
 		
-		textField = new JTextField();
-		textField.setBounds(69, 66, 161, 26);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Save");
-		btnNewButton.setBounds(89, 103, 117, 29);
-		frame.getContentPane().add(btnNewButton);
+		editWindowField = new JTextField();
+		editWindowField.setBounds(80, 69, 202, 26);
+		frame.getContentPane().add(editWindowField);
+		editWindowField.setColumns(10);
 		
 		lblNewLabel = new JLabel("Incomplete entry!");
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(66, 146, 161, 16);
+		lblNewLabel.setBounds(79, 143, 161, 16);
 		frame.getContentPane().add(lblNewLabel);
+		
+		cancelEditBtn = new JButton("Cancel");
+		cancelEditBtn.setFont(new Font("Arial", Font.PLAIN, 13));
+		cancelEditBtn.setBounds(46, 104, 104, 27);
+		frame.getContentPane().add(cancelEditBtn);
+		
+		saveEditBtn = new JButton("Save");
+		saveEditBtn.setBounds(162, 104, 104, 27);
+		frame.getContentPane().add(saveEditBtn);
+		
+		entryEditLabel = new JLabel("Entry:");
+		entryEditLabel.setFont(new Font("Arial", Font.PLAIN, 13));
+		entryEditLabel.setBounds(36, 74, 61, 16);
+		frame.getContentPane().add(entryEditLabel);
 	}
 }

@@ -45,10 +45,8 @@ public class StudentDBDemo {
 	private JPanel deleteCard;
 	private JPanel editCard;
 	private JButton editEntryBtn;
+	private JButton deleteEntryBtn;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -87,19 +85,6 @@ public class StudentDBDemo {
 		};
 		frame.getContentPane().add(topCard, "1");
 		topCard.setLayout(null);
-
-		JButton accessButton = new JButton("Access Student Database");
-		accessButton.setForeground(Color.WHITE);
-		accessButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cl.show(frame.getContentPane(), "2");
-			}
-		});
-		accessButton.setOpaque(true);
-		accessButton.setBorderPainted(false);
-		accessButton.setBackground(new Color(0x8c52ff));
-		accessButton.setBounds(325, 381, 270, 42);
-		topCard.add(accessButton);
 
 		JButton mainExitButton = new JButton("Shut Down");
 		mainExitButton.setBounds(325, 430, 270, 29);
@@ -168,6 +153,20 @@ public class StudentDBDemo {
 		//displayPanel.setBounds(195, 6, 716, 573);
 		displayPanel.setPreferredSize(new Dimension(702, 2000));
 		displayPanel.setLayout(cl2);
+		
+		JButton accessButton = new JButton("Access Student Database");
+		accessButton.setForeground(Color.WHITE);
+		accessButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cl.show(frame.getContentPane(), "2");
+				cl2.show(displayPanel, "title");
+			}
+		});
+		accessButton.setOpaque(true);
+		accessButton.setBorderPainted(false);
+		accessButton.setBackground(new Color(0x8c52ff));
+		accessButton.setBounds(325, 381, 270, 42);
+		topCard.add(accessButton);
 
 		JPanel titleCard = new JPanel();
 		displayPanel.add(titleCard, "title");
@@ -291,6 +290,57 @@ public class StudentDBDemo {
 		addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		addSuccessLabel.setBounds(205, 403, 302, 24);
 		addCard.add(addSuccessLabel);
+		
+		JPanel previewPanel = new JPanel();
+		previewPanel.setBackground(new Color(230, 230, 250));
+		previewPanel.setBounds(6, 219, 672, 172);
+		previewPanel.setLayout(null);
+		addCard.add(previewPanel);
+		
+ 		JLabel previewLabel = new JLabel("Preview");
+		previewLabel.setForeground(Color.DARK_GRAY);
+		previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		previewLabel.setBounds(17, 12, 57, 24);
+		previewPanel.add(previewLabel);
+		
+		JLabel saisPreviewLabel = new JLabel("SAIS ID:");
+		saisPreviewLabel.setForeground(Color.DARK_GRAY);
+		saisPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		saisPreviewLabel.setBounds(27, 101, 57, 24);
+		previewPanel.add(saisPreviewLabel);
+
+		JLabel studNumPreviewLabel = new JLabel("STUDENT NUMBER:");
+		studNumPreviewLabel.setForeground(Color.DARK_GRAY);
+		studNumPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		studNumPreviewLabel.setBounds(168, 101, 150, 24);
+		previewPanel.add(studNumPreviewLabel);
+		
+		JLabel addressPreviewLabel = new JLabel("ADDRESS:");
+		addressPreviewLabel.setForeground(Color.DARK_GRAY);
+		addressPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		addressPreviewLabel.setBounds(27, 122, 91, 24);
+		previewPanel.add(addressPreviewLabel);
+		
+		JLabel namePreviewInfo = new JLabel();
+		namePreviewInfo.setFont(new Font("Arial", Font.PLAIN, 25));
+		namePreviewInfo.setBounds(27, 50, 455, 48);
+		previewPanel.add(namePreviewInfo);
+		
+		JLabel saisPreviewInfo = new JLabel();
+		saisPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+		saisPreviewInfo.setBounds(93, 101, 63, 24);
+		previewPanel.add(saisPreviewInfo);
+		
+		JLabel studNumPreviewInfo = new JLabel();
+		studNumPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+		studNumPreviewInfo.setBounds(322, 101, 105, 24);
+		previewPanel.add(studNumPreviewInfo);
+
+		JLabel addressPreviewInfo = new JLabel();
+		addressPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+		addressPreviewInfo.setBounds(113, 122, 345, 24);
+		previewPanel.add(addressPreviewInfo);
 
 		JButton addEntryBtn = new JButton("Add");
 		addEntryBtn.setBounds(549, 172, 117, 29);
@@ -302,6 +352,10 @@ public class StudentDBDemo {
 				}
 				else {
 					addFailLabel.setText("");
+					namePreviewInfo.setText(nameAddField.getText());
+					saisPreviewInfo.setText(saisAddField.getText());
+					studNumPreviewInfo.setText(studNoAddField.getText());
+					addressPreviewInfo.setText(addressAddField.getText());
 					try {
 						printFile(nameAddField.getText(), saisAddField.getText(), studNoAddField.getText(), addressAddField.getText());
 					} catch (FileNotFoundException e1) {
@@ -323,6 +377,10 @@ public class StudentDBDemo {
 				addressAddField.setText("");
 				addFailLabel.setText("");
 				addSuccessLabel.setText("");
+				namePreviewInfo.setText("");
+				saisPreviewInfo.setText("");
+				studNumPreviewInfo.setText("");
+				addressPreviewInfo.setText("");
 			}
 		});
 		addPanel.add(btnReset);
@@ -610,10 +668,10 @@ public class StudentDBDemo {
 		frame.setResizable(false);
 	}
 	
-	public class openEditWindow{
+	private class openEditWindow{
 		openEditWindow(String name) {
 			JFrame editFrame = new JFrame();
-			editFrame.setBounds(100, 100, 300, 223);
+			editFrame.setBounds(100, 100, 320, 226);
 			editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			editFrame.setLocationRelativeTo(null);
 			editFrame.setResizable(false);
@@ -621,22 +679,39 @@ public class StudentDBDemo {
 			
 			JComboBox comboBox = new JComboBox();
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Name", "SAIS ID", "Student Number", "Address"}));
-			comboBox.setBounds(36, 35, 226, 27);
+			comboBox.setBounds(36, 35, 246, 27);
 			editFrame.getContentPane().add(comboBox);
 			
 			editWindowField = new JTextField();
-			editWindowField.setBounds(69, 66, 161, 26);
+			editWindowField.setBounds(80, 69, 202, 26);
 			editWindowField.setColumns(10);
 			editFrame.getContentPane().add(editWindowField);
+			
+			JButton cancelEditBtn = new JButton("Cancel");
+			cancelEditBtn.setFont(new Font("Arial", Font.PLAIN, 13));
+			cancelEditBtn.setBounds(46, 104, 104, 27);
+			cancelEditBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					editFrame.dispose();
+					cancelEditBtn.setEnabled(true);
+				}
+			});
+			editFrame.getContentPane().add(cancelEditBtn);
+			
+			JLabel entryEditLabel = new JLabel("Entry:");
+			entryEditLabel.setFont(new Font("Arial", Font.PLAIN, 13));
+			entryEditLabel.setBounds(36, 74, 61, 16);
+			editFrame.getContentPane().add(entryEditLabel);
 			
 			JLabel incompleteLabel = new JLabel("");
 			incompleteLabel.setForeground(Color.RED);
 			incompleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			incompleteLabel.setBounds(66, 146, 161, 16);
+			incompleteLabel.setBounds(79, 143, 161, 16);
 			editFrame.getContentPane().add(incompleteLabel);
 			
 			JButton saveEditBtn  = new JButton("Save");
-			saveEditBtn.setBounds(89, 103, 117, 29);
+			saveEditBtn.setFont(new Font("Arial", Font.PLAIN, 13));
+			saveEditBtn.setBounds(162, 104, 104, 27);
 			saveEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -685,6 +760,51 @@ public class StudentDBDemo {
 			editFrame.setVisible(true);
 		}
 	}
+	
+	private class openDeleteWindow{
+		openDeleteWindow(String name){
+			JFrame deleteFrame = new JFrame();
+			deleteFrame.setBounds(100, 100, 251, 133);
+			deleteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			deleteFrame.getContentPane().setLayout(null);
+			
+			JLabel confirmDeleteLabel = new JLabel("Are you sure?");
+			confirmDeleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			confirmDeleteLabel.setFont(new Font("Arial", Font.PLAIN, 13));
+			confirmDeleteLabel.setBounds(60, 19, 127, 22);
+			deleteFrame.getContentPane().add(confirmDeleteLabel);
+			
+			JButton yesDeleteBtn = new JButton("Yes, delete!");
+			yesDeleteBtn.setForeground(Color.RED);
+			yesDeleteBtn.setBounds(117, 58, 117, 29);
+			yesDeleteBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					deleteEntryBtn.setEnabled(true);
+					try {
+						new File(name + ".txt").delete();
+						createPanel(deleteCard, 2);
+						deleteFrame.dispose();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+			deleteFrame.getContentPane().add(yesDeleteBtn);
+			
+			JButton noDeleteBtn = new JButton("No");
+			noDeleteBtn.setBounds(20, 58, 75, 29);
+			noDeleteBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					deleteFrame.dispose();
+					deleteEntryBtn.setEnabled(true);
+				}
+			});
+			deleteFrame.getContentPane().add(noDeleteBtn);
+			deleteFrame.setLocationRelativeTo(null);
+			deleteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			deleteFrame.setVisible(true);
+		}
+	}
 
 	private void createPanel(JPanel entryCard, int state) throws FileNotFoundException{
 		Dimension dim = new Dimension(672, 142);
@@ -726,18 +846,11 @@ public class StudentDBDemo {
 			entryPanel.add(nameLabel);
 			
 			if (state == 2) {
-				JButton deleteEntryBtn = new JButton("Delete");
+				deleteEntryBtn = new JButton("Delete");
 				deleteEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(new File(name + ".txt").delete()){
-							System.out.println(name + "'s record has been deleted.");
-						} else System.out.println("Student record does not exist.");
-						try {
-							createPanel(deleteCard, 2);
-						} catch (FileNotFoundException e1) {
-							e1.printStackTrace();
-						}
-						
+						deleteEntryBtn.setEnabled(false);
+						new openDeleteWindow(name);
 					}
 				});
 				deleteEntryBtn.setBounds(549, 107, 117, 29);
@@ -804,7 +917,7 @@ public class StudentDBDemo {
 
 	}
 	
-	public static FilenameFilter filter () {
+	private FilenameFilter filter () {
 		
 		FilenameFilter textFilter = new FilenameFilter() {
 			public boolean accept(File dir, String filename) {
@@ -815,4 +928,12 @@ public class StudentDBDemo {
 		return textFilter;
 	}
 	
+	/*
+	private void previewEntry(JPanel entryCard, String name, String id, String num, String address) throws FileNotFoundException{
+		
+		
+		entryCard.setVisible(true);
+		entryCard.add(entryPanel);
+	}
+	*/
 }
