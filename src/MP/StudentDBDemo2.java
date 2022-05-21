@@ -2,6 +2,10 @@ package MP;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import javax.swing.*;
 
 public class StudentDBDemo2 {
@@ -28,11 +32,11 @@ public class StudentDBDemo2 {
 		});
 	}
 
-	public StudentDBDemo2() {
+	public StudentDBDemo2() throws FileNotFoundException {
 		initialize();
 	}
 
-	private void initialize() {
+	private void initialize() throws FileNotFoundException {
 
 		CardLayout cl = new CardLayout(0, 0);
 
@@ -669,17 +673,27 @@ public class StudentDBDemo2 {
 		frame.setResizable(false);
 	}
 	
-private void newPanel(JPanel viewCard) {
+private void newPanel(JPanel viewCard) throws FileNotFoundException {
 		Dimension dim = new Dimension(672, 142);
-		for (int i = 0; i < 4; i++) {
+		File f = new File(".");
+		File [] files = f.listFiles(StudentDBTrial.filter());
+		
+		int n = 1;
+		for (File file : files) {
+			
 			JPanel entryPanel = new JPanel();
 			entryPanel.setBackground(new Color(230, 230, 250));
-			entryPanel.setBounds(6, 6 + 148 * i, 672, 142);
+			entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
 			entryPanel.setPreferredSize(dim);
 			viewCard.add(entryPanel);
 			entryPanel.setLayout(null);
-
-			JLabel nameLabel = new JLabel("Raymund Klien B. Mañago");
+			
+			System.out.print("\nEntry " + n); n++;
+			Scanner sc = new Scanner(new File(file.getName()));
+        	String dataLine = sc.nextLine(); sc.close();
+        	String [] data = dataLine.split("\\s");
+        	
+        	JLabel nameLabel = new JLabel(data[0]);
 			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 			nameLabel.setBounds(31, 18, 455, 48);
 			entryPanel.add(nameLabel);
@@ -696,12 +710,12 @@ private void newPanel(JPanel viewCard) {
 			studNoLabel.setBounds(172, 69, 150, 24);
 			entryPanel.add(studNoLabel);
 
-			JLabel saisInfo = new JLabel("235412");
+			JLabel saisInfo = new JLabel(data[1]);
 			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			saisInfo.setBounds(97, 69, 63, 24);
 			entryPanel.add(saisInfo);
 
-			JLabel studNoInfo = new JLabel("201054321");
+			JLabel studNoInfo = new JLabel(data[2]);
 			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			studNoInfo.setBounds(326, 69, 105, 24);
 			entryPanel.add(studNoInfo);
@@ -712,15 +726,17 @@ private void newPanel(JPanel viewCard) {
 			addressLabel.setBounds(31, 90, 91, 24);
 			entryPanel.add(addressLabel);
 
-			JLabel addressInfo = new JLabel("Ili Sur, San Juan, 2514, La Union");
+			JLabel addressInfo = new JLabel(data[3]);
 			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			addressInfo.setBounds(117, 90, 345, 24);
 			entryPanel.add(addressInfo);
+        	
+        	System.out.println();
+		} System.out.println();
 			
 			//viewCard.revalidate();
 			//viewCard.repaint();
-		}
-}
+	}
 	
 }	
 
