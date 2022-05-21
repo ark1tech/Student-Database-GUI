@@ -43,6 +43,8 @@ public class StudentDBDemo {
 	private JTextField textField_4;
 	private JTextField editWindowField;
 	private JPanel deleteCard;
+	private JPanel editCard;
+	private JButton editEntryBtn;
 
 	/**
 	 * Launch the application.
@@ -185,7 +187,7 @@ public class StudentDBDemo {
 		displayPanel.add(viewCard, "view");
 		viewCard.setLayout(null);
 
-		JPanel editCard = new JPanel();
+		editCard = new JPanel();
 		displayPanel.add(editCard, "edit");
 		editCard.setLayout(null);
 
@@ -631,16 +633,17 @@ public class StudentDBDemo {
 			incompleteLabel.setForeground(Color.RED);
 			incompleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			incompleteLabel.setBounds(66, 146, 161, 16);
-			frame.getContentPane().add(incompleteLabel);
+			editFrame.getContentPane().add(incompleteLabel);
 			
 			JButton saveEditBtn  = new JButton("Save");
 			saveEditBtn.setBounds(89, 103, 117, 29);
 			saveEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 					boolean isIncomplete = editWindowField.getText().isEmpty();
 						if(isIncomplete){
 							incompleteLabel.setText("Incomplete Entry!");
-							// not working 
+							editEntryBtn.setEnabled(false);
 						}
 						else {
 							try {
@@ -667,16 +670,17 @@ public class StudentDBDemo {
 							catch (FileNotFoundException e1) {
 								e1.printStackTrace();
 							}
+							try {
+								createPanel(editCard, 3);
+							} catch (FileNotFoundException e1) {
+								e1.printStackTrace();
+							}
 							editFrame.dispose();
-						}
-						
-						try {
-							createPanel(deleteCard, 2);
-						} catch (FileNotFoundException e1) {
-							e1.printStackTrace();
+							editEntryBtn.setEnabled(true);
 						}
 					}
 			});
+			editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			editFrame.getContentPane().add(saveEditBtn);
 			editFrame.setVisible(true);
 		}
@@ -742,9 +746,10 @@ public class StudentDBDemo {
 				
 			}
 			else if (state == 3) {
-				JButton editEntryBtn = new JButton("Edit");
+				editEntryBtn = new JButton("Edit");
 				editEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						editEntryBtn.setEnabled(false);
 						new openEditWindow(name);
 					}
 				});
@@ -789,7 +794,6 @@ public class StudentDBDemo {
 		}
 		
 		entryCard.repaint();
-
 	}
 
 	private void printFile(String name, String id, String num, String address) throws FileNotFoundException {
