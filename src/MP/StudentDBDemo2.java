@@ -734,9 +734,7 @@ private void newPanel(JPanel viewCard) throws FileNotFoundException {
         	
         	System.out.println();
 		} System.out.println();
-			
-			//viewCard.revalidate();
-			//viewCard.repaint();
+
 	}
 	
 }	
