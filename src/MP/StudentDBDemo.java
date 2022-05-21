@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -338,9 +339,90 @@ public class StudentDBDemo {
 		textField_4.setBounds(6, 6, 535, 26);
 		searchEntryPanel.add(textField_4);
 		textField_4.setColumns(10);
+		
+		JPanel viewCard_4 = new JPanel();
+		viewCard_4.setLayout(null);
+		viewCard_4.setBounds(0, 51, 702, 573);
+		searchCard.add(viewCard_4);
 
 		JButton btnNewButton_2 = new JButton("Search");
 		btnNewButton_2.setBounds(549, 6, 117, 29);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField_4.getText().isEmpty()) {
+					textField_4.setText("a");
+				}
+				else {
+					viewCard_4.removeAll();
+					
+					File f = new File(".");
+					File [] files = f.listFiles(filter());
+					int n = 1;
+			        for (File file : files) {
+			        	
+						try {
+						Scanner sc = new Scanner(new File(file.getName()));
+						
+			        	String name = sc.nextLine();
+			        	String dataLine = sc.nextLine(); sc.close();
+			        	if (dataLine.toLowerCase().contains(textField_4.getText().toLowerCase()) || name.toLowerCase().contains(textField_4.getText().toLowerCase())) {
+			        		String [] data = dataLine.split("\\s");
+			        		
+			        		JPanel entryPanel = new JPanel();
+			    			entryPanel.setBackground(new Color(230, 230, 250));
+			    			entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
+			    			entryPanel.setPreferredSize(new Dimension(672, 142));
+			    			entryPanel.setLayout(null);
+			    			viewCard_4.add(entryPanel); n++;
+
+			    			JLabel nameLabel = new JLabel(name);
+			    			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+			    			nameLabel.setBounds(31, 18, 455, 48);
+			    			entryPanel.add(nameLabel);
+			    			
+			    			JLabel saisLabel = new JLabel("SAIS ID:");
+			    			saisLabel.setForeground(Color.DARK_GRAY);
+			    			saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+			    			saisLabel.setBounds(31, 69, 57, 24);
+			    			entryPanel.add(saisLabel);
+
+			    			JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
+			    			studNoLabel.setForeground(Color.DARK_GRAY);
+			    			studNoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+			    			studNoLabel.setBounds(172, 69, 150, 24);
+			    			entryPanel.add(studNoLabel);
+
+			    			JLabel saisInfo = new JLabel(data[0]);
+			    			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+			    			saisInfo.setBounds(97, 69, 63, 24);
+			    			entryPanel.add(saisInfo);
+
+			    			JLabel studNoInfo = new JLabel(data[1]);
+			    			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+			    			studNoInfo.setBounds(326, 69, 105, 24);
+			    			entryPanel.add(studNoInfo);
+
+			    			JLabel addressLabel = new JLabel("ADDRESS:");
+			    			addressLabel.setForeground(Color.DARK_GRAY);
+			    			addressLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+			    			addressLabel.setBounds(31, 90, 91, 24);
+			    			entryPanel.add(addressLabel);
+
+			    			JLabel addressInfo = new JLabel(String.join(" ", Arrays.copyOfRange(data, 2, data.length)));
+			    			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+			    			addressInfo.setBounds(117, 90, 345, 24);
+			    			entryPanel.add(addressInfo);
+			        	}
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			        }
+			        
+			        viewCard_4.repaint();
+				}
+			}
+		});
 		searchEntryPanel.add(btnNewButton_2);
 
 		JButton addButton = new JButton("          Add an Entry");
@@ -536,7 +618,7 @@ public class StudentDBDemo {
 			editFrame.getContentPane().setLayout(null);
 			
 			JComboBox comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Name", "Student Number", "SAIS ID", "Address"}));
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Name", "SAIS ID", "Student Number", "Address"}));
 			comboBox.setBounds(36, 35, 226, 27);
 			editFrame.getContentPane().add(comboBox);
 			
@@ -567,7 +649,7 @@ public class StudentDBDemo {
 								String dataLine = sc.nextLine(); sc.close();
 								String [] data = dataLine.split("\\s");
 								
-								switch(comboBox.getSelectedIndex() - 1) {
+								switch(comboBox.getSelectedIndex() + 1) {
 									case 1:
 										new File(name + ".txt").delete();
 										name = editWindowField.getText();
@@ -604,7 +686,7 @@ public class StudentDBDemo {
 		Dimension dim = new Dimension(672, 142);
 		entryCard.removeAll();
 		File f = new File(".");
-		File [] files = f.listFiles(StudentDBTrial.filter());
+		File [] files = f.listFiles(filter());
 
 		int n = 1;
 		for (File file : files) {
@@ -704,8 +786,7 @@ public class StudentDBDemo {
 			addressInfo.setBounds(117, 90, 345, 24);
 			entryPanel.add(addressInfo);
 
-			System.out.println();
-		} System.out.println();
+		}
 		
 		entryCard.repaint();
 
@@ -717,6 +798,17 @@ public class StudentDBDemo {
 		pw.print(name + "\n" + id + " " + num + " " + address);
 		pw.close();
 
+	}
+	
+	public static FilenameFilter filter () {
+		
+		FilenameFilter textFilter = new FilenameFilter() {
+			public boolean accept(File dir, String filename) {
+				return filename.toLowerCase().endsWith(".txt");
+			}
+		};
+		
+		return textFilter;
 	}
 	
 }
