@@ -111,42 +111,6 @@ public class StudentDBDemo {
 		menuPanel.setBackground(new Color(0x8c52ff));
 		bottomCard.add(menuPanel);
 
-		JLabel viewIcon = new JLabel("");
-		viewIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		viewIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/eyeIcon.png")));
-		viewIcon.setBounds(13, 66, 41, 44);
-		menuPanel.add(viewIcon);
-
-		JLabel homeIcon = new JLabel("");
-		homeIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/homeIcon.png")));
-		homeIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		homeIcon.setBounds(14, 339, 41, 44);
-		menuPanel.add(homeIcon);
-
-		JLabel searchIcon = new JLabel("");
-		searchIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/viewIcon.png")));
-		searchIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		searchIcon.setBounds(14, 285, 41, 44);
-		menuPanel.add(searchIcon);
-
-		JLabel editIcon = new JLabel("");
-		editIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/editIcon.png")));
-		editIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		editIcon.setBounds(14, 230, 41, 44);
-		menuPanel.add(editIcon);
-
-		JLabel deleteIcon = new JLabel("");
-		deleteIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/deleteIcon.png")));
-		deleteIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		deleteIcon.setBounds(15, 175, 41, 44);
-		menuPanel.add(deleteIcon);
-
-		JLabel addIcon = new JLabel("");
-		addIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/addIcon.png")));
-		addIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		addIcon.setBounds(14, 120, 41, 44);
-		menuPanel.add(addIcon);
-
 		CardLayout cl2 = new CardLayout(0, 0);
 
 		JPanel displayPanel = new JPanel();
@@ -181,7 +145,7 @@ public class StudentDBDemo {
 		scrollPane.setPreferredSize(new Dimension(702, 575));
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
-
+		
 		JPanel viewCard = new JPanel();
 		displayPanel.add(viewCard, "view");
 		viewCard.setLayout(null);
@@ -189,32 +153,10 @@ public class StudentDBDemo {
 		editCard = new JPanel();
 		displayPanel.add(editCard, "edit");
 		editCard.setLayout(null);
-
-		JPanel viewCard_1_1 = new JPanel();
-		viewCard_1_1.setBounds(0, 0, 702, 573);
-		editCard.add(viewCard_1_1);
-		viewCard_1_1.setLayout(null);
-
-		JPanel editPanel = new JPanel();
-		editPanel.setLayout(null);
-		editPanel.setBackground(new Color(230, 230, 250));
-		editPanel.setBounds(6, 6, 672, 142);
-		viewCard_1_1.add(editPanel);
 		
 		deleteCard = new JPanel();
 		displayPanel.add(deleteCard, "delete");
 		deleteCard.setLayout(null);
-
-		JPanel viewCard_1 = new JPanel();
-		viewCard_1.setLayout(null);
-		viewCard_1.setBounds(0, 0, 702, 573);
-		deleteCard.add(viewCard_1);
-
-		JPanel deletePanel = new JPanel();
-		deletePanel.setLayout(null);
-		deletePanel.setBackground(new Color(230, 230, 250));
-		deletePanel.setBounds(6, 6, 672, 142);
-		viewCard_1.add(deletePanel);
 
 		JPanel addCard = new JPanel();
 		displayPanel.add(addCard, "add");
@@ -474,7 +416,6 @@ public class StudentDBDemo {
 			    			entryPanel.add(addressInfo);
 			        	}
 						} catch (FileNotFoundException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 			        }
@@ -485,22 +426,13 @@ public class StudentDBDemo {
 		});
 		searchEntryPanel.add(btnNewButton_2);
 
-		JButton addButton = new JButton("          Add an Entry");
-		JButton viewButton = new JButton("          View All Entries");
-		JButton deleteButton = new JButton("          Delete an Entries");
-		JButton editButton = new JButton("          Edit an Entry");
-		JButton searchButton = new JButton("          Search an Entry");
-		JButton exitButton = new JButton("          Back to Homepage");
+		JButton viewButton = new JButton("View All Entries");
+		JButton addButton = new JButton("Add an Entry");
+		JButton deleteButton = new JButton("Delete an Entry");
+		JButton editButton = new JButton("Edit an Entry");
+		JButton searchButton = new JButton("Search an Entry");
+		JButton exitButton = new JButton("Home");
 
-		viewButton.setOpaque(true);
-		viewButton.setBackground(new Color(0x8c52ff));
-		viewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		viewButton.setBounds(-2, 60, 200, 58);
-		viewButton.setPreferredSize(new Dimension (200, 50));
-		viewButton.setFont(new Font("Arial", Font.PLAIN, 13));
-		viewButton.setForeground(Color.WHITE);
-		viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		viewButton.setBorderPainted(false);
 		viewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -509,10 +441,8 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
 				exitButton.setBackground(new Color(0x8c52ff));
-				viewIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/eyeIcon.png")));
-				viewIcon.setBounds(13, 66, 41, 44);
-				menuPanel.add(viewIcon);
-				viewButton.setOpaque(true);
+				viewButton.setBackground(new Color(0x6827e8));
+				cl2.show(displayPanel, "view");
 				try {
 					createPanel(viewCard, 1);
 				} catch (FileNotFoundException e1) {
@@ -520,9 +450,18 @@ public class StudentDBDemo {
 				}
 			}
 		});
-
-		viewButton.addActionListener(e -> cl2.show(displayPanel, "view"));
-
+		
+		viewButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/eyeIcon2.png")));
+		viewButton.setHorizontalAlignment(SwingConstants.LEFT);
+		viewButton.setIconTextGap(25);
+		
+		viewButton.setOpaque(true);
+		viewButton.setBackground(new Color(0x8c52ff));
+		viewButton.setBounds(-2, 60, 200, 58);
+		viewButton.setPreferredSize(new Dimension (200, 50));
+		viewButton.setFont(new Font("Arial", Font.PLAIN, 13));
+		viewButton.setForeground(Color.WHITE);
+		viewButton.setBorderPainted(false);
 
 		JLabel menuLabel = new JLabel("<html> <b> Menu </b> </html>");
 		menuLabel.setBounds(8, 5, 180, 50);
@@ -546,18 +485,19 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
 				exitButton.setBackground(new Color(0x8c52ff));
-				addIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/addIcon.png")));
-				addButton.setOpaque(true);
+				cl2.show(displayPanel, "add");
 			}
 		});
-		addButton.addActionListener(e -> cl2.show(displayPanel, "add"));
+		
+		addButton.setIconTextGap(25);
+		addButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/addIcon2.png")));
 		addButton.setHorizontalAlignment(SwingConstants.LEFT);
-		addButton.setBounds(-2, 115, 200, 58);
+		
+		addButton.setBounds(-2, 118, 200, 58);
 		addButton.setBorderPainted(false);
 		addButton.setPreferredSize(new Dimension(200, 60));
 		addButton.setForeground(Color.WHITE);
 		addButton.setFont(new Font("Arial", Font.PLAIN, 13));
-		addButton.setAlignmentX(0.5f);
 		menuPanel.add(addButton);
 
 		deleteButton.addMouseListener(new MouseAdapter() {
@@ -569,8 +509,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
 				exitButton.setBackground(new Color(0x8c52ff));
-				deleteIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/deleteIcon.png")));
-				deleteButton.setOpaque(true);
+				cl2.show(displayPanel, "delete");
 				try {
 					createPanel(deleteCard, 2);
 				} catch (FileNotFoundException e1) {
@@ -578,15 +517,16 @@ public class StudentDBDemo {
 				}
 			}
 		});
-
-		deleteButton.addActionListener(e -> cl2.show(displayPanel, "delete"));
+		
+		deleteButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/deleteIcon2.png")));
+		deleteButton.setIconTextGap(25);
 		deleteButton.setHorizontalAlignment(SwingConstants.LEFT);
+		
 		deleteButton.setBorderPainted(false);
-		deleteButton.setBounds(-2, 170, 200, 58);
+		deleteButton.setBounds(-2, 176, 200, 58);
 		deleteButton.setForeground(Color.WHITE);
 		deleteButton.setPreferredSize(new Dimension(200, 60)); 
 		deleteButton.setFont(new Font("Arial", Font.PLAIN, 13)); 
-		deleteButton.setAlignmentX(0.5f); 
 		menuPanel.add(deleteButton); 
 
 		editButton.addMouseListener(new MouseAdapter() {
@@ -598,8 +538,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x6827e8));
 				searchButton.setBackground(new Color(0x8c52ff));
 				exitButton.setBackground(new Color(0x8c52ff));
-				editIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/editIcon.png")));
-				editButton.setOpaque(true);
+				cl2.show(displayPanel, "edit");
 				try {
 					createPanel(editCard, 3);
 				} catch (FileNotFoundException e1) {
@@ -607,15 +546,16 @@ public class StudentDBDemo {
 				}
 			}
 		});
-
-		editButton.addActionListener(e -> cl2.show(displayPanel, "edit"));
+		
+		editButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/editIcon2.png")));
 		editButton.setHorizontalAlignment(SwingConstants.LEFT);
+		editButton.setIconTextGap(25);
+		
 		editButton.setBorderPainted(false);
 		editButton.setForeground(Color.WHITE);
-		editButton.setBounds(-2, 225, 200, 58);
+		editButton.setBounds(-2, 236, 200, 58);
 		editButton.setPreferredSize(new Dimension(200, 50)); 
 		editButton.setFont(new Font("Arial", Font.PLAIN, 13)); 
-		editButton.setAlignmentX(0.5f); 
 		menuPanel.add(editButton); 
 
 		searchButton.addMouseListener(new MouseAdapter() {
@@ -627,19 +567,19 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x6827e8));
 				exitButton.setBackground(new Color(0x8c52ff));
-				searchIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/viewIcon.png")));
-				searchButton.setOpaque(true);
+				cl2.show(displayPanel, "search");
 			}
 		});
 
-		searchButton.addActionListener(e -> cl2.show(displayPanel, "search"));
+		searchButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/viewIcon2.png")));
 		searchButton.setHorizontalAlignment(SwingConstants.LEFT);
+		searchButton.setIconTextGap(25);
+
 		searchButton.setBorderPainted(false);
-		searchButton.setBounds(-2, 280, 200, 58);
+		searchButton.setBounds(-2, 295, 200, 58);
 		searchButton.setForeground(Color.WHITE);
 		searchButton.setPreferredSize(new Dimension(200, 60));  
 		searchButton.setFont(new Font("Arial", Font.PLAIN, 13)); 
-		searchButton.setAlignmentX(0.5f);
 		menuPanel.add(searchButton);
 
 		exitButton.addMouseListener(new MouseAdapter() {
@@ -651,18 +591,18 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
 				exitButton.setBackground(new Color(0x6827e8));
-				homeIcon.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/homeIcon.png")));
-				exitButton.setOpaque(true);
 				cl.show(frame.getContentPane(), "1");
 			}
 		});
+		
+		exitButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/homeIcon2.png")));
 		exitButton.setHorizontalAlignment(SwingConstants.LEFT);
+		exitButton.setIconTextGap(25);
 		exitButton.setBorderPainted(false);
 		exitButton.setForeground(Color.WHITE);
-		exitButton.setBounds(-2, 335, 200, 58);
+		exitButton.setBounds(-2, 353, 200, 58);
 		exitButton.setPreferredSize(new Dimension(200, 58));
 		exitButton.setFont(new Font("Arial", Font.PLAIN, 13));
-		exitButton.setAlignmentX(0.5f);
 		menuPanel.add(exitButton);
 
 		frame.setResizable(false);
@@ -675,6 +615,7 @@ public class StudentDBDemo {
 			editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			editFrame.setLocationRelativeTo(null);
 			editFrame.setResizable(false);
+			editFrame.setAlwaysOnTop(true);
 			editFrame.getContentPane().setLayout(null);
 			
 			JComboBox comboBox = new JComboBox();
@@ -688,12 +629,11 @@ public class StudentDBDemo {
 			editFrame.getContentPane().add(editWindowField);
 			
 			JButton cancelEditBtn = new JButton("Cancel");
-			cancelEditBtn.setFont(new Font("Arial", Font.PLAIN, 13));
 			cancelEditBtn.setBounds(46, 104, 104, 27);
 			cancelEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					editFrame.dispose();
-					cancelEditBtn.setEnabled(true);
+					frame.setEnabled(true);
 				}
 			});
 			editFrame.getContentPane().add(cancelEditBtn);
@@ -710,7 +650,6 @@ public class StudentDBDemo {
 			editFrame.getContentPane().add(incompleteLabel);
 			
 			JButton saveEditBtn  = new JButton("Save");
-			saveEditBtn.setFont(new Font("Arial", Font.PLAIN, 13));
 			saveEditBtn.setBounds(162, 104, 104, 27);
 			saveEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -718,7 +657,6 @@ public class StudentDBDemo {
 					boolean isIncomplete = editWindowField.getText().isEmpty();
 						if(isIncomplete){
 							incompleteLabel.setText("Incomplete Entry!");
-							editEntryBtn.setEnabled(false);
 						}
 						else {
 							try {
@@ -751,7 +689,7 @@ public class StudentDBDemo {
 								e1.printStackTrace();
 							}
 							editFrame.dispose();
-							editEntryBtn.setEnabled(true);
+							frame.setEnabled(true);
 						}
 					}
 			});
@@ -766,6 +704,7 @@ public class StudentDBDemo {
 			JFrame deleteFrame = new JFrame();
 			deleteFrame.setBounds(100, 100, 251, 133);
 			deleteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			deleteFrame.setAlwaysOnTop(true);
 			deleteFrame.getContentPane().setLayout(null);
 			
 			JLabel confirmDeleteLabel = new JLabel("Are you sure?");
@@ -779,7 +718,7 @@ public class StudentDBDemo {
 			yesDeleteBtn.setBounds(117, 58, 117, 29);
 			yesDeleteBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					deleteEntryBtn.setEnabled(true);
+					frame.setEnabled(true);
 					try {
 						new File(name + ".txt").delete();
 						createPanel(deleteCard, 2);
@@ -796,7 +735,7 @@ public class StudentDBDemo {
 			noDeleteBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					deleteFrame.dispose();
-					deleteEntryBtn.setEnabled(true);
+					frame.setEnabled(true);
 				}
 			});
 			deleteFrame.getContentPane().add(noDeleteBtn);
@@ -812,7 +751,7 @@ public class StudentDBDemo {
 		File f = new File(".");
 		File [] files = f.listFiles(filter());
 
-		int n = 1;
+		int fileCount = 1;
 		for (File file : files) {
 			
 			Scanner sc = new Scanner(new File(file.getName()));
@@ -822,23 +761,12 @@ public class StudentDBDemo {
 			
 			JPanel entryPanel = new JPanel();
 			entryPanel.setBackground(new Color(230, 230, 250));
-			entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
+			entryPanel.setBounds(6, 6 + 148 * (fileCount - 1), 672, 142);
 			entryPanel.setPreferredSize(dim);
 			entryPanel.setLayout(null);
 			entryCard.add(entryPanel);
-			
-			/*
-		 		JLabel previewLabel = new JLabel("Preview");
-				previewLabel.setForeground(Color.DARK_GRAY);
-				previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-				previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-				previewLabel.setBounds(17, 12, 57, 24);
-				previewPanel.add(previewLabel);
-				
-			*/
-
-			//System.out.print("\nEntry " + n);
-			n++;
+		
+			fileCount++;
 
 			JLabel nameLabel = new JLabel(name);
 			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
@@ -849,7 +777,7 @@ public class StudentDBDemo {
 				deleteEntryBtn = new JButton("Delete");
 				deleteEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						deleteEntryBtn.setEnabled(false);
+						frame.setEnabled(false);
 						new openDeleteWindow(name);
 					}
 				});
@@ -862,7 +790,7 @@ public class StudentDBDemo {
 				editEntryBtn = new JButton("Edit");
 				editEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						editEntryBtn.setEnabled(false);
+						frame.setEnabled(false);
 						new openEditWindow(name);
 					}
 				});
@@ -927,13 +855,5 @@ public class StudentDBDemo {
 		
 		return textFilter;
 	}
-	
-	/*
-	private void previewEntry(JPanel entryCard, String name, String id, String num, String address) throws FileNotFoundException{
-		
-		
-		entryCard.setVisible(true);
-		entryCard.add(entryPanel);
-	}
-	*/
+
 }
