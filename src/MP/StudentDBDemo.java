@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
@@ -693,6 +695,11 @@ public class StudentDBDemo {
 						}
 					}
 			});
+			editFrame.addWindowListener(new WindowAdapter() {
+				 public void windowClosed(WindowEvent e) {
+					 frame.setEnabled(true);
+	            }
+			});
 			editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			editFrame.getContentPane().add(saveEditBtn);
 			editFrame.setVisible(true);
@@ -739,6 +746,13 @@ public class StudentDBDemo {
 				}
 			});
 			deleteFrame.getContentPane().add(noDeleteBtn);
+			
+			deleteFrame.addWindowListener(new WindowAdapter() {
+				 public void windowClosed(WindowEvent e) {
+					 frame.setEnabled(true);
+	            }
+			});
+			deleteFrame.setResizable(false);
 			deleteFrame.setLocationRelativeTo(null);
 			deleteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			deleteFrame.setVisible(true);
