@@ -677,7 +677,7 @@ public class StudentDBDemo2 {
 private void newPanel(JPanel viewCard) throws FileNotFoundException {
 		Dimension dim = new Dimension(672, 142);
 		File f = new File(".");
-		File [] files = f.listFiles(StudentDBTrial.filter());
+		File [] files = f.listFiles(StudentDB.filter());
 		
 		int n = 1;
 		for (File file : files) {
