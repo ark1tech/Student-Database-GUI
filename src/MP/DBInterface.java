@@ -2,9 +2,9 @@ package MP;
 
 public interface DBInterface {
 	//Add data at the end of the database entries
-	abstract void addData();
+	abstract boolean addData(StudentData dbd);
 	//Delete Method – given the name of the Student to delete
-	abstract void deleteData(String name);
+	abstract boolean deleteData(String name);
 	// Search Data – given any substring to search- must retrieve all
 	// Students with the substring passed in the parameter
 	abstract boolean searchData(String toSearch);
