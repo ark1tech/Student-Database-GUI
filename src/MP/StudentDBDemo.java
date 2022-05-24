@@ -300,11 +300,8 @@ public class StudentDBDemo {
 					saisPreviewInfo.setText(saisAddField.getText());
 					studNumPreviewInfo.setText(studNoAddField.getText());
 					addressPreviewInfo.setText(addressAddField.getText());
-					try {
-						printFile(nameAddField.getText(), saisAddField.getText(), studNoAddField.getText(), addressAddField.getText());
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					}
+					StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
+					new StudentDB().addData(dbd);
 					addSuccessLabel.setText("Your entry has been successfully added.");
 				}
 			}
@@ -680,7 +677,7 @@ public class StudentDBDemo {
 										data[2] = editWindowField.getText();
 								}
 								
-								printFile(name, data[0], data[1], data[2]);
+								//printFile(name, data[0], data[1], data[2]);
 							}
 							catch (FileNotFoundException e1) {
 								e1.printStackTrace();
@@ -849,14 +846,6 @@ public class StudentDBDemo {
 		}
 		
 		entryCard.repaint();
-	}
-
-	private void printFile(String name, String id, String num, String address) throws FileNotFoundException {
-
-		PrintWriter pw = new PrintWriter(name + ".txt");
-		pw.print(name + "\n" + id + " " + num + " " + address);
-		pw.close();
-
 	}
 	
 	private FilenameFilter filter () {

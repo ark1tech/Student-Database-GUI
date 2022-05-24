@@ -159,7 +159,7 @@ public class StudentDB implements DBInterface {
 	public static void printFile(StudentData dbd) throws FileNotFoundException {
 		
 		PrintWriter pw = new PrintWriter(name + ".txt");
-		pw.print(dbd.name + " " + dbd.id + " " + dbd.num + " " + dbd.address);
+		pw.print(dbd.name + "\n" + dbd.id + " " + dbd.num + " " + dbd.address);
 		pw.close();
 		
 	}
