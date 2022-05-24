@@ -724,7 +724,7 @@ public class StudentDBDemo {
 				public void actionPerformed(ActionEvent e) {
 					frame.setEnabled(true);
 					try {
-						new File(name + ".txt").delete();
+						new StudentDB().deleteData(name);
 						createPanel(deleteCard, 2);
 						deleteFrame.dispose();
 					} catch (FileNotFoundException e1) {

@@ -44,7 +44,6 @@ public class StudentDB implements DBInterface {
 			return true;
 		}
 		else {
-			System.out.println("Student record does not exist.");
 			return false;
 		}
 		// br.close();
