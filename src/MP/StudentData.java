@@ -8,7 +8,7 @@ public class StudentData {
 	String name, address;
 	int id, num;
 	
-	static int n = 0;
+	int n = new File(".").listFiles(StudentDB.filter()).length;
 	
 	public StudentData(String name, int id, int num, String address) {
 		this.name = name;

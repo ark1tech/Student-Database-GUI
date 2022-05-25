@@ -87,7 +87,7 @@ public class StudentDB implements DBInterface {
 		name = br.readLine();
 		 */
 
-		if(new File(name + ".txt").delete()){
+		if(new File(name + " " + id + ".txt").delete()){
 			return true;
 		}
 		else {
@@ -131,10 +131,10 @@ public class StudentDB implements DBInterface {
 			for (File file : files) {
 				System.out.print("\nEntry " + n); n++;
 				Scanner sc = new Scanner(new File(file.getName()));
-				String dataLine = sc.nextLine(); sc.close();
-				String [] data = dataLine.split("\\s");
-				for (String datum : data) {
-					System.out.print("\n" + datum);
+				//String dataLine = sc.nextLine(); sc.close();
+				//String [] data = dataLine.split("\\s");
+				while (sc.hasNextLine()) {
+					System.out.print("\n" + sc.nextLine());
 				}
 				System.out.println();
 			} System.out.println();
@@ -157,8 +157,8 @@ public class StudentDB implements DBInterface {
 
 	public static void printFile(StudentData dbd) throws FileNotFoundException {
 
-		PrintWriter pw = new PrintWriter(name + ".txt");
-		pw.print(dbd.name + "\n" + dbd.id + " " + dbd.num + " " + dbd.address);
+		PrintWriter pw = new PrintWriter(dbd.name + " " + dbd.id + ".txt");
+		pw.print(dbd.name + "\n" + dbd.id + "\n" + dbd.num + "\n" + dbd.address);
 		pw.close();
 
 	}

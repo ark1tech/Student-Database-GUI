@@ -362,12 +362,17 @@ public class StudentDBDemo {
 			        for (File file : files) {
 			        	
 						try {
-						Scanner sc = new Scanner(new File(file.getName()));
 						
-			        	String name = sc.nextLine();
-			        	String dataLine = sc.nextLine(); sc.close();
-			        	if (dataLine.toLowerCase().contains(textField_4.getText().toLowerCase()) || name.toLowerCase().contains(textField_4.getText().toLowerCase())) {
-			        		String [] data = dataLine.split("\\s");
+						Scanner sc = new Scanner(new File(file.getName()));
+						String name = sc.nextLine();
+						String id = sc.nextLine();
+						String num = sc.nextLine();
+						String address = sc.nextLine();
+						sc.close();
+						
+						String dataLine = name + id + num + address;
+								
+			        	if (dataLine.toLowerCase().contains(textField_4.getText().toLowerCase())) {
 			        		
 			        		JPanel entryPanel = new JPanel();
 			    			entryPanel.setBackground(new Color(230, 230, 250));
@@ -393,12 +398,12 @@ public class StudentDBDemo {
 			    			studNoLabel.setBounds(172, 69, 150, 24);
 			    			entryPanel.add(studNoLabel);
 
-			    			JLabel saisInfo = new JLabel(data[0]);
+			    			JLabel saisInfo = new JLabel(id);
 			    			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			    			saisInfo.setBounds(97, 69, 63, 24);
 			    			entryPanel.add(saisInfo);
 
-			    			JLabel studNoInfo = new JLabel(data[1]);
+			    			JLabel studNoInfo = new JLabel(num);
 			    			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			    			studNoInfo.setBounds(326, 69, 105, 24);
 			    			entryPanel.add(studNoInfo);
@@ -409,7 +414,7 @@ public class StudentDBDemo {
 			    			addressLabel.setBounds(31, 90, 91, 24);
 			    			entryPanel.add(addressLabel);
 
-			    			JLabel addressInfo = new JLabel(String.join(" ", Arrays.copyOfRange(data, 2, data.length)));
+			    			JLabel addressInfo = new JLabel(address);
 			    			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			    			addressInfo.setBounds(117, 90, 345, 24);
 			    			entryPanel.add(addressInfo);
@@ -608,7 +613,7 @@ public class StudentDBDemo {
 	}
 	
 	private class openEditWindow{
-		openEditWindow(String name) {
+		openEditWindow(String name, int id) {
 			JFrame editFrame = new JFrame();
 			editFrame.setBounds(100, 100, 320, 226);
 			editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -659,25 +664,30 @@ public class StudentDBDemo {
 						}
 						else {
 							try {
-								Scanner sc = new Scanner(new File(name + ".txt"));
+								Scanner sc = new Scanner(new File(name + " " + id + ".txt"));
 								String name = sc.nextLine();
-								String dataLine = sc.nextLine(); sc.close();
-								String [] data = dataLine.split("\\s");
+								String id = sc.nextLine();
+								String num = sc.nextLine();
+								String address = sc.nextLine();
+								sc.close();
 								
 								switch(comboBox.getSelectedIndex() + 1) {
 									case 1:
-										new File(name + ".txt").delete();
+										new File(name + " " + id + ".txt").delete();
 										name = editWindowField.getText();
 										break;
 									case 2:
-										data[0] = editWindowField.getText(); break;
+										new File(name + " " + id + ".txt").delete();
+										id = editWindowField.getText();
+										break;
 									case 3:
-										data[1] = editWindowField.getText(); break;
+										num = editWindowField.getText(); break;
 									case 4:
-										data[2] = editWindowField.getText();
+										address = editWindowField.getText();
 								}
 								
-								//printFile(name, data[0], data[1], data[2]);
+								StudentData dbd = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
+								new StudentDB().addData(dbd);
 							}
 							catch (FileNotFoundException e1) {
 								e1.printStackTrace();
@@ -704,7 +714,7 @@ public class StudentDBDemo {
 	}
 	
 	private class openDeleteWindow{
-		openDeleteWindow(String name){
+		openDeleteWindow(String name, int id){
 			JFrame deleteFrame = new JFrame();
 			deleteFrame.setBounds(100, 100, 251, 133);
 			deleteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -724,7 +734,7 @@ public class StudentDBDemo {
 				public void actionPerformed(ActionEvent e) {
 					frame.setEnabled(true);
 					try {
-						new StudentDB().deleteData(name);
+						new StudentDB().deleteData(name, id);
 						createPanel(deleteCard, 2);
 						deleteFrame.dispose();
 					} catch (FileNotFoundException e1) {
@@ -767,8 +777,10 @@ public class StudentDBDemo {
 			
 			Scanner sc = new Scanner(new File(file.getName()));
 			String name = sc.nextLine();
-			String dataLine = sc.nextLine(); sc.close();
-			String [] data = dataLine.split("\\s");
+			String id = sc.nextLine();
+			String num = sc.nextLine();
+			String address = sc.nextLine();
+			sc.close();
 			
 			JPanel entryPanel = new JPanel();
 			entryPanel.setBackground(new Color(230, 230, 250));
@@ -789,7 +801,7 @@ public class StudentDBDemo {
 				deleteEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.setEnabled(false);
-						new openDeleteWindow(name);
+						new openDeleteWindow(name, Integer.parseInt(id));
 					}
 				});
 				deleteEntryBtn.setBounds(549, 107, 117, 29);
@@ -802,7 +814,7 @@ public class StudentDBDemo {
 				editEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.setEnabled(false);
-						new openEditWindow(name);
+						new openEditWindow(name, Integer.parseInt(id));
 					}
 				});
 				editEntryBtn.setBounds(549, 107, 117, 29);
@@ -822,12 +834,12 @@ public class StudentDBDemo {
 			studNoLabel.setBounds(172, 69, 150, 24);
 			entryPanel.add(studNoLabel);
 
-			JLabel saisInfo = new JLabel(data[0]);
+			JLabel saisInfo = new JLabel(id);
 			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			saisInfo.setBounds(97, 69, 63, 24);
 			entryPanel.add(saisInfo);
 
-			JLabel studNoInfo = new JLabel(data[1]);
+			JLabel studNoInfo = new JLabel(num);
 			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			studNoInfo.setBounds(326, 69, 105, 24);
 			entryPanel.add(studNoInfo);
@@ -838,7 +850,7 @@ public class StudentDBDemo {
 			addressLabel.setBounds(31, 90, 91, 24);
 			entryPanel.add(addressLabel);
 
-			JLabel addressInfo = new JLabel(String.join(" ", Arrays.copyOfRange(data, 2, data.length)));
+			JLabel addressInfo = new JLabel(address);
 			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			addressInfo.setBounds(117, 90, 345, 24);
 			entryPanel.add(addressInfo);
