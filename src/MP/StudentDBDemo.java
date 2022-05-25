@@ -870,5 +870,23 @@ public class StudentDBDemo {
 		
 		return textFilter;
 	}
+	
+	private StudentData [] read() throws FileNotFoundException {
+		File f = new File(".");
+		File [] files = f.listFiles(filter());
+		int n = 0;
+		StudentData [] students = new StudentData[10];
+        for (File file : files) {
+			Scanner sc = new Scanner(new File(file.getName()));
+			String name = sc.nextLine();
+			String id = sc.nextLine();
+			String num = sc.nextLine();
+			String address = sc.nextLine();
+			students[n] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
+			n++;
+			sc.close();
+        }
+        return students;
+	}
 
 }
