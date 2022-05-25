@@ -6,7 +6,7 @@ import java.util.*;
 public class StudentDB implements DBInterface {
 
 	static String ans = "4", name, address;
-	static int id, num;
+	static int SAISID, num;
 
 	public boolean addData(StudentData dbd) {
 
@@ -87,7 +87,7 @@ public class StudentDB implements DBInterface {
 		name = br.readLine();
 		 */
 
-		if(new File(name + " " + id + ".txt").delete()){
+		if(new File(name + " " + SAISID + ".txt").delete()){
 			return true;
 		}
 		else {

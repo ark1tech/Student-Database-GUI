@@ -301,9 +301,23 @@ public class StudentDBDemo {
 					saisPreviewInfo.setText(saisAddField.getText());
 					studNumPreviewInfo.setText(studNoAddField.getText());
 					addressPreviewInfo.setText(addressAddField.getText());
-					StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
-					new StudentDB().addData(dbd);
-					addSuccessLabel.setText("Your entry has been successfully added.");
+					try {
+						ArrayList<StudentData> students = read();
+						boolean b = true;
+						for (StudentData student : students) {
+							if (nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.id) b = false;		
+						}
+						if (b) {
+							StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
+							new StudentDB().addData(dbd);
+							addSuccessLabel.setText("Your entry has been successfully added.");
+						}
+						else {
+							addSuccessLabel.setText("Entry with same name and ID already exists.");
+						}
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
