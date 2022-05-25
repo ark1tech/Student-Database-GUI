@@ -795,8 +795,8 @@ public class StudentDBDemo {
 				deleteEntryBtn.setBounds(549, 107, 117, 29);
 				deleteEntryBtn.setForeground(Color.RED);
 				entryPanel.add(deleteEntryBtn);
-				
 			}
+			
 			else if (state == 3) {
 				editEntryBtn = new JButton("Edit");
 				editEntryBtn.addActionListener(new ActionListener() {
