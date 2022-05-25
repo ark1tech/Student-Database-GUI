@@ -295,6 +295,12 @@ public class StudentDBDemo {
 				if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
 				}
+				else if (nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0) {
+					addFailLabel.setText("Entry can't be spaces!");
+				}
+				else if (!saisAddField.getText().matches("[0-9]+") || !studNoAddField.getText().matches("[0-9]+")) {
+					addFailLabel.setText("SAIS ID and Student Number must be numbers!");
+				}
 				else {
 					addFailLabel.setText("");
 					namePreviewInfo.setText(nameAddField.getText());
