@@ -96,28 +96,34 @@ public class StudentDB implements DBInterface {
 		// br.close();
 	}
 
-	public boolean searchData(String toSearch) {
+	public ArrayList<StudentData> searchData(String toSearch) {
 		// This function shows all available text files and searches through them.        
 
 		File f = new File(".");
 		File [] files = f.listFiles(filter());
-
+		ArrayList<StudentData> students = new ArrayList<StudentData>();
+		ArrayList<StudentData> searches = new ArrayList<StudentData>();
 		try {
-			for (File file : files) {
+	        for (File file : files) {
 				Scanner sc = new Scanner(new File(file.getName()));
-				String dataLine = sc.nextLine(); sc.close();
-				if (dataLine.toLowerCase().contains(toSearch)) {
-					String [] data = dataLine.split("\\s");
-					for (String datum : data) {
-						System.out.print("\n" + datum);
-					}
-				} System.out.println();
-			}
-			return true;
+				String name = sc.nextLine();
+				String id = sc.nextLine();
+				String num = sc.nextLine();
+				String address = sc.nextLine();
+				students.add(new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address));
+				sc.close();
+	        }
+	        for (StudentData student : students) {
+	        	String dataLine = student.name + Integer.toString(student.id) + Integer.toString(student.num) + address;
+	        	if (dataLine.toLowerCase().contains(toSearch.toLowerCase())) {
+	        		searches.add(student);
+	        	}
+	        }
 		}
-		catch(FileNotFoundException e) {
-			return false;
+		catch (Exception e) {
+			e.printStackTrace();
 		}
+        return searches;
 	}
 
 	public void showData() {

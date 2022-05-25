@@ -371,73 +371,57 @@ public class StudentDBDemo {
 				else {
 					viewCard_4.removeAll();
 					
-					File f = new File(".");
-					File [] files = f.listFiles(filter());
+					ArrayList<StudentData> students = new StudentDB().searchData(textField_4.getText());
 					int n = 1;
-			        for (File file : files) {
-			        	
-						try {
-						
-						Scanner sc = new Scanner(new File(file.getName()));
-						String name = sc.nextLine();
-						String id = sc.nextLine();
-						String num = sc.nextLine();
-						String address = sc.nextLine();
-						sc.close();
-						
-						String dataLine = name + id + num + address;
-								
-			        	if (dataLine.toLowerCase().contains(textField_4.getText().toLowerCase())) {
-			        		
-			        		JPanel entryPanel = new JPanel();
-			    			entryPanel.setBackground(new Color(230, 230, 250));
-			    			entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
-			    			entryPanel.setPreferredSize(new Dimension(672, 142));
-			    			entryPanel.setLayout(null);
-			    			viewCard_4.add(entryPanel); n++;
 
-			    			JLabel nameLabel = new JLabel(name);
-			    			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
-			    			nameLabel.setBounds(31, 18, 455, 48);
-			    			entryPanel.add(nameLabel);
-			    			
-			    			JLabel saisLabel = new JLabel("SAIS ID:");
-			    			saisLabel.setForeground(Color.DARK_GRAY);
-			    			saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			    			saisLabel.setBounds(31, 69, 57, 24);
-			    			entryPanel.add(saisLabel);
+					for (StudentData student : students) {
 
-			    			JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
-			    			studNoLabel.setForeground(Color.DARK_GRAY);
-			    			studNoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			    			studNoLabel.setBounds(172, 69, 150, 24);
-			    			entryPanel.add(studNoLabel);
+						JPanel entryPanel = new JPanel();
+						entryPanel.setBackground(new Color(230, 230, 250));
+						entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
+						entryPanel.setPreferredSize(new Dimension(672, 142));
+						entryPanel.setLayout(null);
+						viewCard_4.add(entryPanel); n++;
 
-			    			JLabel saisInfo = new JLabel(id);
-			    			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			    			saisInfo.setBounds(97, 69, 63, 24);
-			    			entryPanel.add(saisInfo);
+						JLabel nameLabel = new JLabel(student.name);
+						nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+						nameLabel.setBounds(31, 18, 455, 48);
+						entryPanel.add(nameLabel);
 
-			    			JLabel studNoInfo = new JLabel(num);
-			    			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			    			studNoInfo.setBounds(326, 69, 105, 24);
-			    			entryPanel.add(studNoInfo);
+						JLabel saisLabel = new JLabel("SAIS ID:");
+						saisLabel.setForeground(Color.DARK_GRAY);
+						saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+						saisLabel.setBounds(31, 69, 57, 24);
+						entryPanel.add(saisLabel);
 
-			    			JLabel addressLabel = new JLabel("ADDRESS:");
-			    			addressLabel.setForeground(Color.DARK_GRAY);
-			    			addressLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			    			addressLabel.setBounds(31, 90, 91, 24);
-			    			entryPanel.add(addressLabel);
+						JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
+						studNoLabel.setForeground(Color.DARK_GRAY);
+						studNoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+						studNoLabel.setBounds(172, 69, 150, 24);
+						entryPanel.add(studNoLabel);
 
-			    			JLabel addressInfo = new JLabel(address);
-			    			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			    			addressInfo.setBounds(117, 90, 345, 24);
-			    			entryPanel.add(addressInfo);
-			        	}
-						} catch (FileNotFoundException e1) {
-							e1.printStackTrace();
-						}
-			        }
+						JLabel saisInfo = new JLabel(Integer.toString(student.id));
+						saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+						saisInfo.setBounds(97, 69, 63, 24);
+						entryPanel.add(saisInfo);
+
+						JLabel studNoInfo = new JLabel(Integer.toString(student.num));
+						studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+						studNoInfo.setBounds(326, 69, 105, 24);
+						entryPanel.add(studNoInfo);
+
+						JLabel addressLabel = new JLabel("ADDRESS:");
+						addressLabel.setForeground(Color.DARK_GRAY);
+						addressLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+						addressLabel.setBounds(31, 90, 91, 24);
+						entryPanel.add(addressLabel);
+
+						JLabel addressInfo = new JLabel(student.address);
+						addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+						addressInfo.setBounds(117, 90, 345, 24);
+						entryPanel.add(addressInfo);
+
+					}
 			        
 			        viewCard_4.repaint();
 				}
