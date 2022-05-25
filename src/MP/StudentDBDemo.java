@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -769,18 +770,10 @@ public class StudentDBDemo {
 	private void createPanel(JPanel entryCard, int state) throws FileNotFoundException{
 		Dimension dim = new Dimension(672, 142);
 		entryCard.removeAll();
-		File f = new File(".");
-		File [] files = f.listFiles(filter());
+		ArrayList<StudentData> students = read();
 
 		int fileCount = 1;
-		for (File file : files) {
-			
-			Scanner sc = new Scanner(new File(file.getName()));
-			String name = sc.nextLine();
-			String id = sc.nextLine();
-			String num = sc.nextLine();
-			String address = sc.nextLine();
-			sc.close();
+		for (StudentData student : students) {
 			
 			JPanel entryPanel = new JPanel();
 			entryPanel.setBackground(new Color(230, 230, 250));
@@ -791,7 +784,7 @@ public class StudentDBDemo {
 		
 			fileCount++;
 
-			JLabel nameLabel = new JLabel(name);
+			JLabel nameLabel = new JLabel(student.name);
 			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 			nameLabel.setBounds(31, 18, 455, 48);
 			entryPanel.add(nameLabel);
@@ -801,7 +794,7 @@ public class StudentDBDemo {
 				deleteEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.setEnabled(false);
-						new openDeleteWindow(name, Integer.parseInt(id));
+						new openDeleteWindow(student.name, student.id);
 					}
 				});
 				deleteEntryBtn.setBounds(549, 107, 117, 29);
@@ -814,7 +807,7 @@ public class StudentDBDemo {
 				editEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.setEnabled(false);
-						new openEditWindow(name, Integer.parseInt(id));
+						new openEditWindow(student.name, student.id);
 					}
 				});
 				editEntryBtn.setBounds(549, 107, 117, 29);
@@ -834,12 +827,12 @@ public class StudentDBDemo {
 			studNoLabel.setBounds(172, 69, 150, 24);
 			entryPanel.add(studNoLabel);
 
-			JLabel saisInfo = new JLabel(id);
+			JLabel saisInfo = new JLabel(Integer.toString(student.id));
 			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			saisInfo.setBounds(97, 69, 63, 24);
 			entryPanel.add(saisInfo);
 
-			JLabel studNoInfo = new JLabel(num);
+			JLabel studNoInfo = new JLabel(Integer.toString(student.num));
 			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			studNoInfo.setBounds(326, 69, 105, 24);
 			entryPanel.add(studNoInfo);
@@ -850,7 +843,7 @@ public class StudentDBDemo {
 			addressLabel.setBounds(31, 90, 91, 24);
 			entryPanel.add(addressLabel);
 
-			JLabel addressInfo = new JLabel(address);
+			JLabel addressInfo = new JLabel(student.address);
 			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			addressInfo.setBounds(117, 90, 345, 24);
 			entryPanel.add(addressInfo);
@@ -871,19 +864,17 @@ public class StudentDBDemo {
 		return textFilter;
 	}
 	
-	private StudentData [] read() throws FileNotFoundException {
+	private ArrayList<StudentData> read() throws FileNotFoundException {
 		File f = new File(".");
 		File [] files = f.listFiles(filter());
-		int n = 0;
-		StudentData [] students = new StudentData[10];
+		ArrayList<StudentData> students = new ArrayList<StudentData>();
         for (File file : files) {
 			Scanner sc = new Scanner(new File(file.getName()));
 			String name = sc.nextLine();
 			String id = sc.nextLine();
 			String num = sc.nextLine();
 			String address = sc.nextLine();
-			students[n] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
-			n++;
+			students.add(new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address));
 			sc.close();
         }
         return students;
