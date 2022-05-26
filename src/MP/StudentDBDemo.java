@@ -308,7 +308,7 @@ public class StudentDBDemo {
 					studNumPreviewInfo.setText(studNoAddField.getText());
 					addressPreviewInfo.setText(addressAddField.getText());
 					try {
-						ArrayList<StudentData> students = read();
+						StudentData [] students = read();
 						boolean b = true;
 						for (StudentData student : students) {
 							if (nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.id) b = false;		
@@ -372,12 +372,12 @@ public class StudentDBDemo {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textField_4.getText().isEmpty()) {
-					textField_4.setText("a");
+					textField_4.setText("");
 				}
 				else {
 					viewCard_4.removeAll();
 					
-					ArrayList<StudentData> students = new StudentDB().searchData(textField_4.getText());
+					StudentData [] students = new StudentDB().searchData(textField_4.getText());
 					int n = 1;
 
 					for (StudentData student : students) {
@@ -774,7 +774,7 @@ public class StudentDBDemo {
 	private void createPanel(JPanel entryCard, int state) throws FileNotFoundException{
 		Dimension dim = new Dimension(672, 142);
 		entryCard.removeAll();
-		ArrayList<StudentData> students = read();
+		StudentData [] students = read();
 
 		int fileCount = 1;
 		for (StudentData student : students) {
@@ -868,18 +868,23 @@ public class StudentDBDemo {
 		return textFilter;
 	}
 	
-	private ArrayList<StudentData> read() throws FileNotFoundException {
+	private StudentData [] read() throws FileNotFoundException {
 		File f = new File(".");
 		File [] files = f.listFiles(filter());
-		ArrayList<StudentData> students = new ArrayList<StudentData>();
+		StudentData [] studentlist = new StudentData[10];
+		int i = 0;
         for (File file : files) {
 			Scanner sc = new Scanner(new File(file.getName()));
 			String name = sc.nextLine();
 			String id = sc.nextLine();
 			String num = sc.nextLine();
 			String address = sc.nextLine();
-			students.add(new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address));
-			sc.close();
+			studentlist[i] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
+			sc.close(); i++;
+        }
+        StudentData [] students = new StudentData[i];
+        for (int j = 0; j < i; j++) {
+        	students[j] = studentlist[j];
         }
         return students;
 	}

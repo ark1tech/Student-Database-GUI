@@ -11,7 +11,7 @@ public interface DBInterface {
 	abstract boolean editData(String name, int SAISID);
 	// Search Data – given any substring to search- must retrieve all
 	// Students with the substring passed in the parameter
-	abstract ArrayList<StudentData> searchData(String toSearch);
+	abstract StudentData [] searchData(String toSearch);
 	// Prints all the contents of the Database list
 	abstract void showData();
 }
