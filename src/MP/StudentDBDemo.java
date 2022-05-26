@@ -294,12 +294,15 @@ public class StudentDBDemo {
 				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
 				if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
+					addSuccessLabel.setText("");
 				}
 				else if (nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0) {
 					addFailLabel.setText("Entry can't be spaces!");
+					addSuccessLabel.setText("");
 				}
 				else if (!saisAddField.getText().matches("[0-9]+") || !studNoAddField.getText().matches("[0-9]+")) {
 					addFailLabel.setText("SAIS ID and Student Number must be numbers!");
+					addSuccessLabel.setText("");
 				}
 				else {
 					addFailLabel.setText("");
@@ -315,11 +318,20 @@ public class StudentDBDemo {
 						}
 						if (b) {
 							StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
-							new StudentDB().addData(dbd);
-							addSuccessLabel.setText("Your entry has been successfully added.");
+							if (dbd.n < 11) {
+								new StudentDB().addData(dbd);
+								addSuccessLabel.setText("Your entry has been successfully added.");
+								addFailLabel.setText("");
+							}
+							else {
+								addFailLabel.setText("There are already ten entries.");
+								addSuccessLabel.setText("");
+							}
+							
 						}
 						else {
-							addSuccessLabel.setText("Entry with same name and ID already exists.");
+							addFailLabel.setText("Entry with same name and ID already exists.");
+							addSuccessLabel.setText("");
 						}
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
