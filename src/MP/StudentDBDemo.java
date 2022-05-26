@@ -10,6 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,9 +20,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.swing.DefaultComboBoxModel;
@@ -43,7 +41,7 @@ public class StudentDBDemo {
 	private JTextField saisAddField;
 	private JTextField studNoAddField;
 	private JTextField addressAddField;
-	private JTextField textField_4;
+	private JTextField searchTextField;
 	private JTextField editWindowField;
 	private JPanel deleteCard;
 	private JPanel editCard;
@@ -56,8 +54,8 @@ public class StudentDBDemo {
 				try {
 					StudentDBDemo window = new StudentDBDemo();
 					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -118,23 +116,9 @@ public class StudentDBDemo {
 
 		JPanel displayPanel = new JPanel();
 		//displayPanel.setBounds(195, 6, 716, 573);
-		displayPanel.setPreferredSize(new Dimension(702, 2000));
+		displayPanel.setPreferredSize(new Dimension(702, 1540));
 		displayPanel.setLayout(cl2);
 		
-		JButton accessButton = new JButton("Access Student Database");
-		accessButton.setForeground(Color.WHITE);
-		accessButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cl.show(frame.getContentPane(), "2");
-				cl2.show(displayPanel, "title");
-			}
-		});
-		accessButton.setOpaque(true);
-		accessButton.setBorderPainted(false);
-		accessButton.setBackground(new Color(0x8c52ff));
-		accessButton.setBounds(325, 381, 270, 42);
-		topCard.add(accessButton);
-
 		JPanel titleCard = new JPanel();
 		displayPanel.add(titleCard, "title");
 		titleCard.setLayout(null);
@@ -148,6 +132,21 @@ public class StudentDBDemo {
 		scrollPane.setPreferredSize(new Dimension(702, 575));
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
+		
+		JButton accessButton = new JButton("Access Student Database");
+		accessButton.setForeground(Color.WHITE);
+		accessButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
+				cl.show(frame.getContentPane(), "2");
+				cl2.show(displayPanel, "title");
+			}
+		});
+		accessButton.setOpaque(true);
+		accessButton.setBorderPainted(false);
+		accessButton.setBackground(new Color(0x8c52ff));
+		accessButton.setBounds(325, 381, 270, 42);
+		topCard.add(accessButton);
 		
 		JPanel viewCard = new JPanel();
 		displayPanel.add(viewCard, "view");
@@ -226,7 +225,7 @@ public class StudentDBDemo {
 		addFailLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		addFailLabel.setForeground(Color.RED);
 		addFailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addFailLabel.setBounds(184, 146, 118, 24);
+		addFailLabel.setBounds(184, 146, 424, 24);
 		addPanel.add(addFailLabel);
 
 		JLabel addSuccessLabel = new JLabel("");
@@ -291,16 +290,25 @@ public class StudentDBDemo {
 		addEntryBtn.setBounds(549, 172, 117, 29);
 		addEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
+				boolean hasWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
+				boolean isDigit = saisAddField.getText().matches("[0-9]+") || !studNoAddField.getText().matches("[0-9]+");
+				boolean isProperLength = saisAddField.getText().length() >= 10 || studNoAddField.getText().length() >= 10;
+				
 				if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
 					addSuccessLabel.setText("");
 				}
-				else if (nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0) {
+				else if (hasWhiteSpace) {
 					addFailLabel.setText("Entry can't be spaces!");
 					addSuccessLabel.setText("");
 				}
-				else if (!saisAddField.getText().matches("[0-9]+") || !studNoAddField.getText().matches("[0-9]+")) {
+				else if (isProperLength) {
+					addFailLabel.setText("SAIS ID and Student Number must not exceed 10 digits.");
+					addSuccessLabel.setText("");
+				}
+				else if (!isDigit) {
 					addFailLabel.setText("SAIS ID and Student Number must be numbers!");
 					addSuccessLabel.setText("");
 				}
@@ -312,11 +320,12 @@ public class StudentDBDemo {
 					addressPreviewInfo.setText(addressAddField.getText());
 					try {
 						StudentData [] students = read();
-						boolean b = true;
+						boolean boolChecker = true;
 						for (StudentData student : students) {
-							if (nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.id) b = false;		
+							boolean isIdentical = nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.id;
+							if (isIdentical) boolChecker = false;		
 						}
-						if (b) {
+						if (boolChecker) {
 							StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
 							if (dbd.n < 11) {
 								new StudentDB().addData(dbd);
@@ -326,6 +335,10 @@ public class StudentDBDemo {
 							else {
 								addFailLabel.setText("There are already ten entries.");
 								addSuccessLabel.setText("");
+								namePreviewInfo.setText("");
+								saisPreviewInfo.setText("");
+								studNumPreviewInfo.setText("");
+								addressPreviewInfo.setText("");
 							}
 							
 						}
@@ -369,37 +382,38 @@ public class StudentDBDemo {
 		searchEntryPanel.setBounds(6, 6, 672, 39);
 		searchCard.add(searchEntryPanel);
 
-		textField_4 = new JTextField();
-		textField_4.setBounds(6, 6, 535, 26);
-		searchEntryPanel.add(textField_4);
-		textField_4.setColumns(10);
+		searchTextField = new JTextField();
+		searchTextField.setBounds(6, 6, 535, 26);
+		searchEntryPanel.add(searchTextField);
+		searchTextField.setColumns(10);
 		
-		JPanel viewCard_4 = new JPanel();
-		viewCard_4.setLayout(null);
-		viewCard_4.setBounds(0, 51, 702, 573);
-		searchCard.add(viewCard_4);
+		JPanel searchPanel = new JPanel();
+		searchPanel.setLayout(null);
+		searchPanel.setBounds(0, 51, 702, 1540);
+		searchCard.add(searchPanel);
 
-		JButton btnNewButton_2 = new JButton("Search");
-		btnNewButton_2.setBounds(549, 6, 117, 29);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton searchEntryBtn = new JButton("Search");
+		searchEntryBtn.setBounds(549, 6, 117, 29);
+		searchEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField_4.getText().isEmpty()) {
-					textField_4.setText("");
+				if (searchTextField.getText().isEmpty()) {
+					searchPanel.removeAll();
+					searchPanel.repaint();
 				}
 				else {
-					viewCard_4.removeAll();
+					searchPanel.removeAll();
 					
-					StudentData [] students = new StudentDB().searchData(textField_4.getText());
-					int n = 1;
+					StudentData [] students = new StudentDB().searchData(searchTextField.getText());
+					int studentCount = 1;
 
 					for (StudentData student : students) {
 
 						JPanel entryPanel = new JPanel();
 						entryPanel.setBackground(new Color(230, 230, 250));
-						entryPanel.setBounds(6, 6 + 148 * (n - 1), 672, 142);
+						entryPanel.setBounds(6, 6 + 148 * (studentCount - 1), 672, 142);
 						entryPanel.setPreferredSize(new Dimension(672, 142));
 						entryPanel.setLayout(null);
-						viewCard_4.add(entryPanel); n++;
+						searchPanel.add(entryPanel); studentCount++;
 
 						JLabel nameLabel = new JLabel(student.name);
 						nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
@@ -441,11 +455,11 @@ public class StudentDBDemo {
 
 					}
 			        
-			        viewCard_4.repaint();
+			        searchPanel.repaint();
 				}
 			}
 		});
-		searchEntryPanel.add(btnNewButton_2);
+		searchEntryPanel.add(searchEntryBtn);
 
 		JButton viewButton = new JButton("View All Entries");
 		JButton addButton = new JButton("Add an Entry");
@@ -457,6 +471,7 @@ public class StudentDBDemo {
 		viewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				addButton.setBackground(new Color(0x8c52ff));
 				deleteButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x8c52ff));
@@ -500,6 +515,7 @@ public class StudentDBDemo {
 		addButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				addButton.setBackground(new Color(0x6827e8));
 				viewButton.setBackground(new Color(0x8c52ff));
 				deleteButton.setBackground(new Color(0x8c52ff));
@@ -524,6 +540,7 @@ public class StudentDBDemo {
 		deleteButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x6827e8));
 				addButton.setBackground(new Color(0x8c52ff));
 				viewButton.setBackground(new Color(0x8c52ff));
@@ -553,6 +570,7 @@ public class StudentDBDemo {
 		editButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x8c52ff));
 				addButton.setBackground(new Color(0x8c52ff));
 				viewButton.setBackground(new Color(0x8c52ff));
@@ -582,6 +600,7 @@ public class StudentDBDemo {
 		searchButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x8c52ff));
 				addButton.setBackground(new Color(0x8c52ff));
 				viewButton.setBackground(new Color(0x8c52ff));
@@ -606,6 +625,7 @@ public class StudentDBDemo {
 		exitButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x8c52ff));
 				addButton.setBackground(new Color(0x8c52ff));
 				viewButton.setBackground(new Color(0x8c52ff));
@@ -881,22 +901,22 @@ public class StudentDBDemo {
 	}
 	
 	private StudentData [] read() throws FileNotFoundException {
-		File f = new File(".");
-		File [] files = f.listFiles(filter());
-		StudentData [] studentlist = new StudentData[10];
-		int i = 0;
+		File fileHolder = new File(".");
+		File [] files = fileHolder.listFiles(filter());
+		StudentData [] studentList = new StudentData[10];
+		int fileCount = 0;
         for (File file : files) {
 			Scanner sc = new Scanner(new File(file.getName()));
 			String name = sc.nextLine();
 			String id = sc.nextLine();
 			String num = sc.nextLine();
 			String address = sc.nextLine();
-			studentlist[i] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
-			sc.close(); i++;
+			studentList[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
+			sc.close(); fileCount++;
         }
-        StudentData [] students = new StudentData[i];
-        for (int j = 0; j < i; j++) {
-        	students[j] = studentlist[j];
+        StudentData [] students = new StudentData[fileCount];
+        for (int fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
+        	students[fileCount2] = studentList[fileCount2];
         }
         return students;
 	}

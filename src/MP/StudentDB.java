@@ -20,61 +20,51 @@ public class StudentDB implements DBInterface {
 
 	}
 
-	public static Integer parseTest(String str) {
-		// This function checks if the user input can be parsed to an integer.
-		// Refer to https://stackoverflow.com/questions/1486077/good-way-to-encapsulate-integer-parseint
-
-		try { return Integer.parseInt(str); }
-		catch (NumberFormatException e) {
-			return 0; // Note: I'm not sure if this works. If it doesn't change to "return null".
-		}
-	}
-
 	public boolean editData(String name, int SAISID) {
-
-		showData();
-
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		File f = new File(".");
-		File [] files = f.listFiles(filter());
-
-		try {
-			Scanner sc = new Scanner(new File(name)); int ans = 0;
-			String dataLine = sc.nextLine(); sc.close();
-			String [] data = dataLine.split("\\s");
-			for (String datum : data) {
-				System.out.print("\n" + datum);
-			} System.out.println();
-
-			while (ans < 1 || ans > 4) {
-				System.out.print("\nWhat do you want to modify?\n[1] Name.\n[2] SAIS ID.\n[3] Student Number.\n[4] Address.\n: ");
-				ans = parseTest(br.readLine());
-			}
-
-
-			switch(ans) {
-			case 1:
-				// deleteData(data[ans - 1]); paki integrate yung SAIS ID thx po 
-				System.out.print("\nEnter student name: ");
-				data[ans - 1] = br.readLine(); break;
-			case 2:
-				System.out.print("Enter SAIS ID: ");
-				data[ans - 1] = parseTest(br.readLine()).toString(); break;
-			case 3:
-				System.out.print("Enter student number: ");
-				data[ans - 1] = parseTest(br.readLine()).toString(); break;
-			case 4:
-				System.out.print("Enter student address: ");
-				data[ans - 1] = br.readLine();
-			}
-
-			//printFile(data[0], data[1], data[2], data[3]); FIX THIS !!!
-			return true;
-		}
-		catch(Exception e) {
-			return false;
-		}
-
+//
+//		showData();
+//
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		File f = new File(".");
+//		File [] files = f.listFiles(filter());
+//
+//		try {
+//			Scanner sc = new Scanner(new File(name)); int ans = 0;
+//			String dataLine = sc.nextLine(); sc.close();
+//			String [] data = dataLine.split("\\s");
+//			for (String datum : data) {
+//				System.out.print("\n" + datum);
+//			} System.out.println();
+//
+//			while (ans < 1 || ans > 4) {
+//				System.out.print("\nWhat do you want to modify?\n[1] Name.\n[2] SAIS ID.\n[3] Student Number.\n[4] Address.\n: ");
+//				ans = parseTest(br.readLine());
+//			}
+//
+//
+//			switch(ans) {
+//			case 1:
+//				// deleteData(data[ans - 1]); paki integrate yung SAIS ID thx po 
+//				System.out.print("\nEnter student name: ");
+//				data[ans - 1] = br.readLine(); break;
+//			case 2:
+//				System.out.print("Enter SAIS ID: ");
+//				data[ans - 1] = parseTest(br.readLine()).toString(); break;
+//			case 3:
+//				System.out.print("Enter student number: ");
+//				data[ans - 1] = parseTest(br.readLine()).toString(); break;
+//			case 4:
+//				System.out.print("Enter student address: ");
+//				data[ans - 1] = br.readLine();
+//			}
+//
+//			//printFile(data[0], data[1], data[2], data[3]); FIX THIS !!!
+//			return true;
+//		}
+//		catch(Exception e) {
+//			
+//		}
+		return false;
 	}
 
 	public boolean deleteData(String name, int SAISID) {
@@ -99,10 +89,11 @@ public class StudentDB implements DBInterface {
 	public StudentData [] searchData(String toSearch) {
 		// This function shows all available text files and searches through them.        
 
-		File f = new File(".");
-		File [] files = f.listFiles(filter());
+		File fileHolder = new File(".");
+		File [] files = fileHolder.listFiles(filter());
 		StudentData [] studentlist = new StudentData[10];
-		StudentData [] students = new StudentData[10]; int i = 0, j = 0;
+		StudentData [] students = new StudentData[10]; 
+		int fileCount = 0, fileCount2 = 0;
 		try {
 	        for (File file : files) {
 				Scanner sc = new Scanner(new File(file.getName()));
@@ -110,56 +101,56 @@ public class StudentDB implements DBInterface {
 				String id = sc.nextLine();
 				String num = sc.nextLine();
 				String address = sc.nextLine();
-				studentlist[i] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
-				sc.close(); i++;
-	        } i = 0;
+				studentlist[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
+				sc.close(); fileCount++;
+	        } fileCount = 0;
 	        for (StudentData student : studentlist) {
 	        	if (student == null) break;
 	        	String dataLine = student.name + Integer.toString(student.id) + Integer.toString(student.num) + student.address;
 	        	if (dataLine.toLowerCase().contains(toSearch.toLowerCase())) {
-	        		students[i] = student; i++;
+	        		students[fileCount] = student; fileCount++;
 	        	}
 	        }
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		StudentData [] searches = new StudentData[i];
-        for (j = 0; j < i; j++) {
-        	searches[j] = students[j];
+		StudentData [] searches = new StudentData[fileCount];
+        for (fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
+        	searches[fileCount2] = students[fileCount2];
         }
         return searches;
 	}
 
 	public void showData() {
-		// This function shows all available text files.
-
-		File f = new File(".");
-		File [] files = f.listFiles(filter());
-
-		int n = 1;
-		try {
-			for (File file : files) {
-				System.out.print("\nEntry " + n); n++;
-				Scanner sc = new Scanner(new File(file.getName()));
-				//String dataLine = sc.nextLine(); sc.close();
-				//String [] data = dataLine.split("\\s");
-				while (sc.hasNextLine()) {
-					System.out.print("\n" + sc.nextLine());
-				}
-				System.out.println();
-			} System.out.println();
-		}
-		catch(FileNotFoundException e) {
-			// DO SOMETHING.
-		}
+//		// This function shows all available text files.
+//
+//		File f = new File(".");
+//		File [] files = f.listFiles(filter());
+//
+//		int n = 1;
+//		try {
+//			for (File file : files) {
+//				System.out.print("\nEntry " + n); n++;
+//				Scanner sc = new Scanner(new File(file.getName()));
+//				//String dataLine = sc.nextLine(); sc.close();
+//				//String [] data = dataLine.split("\\s");
+//				while (sc.hasNextLine()) {
+//					System.out.print("\n" + sc.nextLine());
+//				}
+//				System.out.println();
+//			} System.out.println();
+//		}
+//		catch(FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 	}
-
+//
 	public static FilenameFilter filter () {
 
 		FilenameFilter textFilter = new FilenameFilter() {
 			public boolean accept(File dir, String filename) {
-				return filename.toLowerCase().endsWith(".txt");
+			return filename.toLowerCase().endsWith(".txt");
 			}
 		};
 
