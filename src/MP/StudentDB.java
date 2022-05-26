@@ -115,7 +115,7 @@ public class StudentDB implements DBInterface {
 	        } i = 0;
 	        for (StudentData student : studentlist) {
 	        	if (student == null) break;
-	        	String dataLine = student.name + Integer.toString(student.id) + Integer.toString(student.num) + address;
+	        	String dataLine = student.name + Integer.toString(student.id) + Integer.toString(student.num) + student.address;
 	        	if (dataLine.toLowerCase().contains(toSearch.toLowerCase())) {
 	        		students[i] = student; i++;
 	        	}
