@@ -95,21 +95,6 @@ public class StudentDBDemo {
 		mainExitButton.setBorderPainted(false);
 		mainExitButton.setBackground(Color.WHITE);
 		topCard.add(mainExitButton);	
-		
-		JButton accessButton = new JButton("Access Student Database");
-		accessButton.setForeground(Color.WHITE);
-		accessButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				scrollPane.getViewport().setViewPosition(new Point(0,0));
-				cl.show(mainFrame.getContentPane(), "2");
-				cl2.show(displayPanel, "title");
-			}
-		});
-		accessButton.setOpaque(true);
-		accessButton.setBorderPainted(false);
-		accessButton.setBackground(new Color(0x8c52ff));
-		accessButton.setBounds(325, 381, 270, 42);
-		topCard.add(accessButton);
 
 		JLabel mainTitlePage = new JLabel("");
 		mainTitlePage.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/mainTitlePage.png")));
@@ -140,6 +125,21 @@ public class StudentDBDemo {
 		scrollPane.setPreferredSize(new Dimension(702, 575));
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
+		
+		JButton accessButton = new JButton("Access Student Database");
+		accessButton.setForeground(Color.WHITE);
+		accessButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
+				cl.show(mainFrame.getContentPane(), "2");
+				cl2.show(displayPanel, "title");
+			}
+		});
+		accessButton.setOpaque(true);
+		accessButton.setBorderPainted(false);
+		accessButton.setBackground(new Color(0x8c52ff));
+		accessButton.setBounds(325, 381, 270, 42);
+		topCard.add(accessButton);
 		
 		JPanel viewCard = new JPanel();
 		displayPanel.add(viewCard, "view");
@@ -328,7 +328,7 @@ public class StudentDBDemo {
 								addFailLabel.setText("");
 							}
 							else {
-								addFailLabel.setText("There are already ten entries.");
+								addFailLabel.setText("Maximum number of entries reached.");
 								addSuccessLabel.setText("");
 								namePreviewInfo.setText("");
 								saisPreviewInfo.setText("");
@@ -693,9 +693,14 @@ public class StudentDBDemo {
 			saveEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					boolean isIncomplete = editWindowField.getText().isEmpty();
+					boolean isIncomplete = editWindowField.getText().isBlank();
+					boolean isDigit = editWindowField.getText().matches("[0-9]+");
+					
 						if(isIncomplete){
 							incompleteLabel.setText("Incomplete Entry!");
+						}
+						else if ((comboBox.getSelectedIndex() == 1 || comboBox.getSelectedIndex() == 2) && !isDigit) {
+							incompleteLabel.setText("Entry should be a number!");
 						}
 						else {
 							try {
@@ -719,7 +724,8 @@ public class StudentDBDemo {
 										id = editWindowField.getText();
 										break;
 									case 3:
-										num = editWindowField.getText(); break;
+										num = editWindowField.getText();
+										break;
 									case 4:
 										address = editWindowField.getText();
 								}
