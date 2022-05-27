@@ -1,7 +1,5 @@
 package MP;
 
-import java.util.ArrayList;
-
 public interface DBInterface {
 	//Add data at the end of the database entries
 	abstract boolean addData(StudentData dbd);
