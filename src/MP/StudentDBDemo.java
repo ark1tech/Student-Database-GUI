@@ -288,8 +288,8 @@ public class StudentDBDemo {
 				
 				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
 				boolean isWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
-				boolean isDigit = saisAddField.getText().matches("[0-9]+") || !studNoAddField.getText().matches("[0-9]+");
-				boolean isProperLength = saisAddField.getText().length() < 10 || studNoAddField.getText().length() < 10;
+				boolean isDigit = saisAddField.getText().matches("[0-9]+") && studNoAddField.getText().matches("[0-9]+");
+				boolean isProperLength = saisAddField.getText().length() < 10 && studNoAddField.getText().length() < 10;
 				
 				if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
@@ -323,9 +323,10 @@ public class StudentDBDemo {
 						if (boolChecker) {
 							StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
 							if (dbd.fileCount < 11){
-								new StudentDB().addData(dbd);
-								addSuccessLabel.setText("Your entry has been successfully added.");
-								addFailLabel.setText("");
+								if (new StudentDB().addData(dbd)) {
+									addSuccessLabel.setText("Your entry has been successfully added.");
+									addFailLabel.setText("");
+								}
 							}
 							else {
 								addFailLabel.setText("Maximum number of entries reached.");
