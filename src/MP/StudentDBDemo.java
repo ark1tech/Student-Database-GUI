@@ -95,6 +95,21 @@ public class StudentDBDemo {
 		mainExitButton.setBorderPainted(false);
 		mainExitButton.setBackground(Color.WHITE);
 		topCard.add(mainExitButton);	
+		
+		JButton accessButton = new JButton("Access Student Database");
+		accessButton.setForeground(Color.WHITE);
+		accessButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrollPane.getViewport().setViewPosition(new Point(0,0));
+				cl.show(mainFrame.getContentPane(), "2");
+				cl2.show(displayPanel, "title");
+			}
+		});
+		accessButton.setOpaque(true);
+		accessButton.setBorderPainted(false);
+		accessButton.setBackground(new Color(0x8c52ff));
+		accessButton.setBounds(325, 381, 270, 42);
+		topCard.add(accessButton);
 
 		JLabel mainTitlePage = new JLabel("");
 		mainTitlePage.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/mainTitlePage.png")));
@@ -125,21 +140,6 @@ public class StudentDBDemo {
 		scrollPane.setPreferredSize(new Dimension(702, 575));
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
-		
-		JButton accessButton = new JButton("Access Student Database");
-		accessButton.setForeground(Color.WHITE);
-		accessButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				scrollPane.getViewport().setViewPosition(new Point(0,0));
-				cl.show(mainFrame.getContentPane(), "2");
-				cl2.show(displayPanel, "title");
-			}
-		});
-		accessButton.setOpaque(true);
-		accessButton.setBorderPainted(false);
-		accessButton.setBackground(new Color(0x8c52ff));
-		accessButton.setBounds(325, 381, 270, 42);
-		topCard.add(accessButton);
 		
 		JPanel viewCard = new JPanel();
 		displayPanel.add(viewCard, "view");
@@ -287,20 +287,20 @@ public class StudentDBDemo {
 				// Running a series of boolean to handle user input errors
 				
 				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
-				boolean hasWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
+				boolean isWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
 				boolean isDigit = saisAddField.getText().matches("[0-9]+") || !studNoAddField.getText().matches("[0-9]+");
-				boolean isProperLength = saisAddField.getText().length() >= 10 || studNoAddField.getText().length() >= 10;
+				boolean isProperLength = saisAddField.getText().length() < 10 || studNoAddField.getText().length() < 10;
 				
 				if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
 					addSuccessLabel.setText("");
 				}
-				else if (hasWhiteSpace) {
+				else if (isWhiteSpace) {
 					addFailLabel.setText("Entry can't be spaces!");
 					addSuccessLabel.setText("");
 				}
-				else if (isProperLength) {
-					addFailLabel.setText("SAIS ID and Student Number must not exceed 10 digits.");
+				else if (!isProperLength) {
+					addFailLabel.setText("SAIS ID and Student Number must not exceed 9 digits.");
 					addSuccessLabel.setText("");
 				}
 				else if (!isDigit) {
@@ -322,7 +322,7 @@ public class StudentDBDemo {
 						}
 						if (boolChecker) {
 							StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
-							if (dbd.n < 11) {
+							if (dbd.fileCount < 11){
 								new StudentDB().addData(dbd);
 								addSuccessLabel.setText("Your entry has been successfully added.");
 								addFailLabel.setText("");
@@ -461,7 +461,7 @@ public class StudentDBDemo {
 		JButton deleteButton = new JButton("Delete an Entry");
 		JButton editButton = new JButton("Edit an Entry");
 		JButton searchButton = new JButton("Search an Entry");
-		JButton exitButton = new JButton("Home");
+		JButton homeButton = new JButton("Home");
 
 		viewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -471,7 +471,7 @@ public class StudentDBDemo {
 				deleteButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
-				exitButton.setBackground(new Color(0x8c52ff));
+				homeButton.setBackground(new Color(0x8c52ff));
 				viewButton.setBackground(new Color(0x6827e8));
 				cl2.show(displayPanel, "view");
 				try {
@@ -516,7 +516,7 @@ public class StudentDBDemo {
 				deleteButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
-				exitButton.setBackground(new Color(0x8c52ff));
+				homeButton.setBackground(new Color(0x8c52ff));
 				cl2.show(displayPanel, "add");
 			}
 		});
@@ -541,7 +541,7 @@ public class StudentDBDemo {
 				viewButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
-				exitButton.setBackground(new Color(0x8c52ff));
+				homeButton.setBackground(new Color(0x8c52ff));
 				cl2.show(displayPanel, "delete");
 				try {
 					createPanel(deleteCard, 2, mainFrame);
@@ -571,7 +571,7 @@ public class StudentDBDemo {
 				viewButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x6827e8));
 				searchButton.setBackground(new Color(0x8c52ff));
-				exitButton.setBackground(new Color(0x8c52ff));
+				homeButton.setBackground(new Color(0x8c52ff));
 				cl2.show(displayPanel, "edit");
 				try {
 					createPanel(editCard, 3, mainFrame);
@@ -601,7 +601,7 @@ public class StudentDBDemo {
 				viewButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x6827e8));
-				exitButton.setBackground(new Color(0x8c52ff));
+				homeButton.setBackground(new Color(0x8c52ff));
 				cl2.show(displayPanel, "search");
 			}
 		});
@@ -617,7 +617,7 @@ public class StudentDBDemo {
 		searchButton.setFont(new Font("Arial", Font.PLAIN, 13)); 
 		menuPanel.add(searchButton);
 
-		exitButton.addMouseListener(new MouseAdapter() {
+		homeButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
@@ -626,20 +626,20 @@ public class StudentDBDemo {
 				viewButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
-				exitButton.setBackground(new Color(0x6827e8));
+				homeButton.setBackground(new Color(0x6827e8));
 				cl.show(mainFrame.getContentPane(), "1");
 			}
 		});
 		
-		exitButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/homeIcon2.png")));
-		exitButton.setHorizontalAlignment(SwingConstants.LEFT);
-		exitButton.setIconTextGap(25);
-		exitButton.setBorderPainted(false);
-		exitButton.setForeground(Color.WHITE);
-		exitButton.setBounds(-2, 353, 200, 58);
-		exitButton.setPreferredSize(new Dimension(200, 58));
-		exitButton.setFont(new Font("Arial", Font.PLAIN, 13));
-		menuPanel.add(exitButton);
+		homeButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/homeIcon2.png")));
+		homeButton.setHorizontalAlignment(SwingConstants.LEFT);
+		homeButton.setIconTextGap(25);
+		homeButton.setBorderPainted(false);
+		homeButton.setForeground(Color.WHITE);
+		homeButton.setBounds(-2, 353, 200, 58);
+		homeButton.setPreferredSize(new Dimension(200, 58));
+		homeButton.setFont(new Font("Arial", Font.PLAIN, 13));
+		menuPanel.add(homeButton);
 
 		mainFrame.setResizable(false);
 		mainFrame.setVisible(true);

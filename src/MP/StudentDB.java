@@ -116,8 +116,8 @@ public class StudentDB implements DBInterface {
 	// This function writes an entry into a text file. 
 	public static void printFile(StudentData dbd) throws FileNotFoundException {
 
-		PrintWriter pw = new PrintWriter(dbd.name + " " + dbd.id + ".txt");
-		pw.print(dbd.name + "\n" + dbd.id + "\n" + dbd.num + "\n" + dbd.address);
+		PrintWriter pw = new PrintWriter(dbd.name + " " + dbd.SAISID + ".txt");
+		pw.print(dbd.name + "\n" + dbd.SAISID + "\n" + dbd.num + "\n" + dbd.address);
 		pw.close();
 
 	}
@@ -153,7 +153,7 @@ public class StudentDB implements DBInterface {
 			int fileCount = 0, fileCount2 = 0;
 			fileCount = 0;
 			for (StudentData student : studentlist) {
-				String dataLine = student.name + Integer.toString(student.id) + Integer.toString(student.num) + student.address;
+				String dataLine = student.name + Integer.toString(student.SAISID) + Integer.toString(student.num) + student.address;
 				if (dataLine.toLowerCase().contains(toSearch.toLowerCase())) {
 					students[fileCount] = student;
 					fileCount++;
