@@ -147,38 +147,26 @@ public class StudentDB implements DBInterface {
 	// This function returns array of students that has been read 
 	// from a list of text files that matched the search string.
 	public StudentData [] searchData(String toSearch) {
-
-		File fileHolder = new File(".");
-		File [] files = fileHolder.listFiles(filter());
-		StudentData [] studentlist = new StudentData[10];
-		StudentData [] students = new StudentData[10]; 
-		int fileCount = 0, fileCount2 = 0;
 		try {
-	        for (File file : files) {
-				Scanner sc = new Scanner(new File(file.getName()));
-				String name = sc.nextLine();
-				String id = sc.nextLine();
-				String num = sc.nextLine();
-				String address = sc.nextLine();
-				studentlist[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
-				sc.close(); fileCount++;
-	        } fileCount = 0;
-	        for (StudentData student : studentlist) {
-	        	if (student == null) break;
-	        	String dataLine = student.name + Integer.toString(student.id) + Integer.toString(student.num) + student.address;
-	        	if (dataLine.toLowerCase().contains(toSearch.toLowerCase())) {
-	        		students[fileCount] = student; fileCount++;
-	        	}
-	        }
-		}
-		catch (Exception e) {
+			StudentData[] studentlist = read();
+			StudentData[] students = new StudentData[10];
+			int fileCount = 0, fileCount2 = 0;
+			fileCount = 0;
+			for (StudentData student : studentlist) {
+				String dataLine = student.name + Integer.toString(student.id) + Integer.toString(student.num) + student.address;
+				if (dataLine.toLowerCase().contains(toSearch.toLowerCase())) {
+					students[fileCount] = student;
+					fileCount++;
+				}
+			}
+			StudentData[] searches = new StudentData[fileCount];
+			for (fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
+				searches[fileCount2] = students[fileCount2];
+			} return searches;
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		StudentData [] searches = new StudentData[fileCount];
-        for (fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
-        	searches[fileCount2] = students[fileCount2];
-        }
-        return searches;
 	}
 
 }
