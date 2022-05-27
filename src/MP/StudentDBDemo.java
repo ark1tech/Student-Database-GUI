@@ -79,6 +79,10 @@ public class StudentDBDemo {
 		};
 		mainFrame.getContentPane().add(topCard, "1");
 		topCard.setLayout(null);
+		
+		JPanel bottomCard = new JPanel();
+		mainFrame.getContentPane().add(bottomCard, "2");
+		bottomCard.setLayout(null);
 
 		JButton mainExitButton = new JButton("Shut Down");
 		mainExitButton.setBounds(325, 430, 270, 29);
@@ -96,10 +100,6 @@ public class StudentDBDemo {
 		mainTitlePage.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/mainTitlePage.png")));
 		mainTitlePage.setBounds(0, 0, 911, 579);
 		topCard.add(mainTitlePage);
-
-		JPanel bottomCard = new JPanel();
-		mainFrame.getContentPane().add(bottomCard, "2");
-		bottomCard.setLayout(null);
 
 		JPanel menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(0x8c52ff));
@@ -317,7 +317,7 @@ public class StudentDBDemo {
 						StudentData [] students = StudentDB.read();
 						boolean boolChecker = true;
 						for (StudentData student : students) {
-							boolean isIdentical = nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.id;
+							boolean isIdentical = nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.SAISID;
 							if (isIdentical) boolChecker = false;		
 						}
 						if (boolChecker) {
@@ -427,7 +427,7 @@ public class StudentDBDemo {
 						studNoLabel.setBounds(172, 69, 150, 24);
 						entryPanel.add(studNoLabel);
 
-						JLabel saisInfo = new JLabel(Integer.toString(student.id));
+						JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
 						saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 						saisInfo.setBounds(97, 69, 63, 24);
 						entryPanel.add(saisInfo);
@@ -810,20 +810,22 @@ public class StudentDBDemo {
 
 	private void createPanel(JPanel entryCard, int state, JFrame mainFrame) throws FileNotFoundException{
 		Dimension dim = new Dimension(672, 142);
-		entryCard.removeAll();
 		StudentData [] students = StudentDB.read();
+		entryCard.removeAll();
 
-		int fileCount = 1;
+		int studentCount = 1;
 		for (StudentData student : students) {
+			
+			// Using a for loop to create panels for each student entries 
 			
 			JPanel entryPanel = new JPanel();
 			entryPanel.setBackground(new Color(230, 230, 250));
-			entryPanel.setBounds(6, 6 + 148 * (fileCount - 1), 672, 142);
+			entryPanel.setBounds(6, 6 + 148 * (studentCount - 1), 672, 142);
 			entryPanel.setPreferredSize(dim);
 			entryPanel.setLayout(null);
 			entryCard.add(entryPanel);
 		
-			fileCount++;
+			studentCount++;
 
 			JLabel nameLabel = new JLabel(student.name);
 			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
@@ -838,7 +840,7 @@ public class StudentDBDemo {
 				deleteEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						mainFrame.setEnabled(false);
-						new openDeleteWindow(student.name, student.id, mainFrame);
+						new openDeleteWindow(student.name, student.SAISID, mainFrame);
 					}
 				});
 				deleteEntryBtn.setBounds(549, 107, 117, 29);
@@ -851,7 +853,7 @@ public class StudentDBDemo {
 				editEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						mainFrame.setEnabled(false);
-						new openEditWindow(student.name, student.id, mainFrame);
+						new openEditWindow(student.name, student.SAISID, mainFrame);
 					}
 				});
 				editEntryBtn.setBounds(549, 107, 117, 29);
@@ -871,7 +873,7 @@ public class StudentDBDemo {
 			studNoLabel.setBounds(172, 69, 150, 24);
 			entryPanel.add(studNoLabel);
 
-			JLabel saisInfo = new JLabel(Integer.toString(student.id));
+			JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
 			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 			saisInfo.setBounds(97, 69, 63, 24);
 			entryPanel.add(saisInfo);

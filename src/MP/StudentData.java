@@ -6,13 +6,13 @@ import java.util.*;
 public class StudentData {
 	
 	String name, address;
-	int id, num;
+	int SAISID, num;
 	
 	int n = new File(".").listFiles(StudentDB.filter()).length;
 	
-	public StudentData(String name, int id, int num, String address) {
+	public StudentData(String name, int SAISID, int num, String address) {
 		this.name = name;
-		this.id = id;
+		this.SAISID = SAISID;
 		this.num = num;
 		this.address = address;
 		n++;
@@ -35,11 +35,11 @@ public class StudentData {
 	}
 
 	public int getId() {
-		return id;
+		return SAISID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int SAISID) {
+		this.SAISID = SAISID;
 	}
 
 	public int getNum() {
