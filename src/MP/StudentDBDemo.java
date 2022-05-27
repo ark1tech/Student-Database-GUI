@@ -53,6 +53,8 @@ public class StudentDBDemo {
 	}
 
 	public StudentDBDemo() throws FileNotFoundException {
+		
+		// Calls the function that starts the GUI algorithm 
 		mainGUI();
 	}
 	
@@ -95,6 +97,11 @@ public class StudentDBDemo {
 		mainExitButton.setBorderPainted(false);
 		mainExitButton.setBackground(Color.WHITE);
 		topCard.add(mainExitButton);	
+		
+		JLabel credits = new JLabel("<html> /ark1tech <br> /mariware </html>");
+		credits.setFont(new Font("Arial", Font.PLAIN, 13));
+		credits.setBounds(18, 530, 78, 37);
+		topCard.add(credits);
 
 		JLabel mainTitlePage = new JLabel("");
 		mainTitlePage.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/mainTitlePage.png")));
@@ -290,8 +297,19 @@ public class StudentDBDemo {
 				boolean isWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
 				boolean isDigit = saisAddField.getText().matches("[0-9]+") && studNoAddField.getText().matches("[0-9]+");
 				boolean isProperLength = saisAddField.getText().length() < 10 && studNoAddField.getText().length() < 10;
+				boolean easterMeow = nameAddField.getText().equals("Meow Meow") &&  saisAddField.getText().equals("0111");
 				
-				if (isIncomplete) {
+				if (easterMeow) {
+					mainFrame.setEnabled(false);
+					meowWindow meow = new meowWindow();
+					meow.meowFrame.addWindowListener(new WindowAdapter() {
+						 public void windowClosed(WindowEvent e) {
+							 mainFrame.setEnabled(true);
+			           }
+					});
+					
+				}
+				else if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
 					addSuccessLabel.setText("");
 				}
@@ -313,6 +331,7 @@ public class StudentDBDemo {
 					saisPreviewInfo.setText(saisAddField.getText());
 					studNumPreviewInfo.setText(studNoAddField.getText());
 					addressPreviewInfo.setText(addressAddField.getText());
+					
 					try {
 						StudentData [] students = StudentDB.read();
 						boolean boolChecker = true;
@@ -322,7 +341,8 @@ public class StudentDBDemo {
 						}
 						if (boolChecker) {
 							StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
-							if (dbd.fileCount < 11){
+							boolean isEntryListMax = dbd.fileCount < 11;
+							if (isEntryListMax){
 								if (new StudentDB().addData(dbd)) {
 									addSuccessLabel.setText("Your entry has been successfully added.");
 									addFailLabel.setText("");
@@ -906,5 +926,4 @@ public class StudentDBDemo {
 		
 		entryCard.repaint();
 	}
-
 }
