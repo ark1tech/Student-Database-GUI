@@ -781,9 +781,10 @@ public class StudentDBDemo {
 				public void actionPerformed(ActionEvent e) {
 					mainFrame.setEnabled(true);
 					try {
-						new StudentDB().deleteData(name, SAISID);
-						createPanel(deleteCard, 2, mainFrame);
-						deleteFrame.dispose();
+						if (new StudentDB().deleteData(name, SAISID)) {
+							createPanel(deleteCard, 2, mainFrame);
+							deleteFrame.dispose();
+						}
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
