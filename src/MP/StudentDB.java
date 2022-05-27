@@ -5,9 +5,7 @@ import java.util.*;
 
 public class StudentDB implements DBInterface {
 
-	static String ans = "4", name, address;
-	static int SAISID, num;
-
+	// This function shows all available text files and searches through them.
 	public boolean addData(StudentData dbd) {
 
 		try {
@@ -18,6 +16,18 @@ public class StudentDB implements DBInterface {
 			return false;
 		}
 
+	}
+
+	// This function deletes a database entry using name and SAISID integrated in the text file name.
+	public boolean deleteData(String name, int SAISID) {
+		
+
+		if(new File(name + " " + SAISID + ".txt").delete()){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public boolean editData(String name, int SAISID) {
@@ -67,27 +77,76 @@ public class StudentDB implements DBInterface {
 		return false;
 	}
 
-	public boolean deleteData(String name, int SAISID) {
-		// This function deletes a database entry.
+	public void showData() {
+//		// This function shows all available text files.
+//
+//		File f = new File(".");
+//		File [] files = f.listFiles(filter());
+//
+//		int n = 1;
+//		try {
+//			for (File file : files) {
+//				System.out.print("\nEntry " + n); n++;
+//				Scanner sc = new Scanner(new File(file.getName()));
+//				//String dataLine = sc.nextLine(); sc.close();
+//				//String [] data = dataLine.split("\\s");
+//				while (sc.hasNextLine()) {
+//					System.out.print("\n" + sc.nextLine());
+//				}
+//				System.out.println();
+//			} System.out.println();
+//		}
+//		catch(FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+	}
+	
+	// This function filters text files from the current directory.
+	public static FilenameFilter filter () {
 
-		/* Note: This is an alternative to using a parameter.
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		FilenameFilter textFilter = new FilenameFilter() {
+			public boolean accept(File dir, String filename) {
+			return filename.toLowerCase().endsWith(".txt");
+			}
+		};
 
-		System.out.print("\nEnter student name: ");
-		name = br.readLine();
-		 */
-
-		if(new File(name + " " + SAISID + ".txt").delete()){
-			return true;
-		}
-		else {
-			return false;
-		}
-		// br.close();
+		return textFilter;
 	}
 
+	// This function writes an entry into a text file. 
+	public static void printFile(StudentData dbd) throws FileNotFoundException {
+
+		PrintWriter pw = new PrintWriter(dbd.name + " " + dbd.id + ".txt");
+		pw.print(dbd.name + "\n" + dbd.id + "\n" + dbd.num + "\n" + dbd.address);
+		pw.close();
+
+	}
+	
+	// This function returns array of students that has been read from a list of text files.
+	public static StudentData [] read() throws FileNotFoundException {
+		File fileHolder = new File(".");
+		File [] files = fileHolder.listFiles(filter());
+		StudentData [] studentList = new StudentData[10];
+		int fileCount = 0;
+        for (File file : files) {
+			Scanner sc = new Scanner(new File(file.getName()));
+			String name = sc.nextLine();
+			String id = sc.nextLine();
+			String num = sc.nextLine();
+			String address = sc.nextLine();
+			studentList[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
+			sc.close(); fileCount++;
+        }
+        StudentData [] students = new StudentData[fileCount];
+        for (int fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
+        	students[fileCount2] = studentList[fileCount2];
+        }
+        return students;
+	}
+	
+	// This function returns array of students that has been read 
+	// from a list of text files that matched the search string.
 	public StudentData [] searchData(String toSearch) {
-		// This function shows all available text files and searches through them.        
 
 		File fileHolder = new File(".");
 		File [] files = fileHolder.listFiles(filter());
@@ -121,86 +180,5 @@ public class StudentDB implements DBInterface {
         }
         return searches;
 	}
-
-	public void showData() {
-//		// This function shows all available text files.
-//
-//		File f = new File(".");
-//		File [] files = f.listFiles(filter());
-//
-//		int n = 1;
-//		try {
-//			for (File file : files) {
-//				System.out.print("\nEntry " + n); n++;
-//				Scanner sc = new Scanner(new File(file.getName()));
-//				//String dataLine = sc.nextLine(); sc.close();
-//				//String [] data = dataLine.split("\\s");
-//				while (sc.hasNextLine()) {
-//					System.out.print("\n" + sc.nextLine());
-//				}
-//				System.out.println();
-//			} System.out.println();
-//		}
-//		catch(FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-	}
-//
-	public static FilenameFilter filter () {
-
-		FilenameFilter textFilter = new FilenameFilter() {
-			public boolean accept(File dir, String filename) {
-			return filename.toLowerCase().endsWith(".txt");
-			}
-		};
-
-		return textFilter;
-	}
-
-	public static void printFile(StudentData dbd) throws FileNotFoundException {
-
-		PrintWriter pw = new PrintWriter(dbd.name + " " + dbd.id + ".txt");
-		pw.print(dbd.name + "\n" + dbd.id + "\n" + dbd.num + "\n" + dbd.address);
-		pw.close();
-
-	}
-
-	/*
-	public static void main (String [] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		while (!ans.equals("0")) {
-			System.out.print("\nWhat do you want to test?\n[1] addData().\n[2] deleteData().\n[3] searchData().\n[4] showData().\n[5] editData().\n[0] End program.\n   Prompt: ");
-			ans = br.readLine();
-
-			if (ans.equals("0")) {
-				System.out.println("\nProgram Terminated.");
-			}
-
-			if (ans.equals("1")) {
-				addData();
-			}
-
-			if (ans.equals("2")) {
-				System.out.print("\nEnter student name: ");
-				deleteData(br.readLine());
-			}
-
-			if (ans.equals("3")) {
-				System.out.print("\nEnter search entry: ");
-				searchData(br.readLine());
-			}
-
-			if (ans.equals("4")) {
-				showData();
-			}
-
-			if (ans.equals("5")) {
-				editData();
-			}
-		}
-
-	}
-	 */
 
 }

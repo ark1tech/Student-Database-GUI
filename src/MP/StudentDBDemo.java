@@ -19,7 +19,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.util.Scanner;
 
 import javax.swing.DefaultComboBoxModel;
@@ -36,13 +35,6 @@ import javax.swing.SwingConstants;
 
 public class StudentDBDemo {
 
-	private JFrame frame;
-	private JTextField nameAddField;
-	private JTextField saisAddField;
-	private JTextField studNoAddField;
-	private JTextField addressAddField;
-	private JTextField searchTextField;
-	private JTextField editWindowField;
 	private JPanel deleteCard;
 	private JPanel editCard;
 	private JButton editEntryBtn;
@@ -52,8 +44,7 @@ public class StudentDBDemo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudentDBDemo window = new StudentDBDemo();
-					window.frame.setVisible(true);
+					new StudentDBDemo();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -62,18 +53,20 @@ public class StudentDBDemo {
 	}
 
 	public StudentDBDemo() throws FileNotFoundException {
-		initialize();
+		mainGUI();
 	}
+	
+	// ---------------- Main Window GUI ---------------- //
 
-	private void initialize() throws FileNotFoundException {
+	private void mainGUI() throws FileNotFoundException {
 
 		CardLayout cl = new CardLayout(0, 0);
 
-		frame = new JFrame();
-		frame.setBounds(100, 100, 911, 607);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.getContentPane().setLayout(cl);
+		JFrame mainFrame = new JFrame();
+		mainFrame.setBounds(100, 100, 911, 607);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setLocationRelativeTo(null);
+		mainFrame.getContentPane().setLayout(cl);
 
 		JPanel topCard = new JPanel(){
 			protected void paintComponent(Graphics g) {
@@ -84,7 +77,7 @@ public class StudentDBDemo {
 				g2d.fillRect(0, 0, getWidth(), getHeight());
 			}
 		};
-		frame.getContentPane().add(topCard, "1");
+		mainFrame.getContentPane().add(topCard, "1");
 		topCard.setLayout(null);
 
 		JButton mainExitButton = new JButton("Shut Down");
@@ -105,7 +98,7 @@ public class StudentDBDemo {
 		topCard.add(mainTitlePage);
 
 		JPanel bottomCard = new JPanel();
-		frame.getContentPane().add(bottomCard, "2");
+		mainFrame.getContentPane().add(bottomCard, "2");
 		bottomCard.setLayout(null);
 
 		JPanel menuPanel = new JPanel();
@@ -138,7 +131,7 @@ public class StudentDBDemo {
 		accessButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
-				cl.show(frame.getContentPane(), "2");
+				cl.show(mainFrame.getContentPane(), "2");
 				cl2.show(displayPanel, "title");
 			}
 		});
@@ -194,22 +187,22 @@ public class StudentDBDemo {
 		addressAddLabel.setBounds(57, 118, 112, 24);
 		addPanel.add(addressAddLabel);
 
-		nameAddField = new JTextField();
+		JTextField nameAddField = new JTextField();
 		nameAddField.setBounds(182, 48, 426, 26);
 		nameAddField.setColumns(10);
 		addPanel.add(nameAddField);
 
-		saisAddField = new JTextField();
+		JTextField saisAddField = new JTextField();
 		saisAddField.setColumns(10);
 		saisAddField.setBounds(182, 71, 426, 26);
 		addPanel.add(saisAddField);
 
-		studNoAddField = new JTextField();
+		JTextField studNoAddField = new JTextField();
 		studNoAddField.setColumns(10);
 		studNoAddField.setBounds(182, 94, 426, 26);
 		addPanel.add(studNoAddField);
 
-		addressAddField = new JTextField();
+		JTextField addressAddField = new JTextField();
 		addressAddField.setColumns(10);
 		addressAddField.setBounds(182, 117, 426, 26);
 		addPanel.add(addressAddField);
@@ -291,6 +284,8 @@ public class StudentDBDemo {
 		addEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				// Running a series of boolean to handle user input errors
+				
 				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
 				boolean hasWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
 				boolean isDigit = saisAddField.getText().matches("[0-9]+") || !studNoAddField.getText().matches("[0-9]+");
@@ -319,7 +314,7 @@ public class StudentDBDemo {
 					studNumPreviewInfo.setText(studNoAddField.getText());
 					addressPreviewInfo.setText(addressAddField.getText());
 					try {
-						StudentData [] students = read();
+						StudentData [] students = StudentDB.read();
 						boolean boolChecker = true;
 						for (StudentData student : students) {
 							boolean isIdentical = nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.id;
@@ -382,7 +377,7 @@ public class StudentDBDemo {
 		searchEntryPanel.setBounds(6, 6, 672, 39);
 		searchCard.add(searchEntryPanel);
 
-		searchTextField = new JTextField();
+		JTextField searchTextField = new JTextField();
 		searchTextField.setBounds(6, 6, 535, 26);
 		searchEntryPanel.add(searchTextField);
 		searchTextField.setColumns(10);
@@ -480,7 +475,7 @@ public class StudentDBDemo {
 				viewButton.setBackground(new Color(0x6827e8));
 				cl2.show(displayPanel, "view");
 				try {
-					createPanel(viewCard, 1);
+					createPanel(viewCard, 1, mainFrame);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -549,7 +544,7 @@ public class StudentDBDemo {
 				exitButton.setBackground(new Color(0x8c52ff));
 				cl2.show(displayPanel, "delete");
 				try {
-					createPanel(deleteCard, 2);
+					createPanel(deleteCard, 2, mainFrame);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -579,7 +574,7 @@ public class StudentDBDemo {
 				exitButton.setBackground(new Color(0x8c52ff));
 				cl2.show(displayPanel, "edit");
 				try {
-					createPanel(editCard, 3);
+					createPanel(editCard, 3, mainFrame);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -632,7 +627,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
 				exitButton.setBackground(new Color(0x6827e8));
-				cl.show(frame.getContentPane(), "1");
+				cl.show(mainFrame.getContentPane(), "1");
 			}
 		});
 		
@@ -646,11 +641,14 @@ public class StudentDBDemo {
 		exitButton.setFont(new Font("Arial", Font.PLAIN, 13));
 		menuPanel.add(exitButton);
 
-		frame.setResizable(false);
+		mainFrame.setResizable(false);
+		mainFrame.setVisible(true);
 	}
 	
+	// ---------------- Edit Window GUI ---------------- //
+	
 	private class openEditWindow{
-		openEditWindow(String name, int id) {
+		openEditWindow(String name, int SAISID, JFrame mainFrame) {
 			JFrame editFrame = new JFrame();
 			editFrame.setBounds(100, 100, 320, 226);
 			editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -664,7 +662,7 @@ public class StudentDBDemo {
 			comboBox.setBounds(36, 35, 246, 27);
 			editFrame.getContentPane().add(comboBox);
 			
-			editWindowField = new JTextField();
+			JTextField editWindowField = new JTextField();
 			editWindowField.setBounds(80, 69, 202, 26);
 			editWindowField.setColumns(10);
 			editFrame.getContentPane().add(editWindowField);
@@ -674,7 +672,7 @@ public class StudentDBDemo {
 			cancelEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					editFrame.dispose();
-					frame.setEnabled(true);
+					mainFrame.setEnabled(true);
 				}
 			});
 			editFrame.getContentPane().add(cancelEditBtn);
@@ -701,7 +699,10 @@ public class StudentDBDemo {
 						}
 						else {
 							try {
-								Scanner sc = new Scanner(new File(name + " " + id + ".txt"));
+								
+								// Using GUI ComboBox to determine which information the user wants to edit
+								
+								Scanner sc = new Scanner(new File(name + " " + SAISID + ".txt"));
 								String name = sc.nextLine();
 								String id = sc.nextLine();
 								String num = sc.nextLine();
@@ -730,18 +731,18 @@ public class StudentDBDemo {
 								e1.printStackTrace();
 							}
 							try {
-								createPanel(editCard, 3);
+								createPanel(editCard, 3, mainFrame);
 							} catch (FileNotFoundException e1) {
 								e1.printStackTrace();
 							}
 							editFrame.dispose();
-							frame.setEnabled(true);
+							mainFrame.setEnabled(true);
 						}
 					}
 			});
 			editFrame.addWindowListener(new WindowAdapter() {
 				 public void windowClosed(WindowEvent e) {
-					 frame.setEnabled(true);
+					 mainFrame.setEnabled(true);
 	            }
 			});
 			editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -750,8 +751,10 @@ public class StudentDBDemo {
 		}
 	}
 	
+	// ---------------- Delete Window GUI ---------------- //
+	
 	private class openDeleteWindow{
-		openDeleteWindow(String name, int id){
+		openDeleteWindow(String name, int SAISID, JFrame mainFrame){
 			JFrame deleteFrame = new JFrame();
 			deleteFrame.setBounds(100, 100, 251, 133);
 			deleteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -769,10 +772,10 @@ public class StudentDBDemo {
 			yesDeleteBtn.setBounds(117, 58, 117, 29);
 			yesDeleteBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					frame.setEnabled(true);
+					mainFrame.setEnabled(true);
 					try {
-						new StudentDB().deleteData(name, id);
-						createPanel(deleteCard, 2);
+						new StudentDB().deleteData(name, SAISID);
+						createPanel(deleteCard, 2, mainFrame);
 						deleteFrame.dispose();
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
@@ -786,14 +789,14 @@ public class StudentDBDemo {
 			noDeleteBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					deleteFrame.dispose();
-					frame.setEnabled(true);
+					mainFrame.setEnabled(true);
 				}
 			});
 			deleteFrame.getContentPane().add(noDeleteBtn);
 			
 			deleteFrame.addWindowListener(new WindowAdapter() {
 				 public void windowClosed(WindowEvent e) {
-					 frame.setEnabled(true);
+					 mainFrame.setEnabled(true);
 	            }
 			});
 			deleteFrame.setResizable(false);
@@ -802,11 +805,13 @@ public class StudentDBDemo {
 			deleteFrame.setVisible(true);
 		}
 	}
+	
+	// ---------------- A method to create GUI Entry Panels ---------------- //
 
-	private void createPanel(JPanel entryCard, int state) throws FileNotFoundException{
+	private void createPanel(JPanel entryCard, int state, JFrame mainFrame) throws FileNotFoundException{
 		Dimension dim = new Dimension(672, 142);
 		entryCard.removeAll();
-		StudentData [] students = read();
+		StudentData [] students = StudentDB.read();
 
 		int fileCount = 1;
 		for (StudentData student : students) {
@@ -825,12 +830,15 @@ public class StudentDBDemo {
 			nameLabel.setBounds(31, 18, 455, 48);
 			entryPanel.add(nameLabel);
 			
+			
+			// Using createPanel to create buttons for deletePanel and editPanel
+			
 			if (state == 2) {
 				deleteEntryBtn = new JButton("Delete");
 				deleteEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						frame.setEnabled(false);
-						new openDeleteWindow(student.name, student.id);
+						mainFrame.setEnabled(false);
+						new openDeleteWindow(student.name, student.id, mainFrame);
 					}
 				});
 				deleteEntryBtn.setBounds(549, 107, 117, 29);
@@ -842,8 +850,8 @@ public class StudentDBDemo {
 				editEntryBtn = new JButton("Edit");
 				editEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						frame.setEnabled(false);
-						new openEditWindow(student.name, student.id);
+						mainFrame.setEnabled(false);
+						new openEditWindow(student.name, student.id, mainFrame);
 					}
 				});
 				editEntryBtn.setBounds(549, 107, 117, 29);
@@ -887,38 +895,6 @@ public class StudentDBDemo {
 		}
 		
 		entryCard.repaint();
-	}
-	
-	private FilenameFilter filter () {
-		
-		FilenameFilter textFilter = new FilenameFilter() {
-			public boolean accept(File dir, String filename) {
-				return filename.toLowerCase().endsWith(".txt");
-			}
-		};
-		
-		return textFilter;
-	}
-	
-	private StudentData [] read() throws FileNotFoundException {
-		File fileHolder = new File(".");
-		File [] files = fileHolder.listFiles(filter());
-		StudentData [] studentList = new StudentData[10];
-		int fileCount = 0;
-        for (File file : files) {
-			Scanner sc = new Scanner(new File(file.getName()));
-			String name = sc.nextLine();
-			String id = sc.nextLine();
-			String num = sc.nextLine();
-			String address = sc.nextLine();
-			studentList[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
-			sc.close(); fileCount++;
-        }
-        StudentData [] students = new StudentData[fileCount];
-        for (int fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
-        	students[fileCount2] = studentList[fileCount2];
-        }
-        return students;
 	}
 
 }
