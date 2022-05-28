@@ -115,7 +115,6 @@ public class StudentDBDemo {
 		CardLayout cl2 = new CardLayout(0, 0);
 
 		JPanel displayPanel = new JPanel();
-		//displayPanel.setBounds(195, 6, 716, 573);
 		displayPanel.setPreferredSize(new Dimension(702, 1540));
 		displayPanel.setLayout(cl2);
 		
@@ -130,6 +129,7 @@ public class StudentDBDemo {
 
 		JScrollPane scrollPane = new JScrollPane(displayPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setPreferredSize(new Dimension(702, 575));
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
 		
@@ -294,8 +294,8 @@ public class StudentDBDemo {
 				// Running a series of boolean to handle user input errors
 				
 				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
-				boolean isWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
 				boolean isDigit = saisAddField.getText().matches("[0-9]+") && studNoAddField.getText().matches("[0-9]+");
+				boolean isWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
 				boolean isProperLength = saisAddField.getText().length() < 10 && studNoAddField.getText().length() < 10;
 				boolean easterMeow = nameAddField.getText().equals("Meow Meow") &&  saisAddField.getText().equals("0111");
 				
@@ -706,7 +706,8 @@ public class StudentDBDemo {
 			JLabel incompleteLabel = new JLabel("");
 			incompleteLabel.setForeground(Color.RED);
 			incompleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			incompleteLabel.setBounds(79, 143, 161, 16);
+			incompleteLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+			incompleteLabel.setBounds(30, 143, 250, 16);
 			editFrame.getContentPane().add(incompleteLabel);
 			
 			JButton saveEditBtn  = new JButton("Save");
@@ -716,12 +717,20 @@ public class StudentDBDemo {
 					
 					boolean isIncomplete = editWindowField.getText().isBlank();
 					boolean isDigit = editWindowField.getText().matches("[0-9]+");
+					boolean isWhiteSpace = editWindowField.getText().trim().length() == 0;
+					boolean isProperLength =editWindowField.getText().length() < 10;
 					
 						if(isIncomplete){
 							incompleteLabel.setText("Incomplete Entry!");
 						}
 						else if ((comboBox.getSelectedIndex() == 1 || comboBox.getSelectedIndex() == 2) && !isDigit) {
 							incompleteLabel.setText("Entry should be a number!");
+						}
+						else if (isWhiteSpace) {
+							incompleteLabel.setText("Entry can't be spaces!");
+						}
+						else if ((comboBox.getSelectedIndex() == 1 || comboBox.getSelectedIndex() == 2) && !isProperLength) {
+							incompleteLabel.setText("Number should not exceed 9 digits!");
 						}
 						else {
 							try {
