@@ -255,7 +255,7 @@ public class StudentDBDemo {
 		JLabel saisPreviewLabel = new JLabel("SAIS ID:");
 		saisPreviewLabel.setForeground(Color.DARK_GRAY);
 		saisPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisPreviewLabel.setBounds(27, 101, 57, 24);
+		saisPreviewLabel.setBounds(27, 101, 80, 24);
 		previewPanel.add(saisPreviewLabel);
 
 		JLabel studNumPreviewLabel = new JLabel("STUDENT NUMBER:");
@@ -291,7 +291,10 @@ public class StudentDBDemo {
 		previewPanel.add(addressPreviewInfo);
 
 		JButton addEntryBtn = new JButton("Add");
-		addEntryBtn.setBounds(549, 172, 117, 29);
+		addEntryBtn.setBounds(553, 164, 100, 29);
+		addEntryBtn.setOpaque(true);
+		addEntryBtn.setBorderPainted(false);
+		addEntryBtn.setBackground(Color.WHITE);
 		addEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -371,7 +374,10 @@ public class StudentDBDemo {
 		addPanel.add(addEntryBtn);
 
 		JButton btnReset = new JButton("Reset");
-		btnReset.setBounds(420, 172, 117, 29);
+		btnReset.setBounds(427, 164, 100, 29);
+		btnReset.setOpaque(true);
+		btnReset.setBorderPainted(false);
+		btnReset.setBackground(Color.WHITE);
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nameAddField.setText("");
@@ -399,7 +405,7 @@ public class StudentDBDemo {
 		searchCard.add(searchEntryPanel);
 
 		JTextField searchTextField = new JTextField();
-		searchTextField.setBounds(6, 6, 535, 26);
+		searchTextField.setBounds(6, 5, 535, 26);
 		searchEntryPanel.add(searchTextField);
 		searchTextField.setColumns(10);
 
@@ -409,7 +415,10 @@ public class StudentDBDemo {
 		searchCard.add(searchPanel);
 
 		JButton searchEntryBtn = new JButton("Search");
-		searchEntryBtn.setBounds(549, 6, 117, 29);
+		searchEntryBtn.setBounds(549, 6, 117, 24);
+		searchEntryBtn.setOpaque(true);
+		searchEntryBtn.setBorderPainted(false);
+		searchEntryBtn.setBackground(Color.WHITE);
 		searchEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (searchTextField.getText().isEmpty()) {
@@ -439,7 +448,7 @@ public class StudentDBDemo {
 						JLabel saisLabel = new JLabel("SAIS ID:");
 						saisLabel.setForeground(Color.DARK_GRAY);
 						saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-						saisLabel.setBounds(31, 69, 57, 24);
+						saisLabel.setBounds(31, 69, 80, 24);
 						entryPanel.add(saisLabel);
 
 						JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
@@ -700,7 +709,10 @@ public class StudentDBDemo {
 			editFrame.getContentPane().add(editWindowField);
 
 			JButton cancelEditBtn = new JButton("Cancel");
-			cancelEditBtn.setBounds(46, 104, 104, 27);
+			cancelEditBtn.setBounds(46, 112, 104, 27);
+			cancelEditBtn.setOpaque(true);
+			cancelEditBtn.setBorderPainted(false);
+			cancelEditBtn.setBackground(Color.WHITE);
 			cancelEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					editFrame.dispose();
@@ -718,11 +730,14 @@ public class StudentDBDemo {
 			incompleteLabel.setForeground(Color.RED);
 			incompleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			incompleteLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-			incompleteLabel.setBounds(30, 143, 250, 16);
+			incompleteLabel.setBounds(30, 151, 250, 16);
 			editFrame.getContentPane().add(incompleteLabel);
 
 			JButton saveEditBtn  = new JButton("Save");
-			saveEditBtn.setBounds(162, 104, 104, 27);
+			saveEditBtn.setBounds(162, 112, 104, 27);
+			saveEditBtn.setOpaque(true);
+			saveEditBtn.setBorderPainted(false);
+			saveEditBtn.setBackground(Color.WHITE);
 			saveEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
@@ -785,6 +800,9 @@ public class StudentDBDemo {
 			JButton yesDeleteBtn = new JButton("Yes, delete!");
 			yesDeleteBtn.setForeground(Color.RED);
 			yesDeleteBtn.setBounds(117, 58, 117, 29);
+			yesDeleteBtn.setOpaque(true);
+			yesDeleteBtn.setBorderPainted(false);
+			yesDeleteBtn.setBackground(Color.WHITE);
 			yesDeleteBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					mainFrame.setEnabled(true);
@@ -802,6 +820,9 @@ public class StudentDBDemo {
 
 			JButton noDeleteBtn = new JButton("No");
 			noDeleteBtn.setBounds(20, 58, 75, 29);
+			noDeleteBtn.setOpaque(true);
+			noDeleteBtn.setBorderPainted(false);
+			noDeleteBtn.setBackground(Color.WHITE);
 			noDeleteBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					deleteFrame.dispose();
@@ -853,26 +874,32 @@ public class StudentDBDemo {
 
 			if (state == 2) {
 				deleteEntryBtn = new JButton("Delete");
+				deleteEntryBtn.setOpaque(true);
+				deleteEntryBtn.setBorderPainted(false);
+				deleteEntryBtn.setBackground(Color.WHITE);
 				deleteEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						mainFrame.setEnabled(false);
 						new openDeleteWindow(student.name, student.SAISID, mainFrame);
 					}
 				});
-				deleteEntryBtn.setBounds(549, 107, 117, 29);
+				deleteEntryBtn.setBounds(551, 102, 110, 29);
 				deleteEntryBtn.setForeground(Color.RED);
 				entryPanel.add(deleteEntryBtn);
 			}
 
 			else if (state == 3) {
 				editEntryBtn = new JButton("Edit");
+				editEntryBtn.setOpaque(true);
+				editEntryBtn.setBorderPainted(false);
+				editEntryBtn.setBackground(Color.WHITE);
 				editEntryBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						mainFrame.setEnabled(false);
 						new openEditWindow(student.name, student.SAISID, mainFrame);
 					}
 				});
-				editEntryBtn.setBounds(549, 107, 117, 29);
+				editEntryBtn.setBounds(551, 102, 110, 29);
 				editEntryBtn.setForeground(Color.BLACK);
 				entryPanel.add(editEntryBtn);
 			}
