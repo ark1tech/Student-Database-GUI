@@ -566,6 +566,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
 				homeButton.setBackground(new Color(0x8c52ff));
+				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 				cl2.show(displayPanel, "delete");
 				try {
 					createPanel(deleteCard, 2, mainFrame);
@@ -879,7 +880,7 @@ public class StudentDBDemo {
 			JLabel saisLabel = new JLabel("SAIS ID:");
 			saisLabel.setForeground(Color.DARK_GRAY);
 			saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			saisLabel.setBounds(31, 69, 57, 24);
+			saisLabel.setBounds(31, 80, 57, 24);
 			entryPanel.add(saisLabel);
 
 			JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
