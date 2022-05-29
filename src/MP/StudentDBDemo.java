@@ -453,7 +453,7 @@ public class StudentDBDemo {
 						JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
 						studNoLabel.setForeground(Color.DARK_GRAY);
 						studNoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-						studNoLabel.setBounds(172, 69, 150, 24);
+						studNoLabel.setBounds(200, 69, 150, 24);
 						entryPanel.add(studNoLabel);
 
 						JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
@@ -463,7 +463,7 @@ public class StudentDBDemo {
 
 						JLabel studNoInfo = new JLabel(Integer.toString(student.num));
 						studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-						studNoInfo.setBounds(326, 69, 105, 24);
+						studNoInfo.setBounds(354, 69, 105, 24);
 						entryPanel.add(studNoInfo);
 
 						JLabel addressLabel = new JLabel("ADDRESS:");
