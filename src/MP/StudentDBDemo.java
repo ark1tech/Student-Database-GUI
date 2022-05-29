@@ -17,9 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -64,7 +62,7 @@ public class StudentDBDemo {
 
 		CardLayout cl = new CardLayout(0, 0);
 
-		JFrame mainFrame = new JFrame();
+		JFrame mainFrame = new JFrame("Maxwell University Student Database");
 		mainFrame.setBounds(100, 100, 911, 607);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setLocationRelativeTo(null);
@@ -691,7 +689,7 @@ public class StudentDBDemo {
 
 	private class openEditWindow{
 		openEditWindow(String name, int SAISID, JFrame mainFrame) {
-			JFrame editFrame = new JFrame();
+			JFrame editFrame = new JFrame("Edit an Entry");
 			editFrame.setBounds(100, 100, 320, 226);
 			editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			editFrame.setLocationRelativeTo(null);
@@ -776,7 +774,7 @@ public class StudentDBDemo {
 						}
 						
 						if (!boolChecker) {
-							incompleteLabel.setText("Entry with same name and ID already exists!");
+							incompleteLabel.setText("Entry already exists!");
 						}
 						else {
 							new StudentDB().editData(name, SAISID, comboBox.getSelectedIndex() + 1, editWindowField.getText());
@@ -806,7 +804,7 @@ public class StudentDBDemo {
 
 	private class openDeleteWindow{
 		openDeleteWindow(String name, int SAISID, JFrame mainFrame){
-			JFrame deleteFrame = new JFrame();
+			JFrame deleteFrame = new JFrame("Delete an Entry");
 			deleteFrame.setBounds(100, 100, 251, 133);
 			deleteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			deleteFrame.setAlwaysOnTop(true);
