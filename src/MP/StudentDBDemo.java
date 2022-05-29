@@ -141,6 +141,7 @@ public class StudentDBDemo {
 				cl.show(mainFrame.getContentPane(), "2");
 				cl2.show(displayPanel, "title");
 				bottomCard.repaint();
+				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 			}
 		});
 		accessButton.setOpaque(true);
@@ -491,6 +492,7 @@ public class StudentDBDemo {
 				searchButton.setBackground(new Color(0x8c52ff));
 				homeButton.setBackground(new Color(0x8c52ff));
 				viewButton.setBackground(new Color(0x6827e8));
+				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 				cl2.show(displayPanel, "view");
 				try {
 					createPanel(viewCard, 1, mainFrame);
@@ -535,6 +537,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
 				homeButton.setBackground(new Color(0x8c52ff));
+				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 				cl2.show(displayPanel, "add");
 			}
 		});
@@ -592,6 +595,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x6827e8));
 				searchButton.setBackground(new Color(0x8c52ff));
 				homeButton.setBackground(new Color(0x8c52ff));
+				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 				cl2.show(displayPanel, "edit");
 				try {
 					createPanel(editCard, 3, mainFrame);
@@ -623,6 +627,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x6827e8));
 				homeButton.setBackground(new Color(0x8c52ff));
+				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 				cl2.show(displayPanel, "search");
 			}
 		});
