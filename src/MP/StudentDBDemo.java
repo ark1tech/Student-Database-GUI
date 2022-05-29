@@ -277,7 +277,7 @@ public class StudentDBDemo {
 
 		JLabel saisPreviewInfo = new JLabel();
 		saisPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisPreviewInfo.setBounds(93, 101, 80, 24);
+		saisPreviewInfo.setBounds(93, 101, 100, 24);
 		previewPanel.add(saisPreviewInfo);
 
 		JLabel studNumPreviewInfo = new JLabel();
@@ -459,7 +459,7 @@ public class StudentDBDemo {
 
 						JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
 						saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-						saisInfo.setBounds(97, 69, 63, 24);
+						saisInfo.setBounds(97, 69, 100, 24);
 						entryPanel.add(saisInfo);
 
 						JLabel studNoInfo = new JLabel(Integer.toString(student.num));
@@ -918,7 +918,7 @@ public class StudentDBDemo {
 
 			JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
 			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			saisInfo.setBounds(97, 69, 80, 24);
+			saisInfo.setBounds(97, 69, 100, 24);
 			entryPanel.add(saisInfo);
 
 			JLabel studNoInfo = new JLabel(Integer.toString(student.num));
