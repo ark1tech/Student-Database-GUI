@@ -331,39 +331,35 @@ public class StudentDBDemo {
 					saisPreviewInfo.setText(saisAddField.getText());
 					studNumPreviewInfo.setText(studNoAddField.getText());
 					addressPreviewInfo.setText(addressAddField.getText());
-					
-					try {
-						StudentData [] students = StudentDB.read();
-						boolean boolChecker = true;
-						for (StudentData student : students) {
-							boolean isIdentical = nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.SAISID;
-							if (isIdentical) boolChecker = false;		
-						}
-						if (boolChecker) {
-							StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
-							boolean isEntryListMax = dbd.fileCount < 11;
-							if (isEntryListMax){
-								if (new StudentDB().addData(dbd)) {
-									addSuccessLabel.setText("Your entry has been successfully added.");
-									addFailLabel.setText("");
-								}
+
+					StudentData [] students = new StudentDB().showData();
+					boolean boolChecker = true;
+					for (StudentData student : students) {
+						boolean isIdentical = nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.SAISID;
+						if (isIdentical) boolChecker = false;		
+					}
+					if (boolChecker) {
+						StudentData dbd = new StudentData(nameAddField.getText(), Integer.parseInt(saisAddField.getText()), Integer.parseInt(studNoAddField.getText()), addressAddField.getText());
+						boolean isEntryListMax = dbd.fileCount < 11;
+						if (isEntryListMax){
+							if (new StudentDB().addData(dbd)) {
+								addSuccessLabel.setText("Your entry has been successfully added.");
+								addFailLabel.setText("");
 							}
-							else {
-								addFailLabel.setText("Maximum number of entries reached.");
-								addSuccessLabel.setText("");
-								namePreviewInfo.setText("");
-								saisPreviewInfo.setText("");
-								studNumPreviewInfo.setText("");
-								addressPreviewInfo.setText("");
-							}
-							
 						}
 						else {
-							addFailLabel.setText("Entry with same name and ID already exists.");
+							addFailLabel.setText("Maximum number of entries reached.");
 							addSuccessLabel.setText("");
+							namePreviewInfo.setText("");
+							saisPreviewInfo.setText("");
+							studNumPreviewInfo.setText("");
+							addressPreviewInfo.setText("");
 						}
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
+
+					}
+					else {
+						addFailLabel.setText("Entry with same name and ID already exists.");
+						addSuccessLabel.setText("");
 					}
 				}
 			}
@@ -733,39 +729,7 @@ public class StudentDBDemo {
 							incompleteLabel.setText("Number should not exceed 9 digits!");
 						}
 						else {
-							try {
-								
-								// Using GUI ComboBox to determine which information the user wants to edit
-								
-								Scanner sc = new Scanner(new File(name + " " + SAISID + ".txt"));
-								String name = sc.nextLine();
-								String id = sc.nextLine();
-								String num = sc.nextLine();
-								String address = sc.nextLine();
-								sc.close();
-								
-								switch(comboBox.getSelectedIndex() + 1) {
-									case 1:
-										new File(name + " " + id + ".txt").delete();
-										name = editWindowField.getText();
-										break;
-									case 2:
-										new File(name + " " + id + ".txt").delete();
-										id = editWindowField.getText();
-										break;
-									case 3:
-										num = editWindowField.getText();
-										break;
-									case 4:
-										address = editWindowField.getText();
-								}
-								
-								StudentData dbd = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
-								new StudentDB().addData(dbd);
-							}
-							catch (FileNotFoundException e1) {
-								e1.printStackTrace();
-							}
+							new StudentDB().editData(name, SAISID, comboBox.getSelectedIndex() + 1, editWindowField.getText());
 							try {
 								createPanel(editCard, 3, mainFrame);
 							} catch (FileNotFoundException e1) {
@@ -847,7 +811,7 @@ public class StudentDBDemo {
 
 	private void createPanel(JPanel entryCard, int state, JFrame mainFrame) throws FileNotFoundException{
 		Dimension dim = new Dimension(672, 142);
-		StudentData [] students = StudentDB.read();
+		StudentData [] students = new StudentDB().showData();
 		entryCard.removeAll();
 
 		int studentCount = 1;

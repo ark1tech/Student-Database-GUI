@@ -30,75 +30,37 @@ public class StudentDB implements DBInterface {
 		}
 	}
 
-	public boolean editData(String name, int SAISID) {
-//
-//		showData();
-//
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		File f = new File(".");
-//		File [] files = f.listFiles(filter());
-//
-//		try {
-//			Scanner sc = new Scanner(new File(name)); int ans = 0;
-//			String dataLine = sc.nextLine(); sc.close();
-//			String [] data = dataLine.split("\\s");
-//			for (String datum : data) {
-//				System.out.print("\n" + datum);
-//			} System.out.println();
-//
-//			while (ans < 1 || ans > 4) {
-//				System.out.print("\nWhat do you want to modify?\n[1] Name.\n[2] SAIS ID.\n[3] Student Number.\n[4] Address.\n: ");
-//				ans = parseTest(br.readLine());
-//			}
-//
-//
-//			switch(ans) {
-//			case 1:
-//				// deleteData(data[ans - 1]); paki integrate yung SAIS ID thx po 
-//				System.out.print("\nEnter student name: ");
-//				data[ans - 1] = br.readLine(); break;
-//			case 2:
-//				System.out.print("Enter SAIS ID: ");
-//				data[ans - 1] = parseTest(br.readLine()).toString(); break;
-//			case 3:
-//				System.out.print("Enter student number: ");
-//				data[ans - 1] = parseTest(br.readLine()).toString(); break;
-//			case 4:
-//				System.out.print("Enter student address: ");
-//				data[ans - 1] = br.readLine();
-//			}
-//
-//			//printFile(data[0], data[1], data[2], data[3]); FIX THIS !!!
-//			return true;
-//		}
-//		catch(Exception e) {
-//			
-//		}
-		return false;
-	}
-
-	public void showData() {
-//		// This function shows all available text files.
-//
-//		File f = new File(".");
-//		File [] files = f.listFiles(filter());
-//
-//		int n = 1;
-//		try {
-//			for (File file : files) {
-//				System.out.print("\nEntry " + n); n++;
-//				Scanner sc = new Scanner(new File(file.getName()));
-//				//String dataLine = sc.nextLine(); sc.close();
-//				//String [] data = dataLine.split("\\s");
-//				while (sc.hasNextLine()) {
-//					System.out.print("\n" + sc.nextLine());
-//				}
-//				System.out.println();
-//			} System.out.println();
-//		}
-//		catch(FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
+	public boolean editData(String name, int SAISID, int choice, String edit) {
+		try {
+			Scanner sc = new Scanner(new File(name + " " + SAISID + ".txt"));
+			sc.nextLine(); sc.nextLine();
+			String num = sc.nextLine();
+			String address = sc.nextLine();
+			sc.close();
+			
+			switch(choice) {
+				case 1:
+					new File(name + " " + SAISID + ".txt").delete();
+					name = edit;
+					break;
+				case 2:
+					new File(name + " " + SAISID + ".txt").delete();
+					SAISID = Integer.parseInt(edit);
+					break;
+				case 3:
+					num = edit;
+					break;
+				case 4:
+					address = edit;
+			}
+			
+			StudentData dbd = new StudentData(name, SAISID, Integer.parseInt(num), address);
+			return new StudentDB().addData(dbd);
+		}
+		catch (FileNotFoundException e) {
+			return false;
+		}
+		
 	}
 	
 	// This function filters text files from the current directory.
@@ -123,32 +85,38 @@ public class StudentDB implements DBInterface {
 	}
 	
 	// This function returns array of students that has been read from a list of text files.
-	public static StudentData [] read() throws FileNotFoundException {
-		File fileHolder = new File(".");
-		File [] files = fileHolder.listFiles(filter());
-		StudentData [] studentList = new StudentData[10];
-		int fileCount = 0;
-        for (File file : files) {
-			Scanner sc = new Scanner(new File(file.getName()));
-			String name = sc.nextLine();
-			String id = sc.nextLine();
-			String num = sc.nextLine();
-			String address = sc.nextLine();
-			studentList[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
-			sc.close(); fileCount++;
-        }
-        StudentData [] students = new StudentData[fileCount];
-        for (int fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
-        	students[fileCount2] = studentList[fileCount2];
-        }
-        return students;
+	public StudentData [] showData() {
+		try {
+			File fileHolder = new File(".");
+			File [] files = fileHolder.listFiles(filter());
+			StudentData [] studentList = new StudentData[10];
+			int fileCount = 0;
+	        for (File file : files) {
+				Scanner sc = new Scanner(new File(file.getName()));
+				String name = sc.nextLine();
+				String id = sc.nextLine();
+				String num = sc.nextLine();
+				String address = sc.nextLine();
+				studentList[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
+				sc.close(); fileCount++;
+	        }
+	        StudentData [] students = new StudentData[fileCount];
+	        for (int fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
+	        	students[fileCount2] = studentList[fileCount2];
+	        }
+	        return students;
+		}
+		catch (FileNotFoundException e) {
+			return new StudentData[0];
+		}
+		
 	}
 	
 	// This function returns array of students that has been read 
 	// from a list of text files that matched the search string.
 	public StudentData [] searchData(String toSearch) {
 		try {
-			StudentData[] studentlist = read();
+			StudentData[] studentlist = showData();
 			StudentData[] students = new StudentData[10];
 			int fileCount = 0, fileCount2 = 0;
 			fileCount = 0;
