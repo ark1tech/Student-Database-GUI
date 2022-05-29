@@ -539,7 +539,7 @@ public class StudentDBDemo {
 
 		addButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				addButton.setBackground(new Color(0x6827e8));
 				viewButton.setBackground(new Color(0x8c52ff));
@@ -558,6 +558,7 @@ public class StudentDBDemo {
 
 		addButton.setBounds(-2, 118, 200, 58);
 		addButton.setBackground(new Color(0x8c52ff));
+		addButton.setOpaque(true);
 		addButton.setBorderPainted(false);
 		addButton.setPreferredSize(new Dimension(200, 60));
 		addButton.setForeground(Color.WHITE);
@@ -566,7 +567,7 @@ public class StudentDBDemo {
 
 		deleteButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x6827e8));
 				addButton.setBackground(new Color(0x8c52ff));
@@ -589,6 +590,7 @@ public class StudentDBDemo {
 		deleteButton.setHorizontalAlignment(SwingConstants.LEFT);
 
 		deleteButton.setBackground(new Color(0x8c52ff));
+		deleteButton.setOpaque(true);
 		deleteButton.setBorderPainted(false);
 		deleteButton.setBounds(-2, 176, 200, 58);
 		deleteButton.setForeground(Color.WHITE);
@@ -598,7 +600,7 @@ public class StudentDBDemo {
 
 		editButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x8c52ff));
 				addButton.setBackground(new Color(0x8c52ff));
@@ -622,6 +624,7 @@ public class StudentDBDemo {
 
 		editButton.setBackground(new Color(0x8c52ff));
 		editButton.setBorderPainted(false);
+		editButton.setOpaque(true);
 		editButton.setForeground(Color.WHITE);
 		editButton.setBounds(-2, 236, 200, 58);
 		editButton.setPreferredSize(new Dimension(200, 50)); 
@@ -630,7 +633,7 @@ public class StudentDBDemo {
 
 		searchButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x8c52ff));
 				addButton.setBackground(new Color(0x8c52ff));
@@ -648,6 +651,7 @@ public class StudentDBDemo {
 		searchButton.setIconTextGap(25);
 
 		searchButton.setBackground(new Color(0x8c52ff));
+		searchButton.setOpaque(true);
 		searchButton.setBorderPainted(false);
 		searchButton.setBounds(-2, 295, 200, 58);
 		searchButton.setForeground(Color.WHITE);
@@ -657,14 +661,13 @@ public class StudentDBDemo {
 
 		homeButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				deleteButton.setBackground(new Color(0x8c52ff));
 				addButton.setBackground(new Color(0x8c52ff));
 				viewButton.setBackground(new Color(0x8c52ff));
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x8c52ff));
-				homeButton.setBackground(new Color(0x6827e8));
 				cl.show(mainFrame.getContentPane(), "1");
 			}
 		});
@@ -674,6 +677,7 @@ public class StudentDBDemo {
 		homeButton.setIconTextGap(25);
 		
 		homeButton.setBackground(new Color(0x8c52ff));
+		homeButton.setOpaque(true);
 		homeButton.setBorderPainted(false);
 		homeButton.setForeground(Color.WHITE);
 		homeButton.setBounds(-2, 353, 200, 58);
