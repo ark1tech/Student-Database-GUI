@@ -88,6 +88,7 @@ public class StudentDBDemo {
 
 		JButton mainExitButton = new JButton("Shut Down");
 		mainExitButton.setBounds(325, 430, 270, 29);
+		mainExitButton.setFont(new Font("Arial", Font.PLAIN, 13));
 		mainExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -135,6 +136,7 @@ public class StudentDBDemo {
 
 		JButton accessButton = new JButton("Access Student Database");
 		accessButton.setForeground(Color.WHITE);
+		accessButton.setFont(new Font("Arial", Font.PLAIN, 13));
 		accessButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
