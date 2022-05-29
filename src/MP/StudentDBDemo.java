@@ -249,25 +249,25 @@ public class StudentDBDemo {
 		previewLabel.setForeground(Color.DARK_GRAY);
 		previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		previewLabel.setBounds(17, 12, 57, 24);
+		previewLabel.setBounds(17, 12, 57, 45);
 		previewPanel.add(previewLabel);
 
 		JLabel saisPreviewLabel = new JLabel("SAIS ID:");
 		saisPreviewLabel.setForeground(Color.DARK_GRAY);
 		saisPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisPreviewLabel.setBounds(27, 101, 57, 24);
+		saisPreviewLabel.setBounds(27, 101, 57, 45);
 		previewPanel.add(saisPreviewLabel);
 
 		JLabel studNumPreviewLabel = new JLabel("STUDENT NUMBER:");
 		studNumPreviewLabel.setForeground(Color.DARK_GRAY);
 		studNumPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNumPreviewLabel.setBounds(196, 101, 150, 24);
+		studNumPreviewLabel.setBounds(196, 101, 150, 45);
 		previewPanel.add(studNumPreviewLabel);
 
 		JLabel addressPreviewLabel = new JLabel("ADDRESS:");
 		addressPreviewLabel.setForeground(Color.DARK_GRAY);
 		addressPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressPreviewLabel.setBounds(27, 122, 91, 24);
+		addressPreviewLabel.setBounds(27, 122, 91, 45);
 		previewPanel.add(addressPreviewLabel);
 
 		JLabel namePreviewInfo = new JLabel();
@@ -277,17 +277,17 @@ public class StudentDBDemo {
 
 		JLabel saisPreviewInfo = new JLabel();
 		saisPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisPreviewInfo.setBounds(93, 101, 80, 24);
+		saisPreviewInfo.setBounds(93, 101, 80, 45);
 		previewPanel.add(saisPreviewInfo);
 
 		JLabel studNumPreviewInfo = new JLabel();
 		studNumPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNumPreviewInfo.setBounds(350, 101, 105, 24);
+		studNumPreviewInfo.setBounds(350, 101, 105, 45);
 		previewPanel.add(studNumPreviewInfo);
 
 		JLabel addressPreviewInfo = new JLabel();
 		addressPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressPreviewInfo.setBounds(113, 122, 345, 24);
+		addressPreviewInfo.setBounds(113, 122, 345, 45);
 		previewPanel.add(addressPreviewInfo);
 
 		JButton addEntryBtn = new JButton("Add");
@@ -450,7 +450,7 @@ public class StudentDBDemo {
 
 						JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
 						saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-						saisInfo.setBounds(97, 69, 63, 24);
+						saisInfo.setBounds(97, 69, 63, 35);
 						entryPanel.add(saisInfo);
 
 						JLabel studNoInfo = new JLabel(Integer.toString(student.num));
@@ -880,34 +880,34 @@ public class StudentDBDemo {
 			JLabel saisLabel = new JLabel("SAIS ID:");
 			saisLabel.setForeground(Color.DARK_GRAY);
 			saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			saisLabel.setBounds(31, 80, 57, 24);
+			saisLabel.setBounds(31, 69, 57, 45);
 			entryPanel.add(saisLabel);
 
 			JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
 			studNoLabel.setForeground(Color.DARK_GRAY);
 			studNoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			studNoLabel.setBounds(200, 69, 150, 24);
+			studNoLabel.setBounds(200, 69, 150, 45);
 			entryPanel.add(studNoLabel);
 
 			JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
 			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			saisInfo.setBounds(97, 69, 80, 24);
+			saisInfo.setBounds(97, 69, 80, 45);
 			entryPanel.add(saisInfo);
 
 			JLabel studNoInfo = new JLabel(Integer.toString(student.num));
 			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			studNoInfo.setBounds(354, 69, 105, 24);
+			studNoInfo.setBounds(354, 69, 105, 45);
 			entryPanel.add(studNoInfo);
 
 			JLabel addressLabel = new JLabel("ADDRESS:");
 			addressLabel.setForeground(Color.DARK_GRAY);
 			addressLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			addressLabel.setBounds(31, 90, 91, 24);
+			addressLabel.setBounds(31, 90, 91, 45);
 			entryPanel.add(addressLabel);
 
 			JLabel addressInfo = new JLabel(student.address);
 			addressInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			addressInfo.setBounds(117, 90, 345, 24);
+			addressInfo.setBounds(117, 90, 345, 45);
 			entryPanel.add(addressInfo);
 
 		}
