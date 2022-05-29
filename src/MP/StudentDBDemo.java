@@ -229,13 +229,13 @@ public class StudentDBDemo {
 		addFailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		addFailLabel.setBounds(182, 184, 424, 24);
 		addPanel.add(addFailLabel);
-
+		
 		JLabel addSuccessLabel = new JLabel("");
+		addSuccessLabel.setBounds(182, 184, 426, 24);
 		addSuccessLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		addSuccessLabel.setForeground(new Color (0x8c52ff));
 		addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addSuccessLabel.setBounds(205, 403, 302, 24);
-		addCard.add(addSuccessLabel);
+		addPanel.add(addSuccessLabel);
 
 		JPanel previewPanel = new JPanel();
 		previewPanel.setBackground(new Color(230, 230, 250));
@@ -391,7 +391,7 @@ public class StudentDBDemo {
 			}
 		});
 		addPanel.add(btnReset);
-
+		
 		JPanel searchCard = new JPanel();
 		displayPanel.add(searchCard, "search");
 		searchCard.setLayout(null);
