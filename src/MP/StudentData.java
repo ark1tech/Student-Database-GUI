@@ -4,12 +4,12 @@ import java.io.*;
 import java.util.*;
 
 public class StudentData {
-	
+
 	int fileCount = new File(".").listFiles(StudentDB.filter()).length;
-	
+
 	String name, address;
 	int SAISID, num;
-	
+
 	public StudentData(String name, int SAISID, int num, String address) {
 		this.name = name;
 		this.SAISID = SAISID;

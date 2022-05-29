@@ -53,11 +53,11 @@ public class StudentDBDemo {
 	}
 
 	public StudentDBDemo() throws FileNotFoundException {
-		
+
 		// Calls the function that starts the GUI algorithm 
 		mainGUI();
 	}
-	
+
 	// ---------------- Main Window GUI ---------------- //
 
 	private void mainGUI() throws FileNotFoundException {
@@ -81,7 +81,7 @@ public class StudentDBDemo {
 		};
 		mainFrame.getContentPane().add(topCard, "1");
 		topCard.setLayout(null);
-		
+
 		JPanel bottomCard = new JPanel();
 		mainFrame.getContentPane().add(bottomCard, "2");
 		bottomCard.setLayout(null);
@@ -97,7 +97,7 @@ public class StudentDBDemo {
 		mainExitButton.setBorderPainted(false);
 		mainExitButton.setBackground(Color.WHITE);
 		topCard.add(mainExitButton);	
-		
+
 		JLabel credits = new JLabel("<html> /ark1tech <br> /mariware </html>");
 		credits.setFont(new Font("Arial", Font.PLAIN, 13));
 		credits.setBounds(18, 530, 78, 37);
@@ -117,7 +117,7 @@ public class StudentDBDemo {
 		JPanel displayPanel = new JPanel();
 		displayPanel.setPreferredSize(new Dimension(702, 1540));
 		displayPanel.setLayout(cl2);
-		
+
 		JPanel titleCard = new JPanel();
 		displayPanel.add(titleCard, "title");
 		titleCard.setLayout(null);
@@ -132,7 +132,7 @@ public class StudentDBDemo {
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.setBounds(195, 6, 702, 575);
 		bottomCard.add(scrollPane);
-		
+
 		JButton accessButton = new JButton("Access Student Database");
 		accessButton.setForeground(Color.WHITE);
 		accessButton.addActionListener(new ActionListener() {
@@ -147,7 +147,7 @@ public class StudentDBDemo {
 		accessButton.setBackground(new Color(0x8c52ff));
 		accessButton.setBounds(325, 381, 270, 42);
 		topCard.add(accessButton);
-		
+
 		JPanel viewCard = new JPanel();
 		displayPanel.add(viewCard, "view");
 		viewCard.setLayout(null);
@@ -155,7 +155,7 @@ public class StudentDBDemo {
 		editCard = new JPanel();
 		displayPanel.add(editCard, "edit");
 		editCard.setLayout(null);
-		
+
 		deleteCard = new JPanel();
 		displayPanel.add(deleteCard, "delete");
 		deleteCard.setLayout(null);
@@ -234,20 +234,20 @@ public class StudentDBDemo {
 		addSuccessLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		addSuccessLabel.setBounds(205, 403, 302, 24);
 		addCard.add(addSuccessLabel);
-		
+
 		JPanel previewPanel = new JPanel();
 		previewPanel.setBackground(new Color(230, 230, 250));
 		previewPanel.setBounds(6, 219, 672, 172);
 		previewPanel.setLayout(null);
 		addCard.add(previewPanel);
-		
- 		JLabel previewLabel = new JLabel("Preview");
+
+		JLabel previewLabel = new JLabel("Preview");
 		previewLabel.setForeground(Color.DARK_GRAY);
 		previewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		previewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		previewLabel.setBounds(17, 12, 57, 24);
 		previewPanel.add(previewLabel);
-		
+
 		JLabel saisPreviewLabel = new JLabel("SAIS ID:");
 		saisPreviewLabel.setForeground(Color.DARK_GRAY);
 		saisPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -259,23 +259,23 @@ public class StudentDBDemo {
 		studNumPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		studNumPreviewLabel.setBounds(168, 101, 150, 24);
 		previewPanel.add(studNumPreviewLabel);
-		
+
 		JLabel addressPreviewLabel = new JLabel("ADDRESS:");
 		addressPreviewLabel.setForeground(Color.DARK_GRAY);
 		addressPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		addressPreviewLabel.setBounds(27, 122, 91, 24);
 		previewPanel.add(addressPreviewLabel);
-		
+
 		JLabel namePreviewInfo = new JLabel();
 		namePreviewInfo.setFont(new Font("Arial", Font.PLAIN, 25));
 		namePreviewInfo.setBounds(27, 50, 455, 48);
 		previewPanel.add(namePreviewInfo);
-		
+
 		JLabel saisPreviewInfo = new JLabel();
 		saisPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 		saisPreviewInfo.setBounds(93, 101, 63, 24);
 		previewPanel.add(saisPreviewInfo);
-		
+
 		JLabel studNumPreviewInfo = new JLabel();
 		studNumPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 		studNumPreviewInfo.setBounds(322, 101, 105, 24);
@@ -290,24 +290,24 @@ public class StudentDBDemo {
 		addEntryBtn.setBounds(549, 172, 117, 29);
 		addEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				// Running a series of boolean to handle user input errors
-				
+
 				boolean isIncomplete = nameAddField.getText().isEmpty() || saisAddField.getText().isEmpty() || studNoAddField.getText().isEmpty() || addressAddField.getText().isEmpty();
 				boolean isDigit = saisAddField.getText().matches("[0-9]+") && studNoAddField.getText().matches("[0-9]+");
 				boolean isWhiteSpace = nameAddField.getText().trim().length() == 0 || saisAddField.getText().trim().length() == 0 || studNoAddField.getText().trim().length() == 0 || addressAddField.getText().trim().length() == 0;
 				boolean isProperLength = saisAddField.getText().length() < 10 && studNoAddField.getText().length() < 10;
 				boolean easterMeow = nameAddField.getText().equals("Meow Meow") &&  saisAddField.getText().equals("0111");
-				
+
 				if (easterMeow) {
 					mainFrame.setEnabled(false);
 					meowWindow meow = new meowWindow();
 					meow.meowFrame.addWindowListener(new WindowAdapter() {
-						 public void windowClosed(WindowEvent e) {
-							 mainFrame.setEnabled(true);
-			           }
+						public void windowClosed(WindowEvent e) {
+							mainFrame.setEnabled(true);
+						}
 					});
-					
+
 				}
 				else if (isIncomplete) {
 					addFailLabel.setText("Incomplete entry!");
@@ -398,7 +398,7 @@ public class StudentDBDemo {
 		searchTextField.setBounds(6, 6, 535, 26);
 		searchEntryPanel.add(searchTextField);
 		searchTextField.setColumns(10);
-		
+
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(null);
 		searchPanel.setBounds(0, 51, 702, 1540);
@@ -414,7 +414,7 @@ public class StudentDBDemo {
 				}
 				else {
 					searchPanel.removeAll();
-					
+
 					StudentData [] students = new StudentDB().searchData(searchTextField.getText());
 					int studentCount = 1;
 
@@ -466,8 +466,8 @@ public class StudentDBDemo {
 						entryPanel.add(addressInfo);
 
 					}
-			        
-			        searchPanel.repaint();
+
+					searchPanel.repaint();
 				}
 			}
 		});
@@ -498,11 +498,11 @@ public class StudentDBDemo {
 				}
 			}
 		});
-		
+
 		viewButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/eyeIcon2.png")));
 		viewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		viewButton.setIconTextGap(25);
-		
+
 		viewButton.setOpaque(true);
 		viewButton.setBackground(new Color(0x8c52ff));
 		viewButton.setBounds(-2, 60, 200, 58);
@@ -537,11 +537,11 @@ public class StudentDBDemo {
 				cl2.show(displayPanel, "add");
 			}
 		});
-		
+
 		addButton.setIconTextGap(25);
 		addButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/addIcon2.png")));
 		addButton.setHorizontalAlignment(SwingConstants.LEFT);
-		
+
 		addButton.setBounds(-2, 118, 200, 58);
 		addButton.setBorderPainted(false);
 		addButton.setPreferredSize(new Dimension(200, 60));
@@ -567,11 +567,11 @@ public class StudentDBDemo {
 				}
 			}
 		});
-		
+
 		deleteButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/deleteIcon2.png")));
 		deleteButton.setIconTextGap(25);
 		deleteButton.setHorizontalAlignment(SwingConstants.LEFT);
-		
+
 		deleteButton.setBorderPainted(false);
 		deleteButton.setBounds(-2, 176, 200, 58);
 		deleteButton.setForeground(Color.WHITE);
@@ -597,11 +597,11 @@ public class StudentDBDemo {
 				}
 			}
 		});
-		
+
 		editButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/editIcon2.png")));
 		editButton.setHorizontalAlignment(SwingConstants.LEFT);
 		editButton.setIconTextGap(25);
-		
+
 		editButton.setBorderPainted(false);
 		editButton.setForeground(Color.WHITE);
 		editButton.setBounds(-2, 236, 200, 58);
@@ -647,7 +647,7 @@ public class StudentDBDemo {
 				cl.show(mainFrame.getContentPane(), "1");
 			}
 		});
-		
+
 		homeButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/homeIcon2.png")));
 		homeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		homeButton.setIconTextGap(25);
@@ -661,9 +661,9 @@ public class StudentDBDemo {
 		mainFrame.setResizable(false);
 		mainFrame.setVisible(true);
 	}
-	
+
 	// ---------------- Edit Window GUI ---------------- //
-	
+
 	private class openEditWindow{
 		openEditWindow(String name, int SAISID, JFrame mainFrame) {
 			JFrame editFrame = new JFrame();
@@ -673,17 +673,17 @@ public class StudentDBDemo {
 			editFrame.setResizable(false);
 			editFrame.setAlwaysOnTop(true);
 			editFrame.getContentPane().setLayout(null);
-			
+
 			JComboBox comboBox = new JComboBox();
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Name", "SAIS ID", "Student Number", "Address"}));
 			comboBox.setBounds(36, 35, 246, 27);
 			editFrame.getContentPane().add(comboBox);
-			
+
 			JTextField editWindowField = new JTextField();
 			editWindowField.setBounds(80, 69, 202, 26);
 			editWindowField.setColumns(10);
 			editFrame.getContentPane().add(editWindowField);
-			
+
 			JButton cancelEditBtn = new JButton("Cancel");
 			cancelEditBtn.setBounds(46, 104, 104, 27);
 			cancelEditBtn.addActionListener(new ActionListener() {
@@ -693,66 +693,66 @@ public class StudentDBDemo {
 				}
 			});
 			editFrame.getContentPane().add(cancelEditBtn);
-			
+
 			JLabel entryEditLabel = new JLabel("Entry:");
 			entryEditLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 			entryEditLabel.setBounds(36, 74, 61, 16);
 			editFrame.getContentPane().add(entryEditLabel);
-			
+
 			JLabel incompleteLabel = new JLabel("");
 			incompleteLabel.setForeground(Color.RED);
 			incompleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			incompleteLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 			incompleteLabel.setBounds(30, 143, 250, 16);
 			editFrame.getContentPane().add(incompleteLabel);
-			
+
 			JButton saveEditBtn  = new JButton("Save");
 			saveEditBtn.setBounds(162, 104, 104, 27);
 			saveEditBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+
 					boolean isIncomplete = editWindowField.getText().isBlank();
 					boolean isDigit = editWindowField.getText().matches("[0-9]+");
 					boolean isWhiteSpace = editWindowField.getText().trim().length() == 0;
 					boolean isProperLength =editWindowField.getText().length() < 10;
-					
-						if(isIncomplete){
-							incompleteLabel.setText("Incomplete Entry!");
-						}
-						else if ((comboBox.getSelectedIndex() == 1 || comboBox.getSelectedIndex() == 2) && !isDigit) {
-							incompleteLabel.setText("Entry should be a number!");
-						}
-						else if (isWhiteSpace) {
-							incompleteLabel.setText("Entry can't be spaces!");
-						}
-						else if ((comboBox.getSelectedIndex() == 1 || comboBox.getSelectedIndex() == 2) && !isProperLength) {
-							incompleteLabel.setText("Number should not exceed 9 digits!");
-						}
-						else {
-							new StudentDB().editData(name, SAISID, comboBox.getSelectedIndex() + 1, editWindowField.getText());
-							try {
-								createPanel(editCard, 3, mainFrame);
-							} catch (FileNotFoundException e1) {
-								e1.printStackTrace();
-							}
-							editFrame.dispose();
-							mainFrame.setEnabled(true);
-						}
+
+					if(isIncomplete){
+						incompleteLabel.setText("Incomplete Entry!");
 					}
+					else if ((comboBox.getSelectedIndex() == 1 || comboBox.getSelectedIndex() == 2) && !isDigit) {
+						incompleteLabel.setText("Entry should be a number!");
+					}
+					else if (isWhiteSpace) {
+						incompleteLabel.setText("Entry can't be spaces!");
+					}
+					else if ((comboBox.getSelectedIndex() == 1 || comboBox.getSelectedIndex() == 2) && !isProperLength) {
+						incompleteLabel.setText("Number should not exceed 9 digits!");
+					}
+					else {
+						new StudentDB().editData(name, SAISID, comboBox.getSelectedIndex() + 1, editWindowField.getText());
+						try {
+							createPanel(editCard, 3, mainFrame);
+						} catch (FileNotFoundException e1) {
+							e1.printStackTrace();
+						}
+						editFrame.dispose();
+						mainFrame.setEnabled(true);
+					}
+				}
 			});
 			editFrame.addWindowListener(new WindowAdapter() {
-				 public void windowClosed(WindowEvent e) {
-					 mainFrame.setEnabled(true);
-	            }
+				public void windowClosed(WindowEvent e) {
+					mainFrame.setEnabled(true);
+				}
 			});
 			editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			editFrame.getContentPane().add(saveEditBtn);
 			editFrame.setVisible(true);
 		}
 	}
-	
+
 	// ---------------- Delete Window GUI ---------------- //
-	
+
 	private class openDeleteWindow{
 		openDeleteWindow(String name, int SAISID, JFrame mainFrame){
 			JFrame deleteFrame = new JFrame();
@@ -760,13 +760,13 @@ public class StudentDBDemo {
 			deleteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			deleteFrame.setAlwaysOnTop(true);
 			deleteFrame.getContentPane().setLayout(null);
-			
+
 			JLabel confirmDeleteLabel = new JLabel("Are you sure?");
 			confirmDeleteLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			confirmDeleteLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 			confirmDeleteLabel.setBounds(60, 19, 127, 22);
 			deleteFrame.getContentPane().add(confirmDeleteLabel);
-			
+
 			JButton yesDeleteBtn = new JButton("Yes, delete!");
 			yesDeleteBtn.setForeground(Color.RED);
 			yesDeleteBtn.setBounds(117, 58, 117, 29);
@@ -784,7 +784,7 @@ public class StudentDBDemo {
 				}
 			});
 			deleteFrame.getContentPane().add(yesDeleteBtn);
-			
+
 			JButton noDeleteBtn = new JButton("No");
 			noDeleteBtn.setBounds(20, 58, 75, 29);
 			noDeleteBtn.addActionListener(new ActionListener() {
@@ -794,11 +794,11 @@ public class StudentDBDemo {
 				}
 			});
 			deleteFrame.getContentPane().add(noDeleteBtn);
-			
+
 			deleteFrame.addWindowListener(new WindowAdapter() {
-				 public void windowClosed(WindowEvent e) {
-					 mainFrame.setEnabled(true);
-	            }
+				public void windowClosed(WindowEvent e) {
+					mainFrame.setEnabled(true);
+				}
 			});
 			deleteFrame.setResizable(false);
 			deleteFrame.setLocationRelativeTo(null);
@@ -806,7 +806,7 @@ public class StudentDBDemo {
 			deleteFrame.setVisible(true);
 		}
 	}
-	
+
 	// ---------------- A method to create GUI Entry Panels ---------------- //
 
 	private void createPanel(JPanel entryCard, int state, JFrame mainFrame) throws FileNotFoundException{
@@ -816,26 +816,26 @@ public class StudentDBDemo {
 
 		int studentCount = 1;
 		for (StudentData student : students) {
-			
+
 			// Using a for loop to create panels for each student entries 
-			
+
 			JPanel entryPanel = new JPanel();
 			entryPanel.setBackground(new Color(230, 230, 250));
 			entryPanel.setBounds(6, 6 + 148 * (studentCount - 1), 672, 142);
 			entryPanel.setPreferredSize(dim);
 			entryPanel.setLayout(null);
 			entryCard.add(entryPanel);
-		
+
 			studentCount++;
 
 			JLabel nameLabel = new JLabel(student.name);
 			nameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 			nameLabel.setBounds(31, 18, 455, 48);
 			entryPanel.add(nameLabel);
-			
-			
+
+
 			// Using createPanel to create buttons for deletePanel and editPanel
-			
+
 			if (state == 2) {
 				deleteEntryBtn = new JButton("Delete");
 				deleteEntryBtn.addActionListener(new ActionListener() {
@@ -848,7 +848,7 @@ public class StudentDBDemo {
 				deleteEntryBtn.setForeground(Color.RED);
 				entryPanel.add(deleteEntryBtn);
 			}
-			
+
 			else if (state == 3) {
 				editEntryBtn = new JButton("Edit");
 				editEntryBtn.addActionListener(new ActionListener() {
@@ -861,7 +861,7 @@ public class StudentDBDemo {
 				editEntryBtn.setForeground(Color.BLACK);
 				entryPanel.add(editEntryBtn);
 			}
-			
+
 			JLabel saisLabel = new JLabel("SAIS ID:");
 			saisLabel.setForeground(Color.DARK_GRAY);
 			saisLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -896,7 +896,7 @@ public class StudentDBDemo {
 			entryPanel.add(addressInfo);
 
 		}
-		
+
 		entryCard.repaint();
 	}
 }

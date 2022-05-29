@@ -20,7 +20,7 @@ public class StudentDB implements DBInterface {
 
 	// This function deletes a database entry using name and SAISID integrated in the text file name.
 	public boolean deleteData(String name, int SAISID) {
-		
+
 
 		if(new File(name + " " + SAISID + ".txt").delete()){
 			return true;
@@ -37,38 +37,38 @@ public class StudentDB implements DBInterface {
 			String num = sc.nextLine();
 			String address = sc.nextLine();
 			sc.close();
-			
+
 			switch(choice) {
-				case 1:
-					new File(name + " " + SAISID + ".txt").delete();
-					name = edit;
-					break;
-				case 2:
-					new File(name + " " + SAISID + ".txt").delete();
-					SAISID = Integer.parseInt(edit);
-					break;
-				case 3:
-					num = edit;
-					break;
-				case 4:
-					address = edit;
+			case 1:
+				new File(name + " " + SAISID + ".txt").delete();
+				name = edit;
+				break;
+			case 2:
+				new File(name + " " + SAISID + ".txt").delete();
+				SAISID = Integer.parseInt(edit);
+				break;
+			case 3:
+				num = edit;
+				break;
+			case 4:
+				address = edit;
 			}
-			
+
 			StudentData dbd = new StudentData(name, SAISID, Integer.parseInt(num), address);
 			return new StudentDB().addData(dbd);
 		}
 		catch (FileNotFoundException e) {
 			return false;
 		}
-		
+
 	}
-	
+
 	// This function filters text files from the current directory.
 	public static FilenameFilter filter () {
 
 		FilenameFilter textFilter = new FilenameFilter() {
 			public boolean accept(File dir, String filename) {
-			return filename.toLowerCase().endsWith(".txt");
+				return filename.toLowerCase().endsWith(".txt");
 			}
 		};
 
@@ -83,7 +83,7 @@ public class StudentDB implements DBInterface {
 		pw.close();
 
 	}
-	
+
 	// This function returns array of students that has been read from a list of text files.
 	public StudentData [] showData() {
 		try {
@@ -91,7 +91,7 @@ public class StudentDB implements DBInterface {
 			File [] files = fileHolder.listFiles(filter());
 			StudentData [] studentList = new StudentData[10];
 			int fileCount = 0;
-	        for (File file : files) {
+			for (File file : files) {
 				Scanner sc = new Scanner(new File(file.getName()));
 				String name = sc.nextLine();
 				String id = sc.nextLine();
@@ -99,19 +99,19 @@ public class StudentDB implements DBInterface {
 				String address = sc.nextLine();
 				studentList[fileCount] = new StudentData(name, Integer.parseInt(id), Integer.parseInt(num), address);
 				sc.close(); fileCount++;
-	        }
-	        StudentData [] students = new StudentData[fileCount];
-	        for (int fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
-	        	students[fileCount2] = studentList[fileCount2];
-	        }
-	        return students;
+			}
+			StudentData [] students = new StudentData[fileCount];
+			for (int fileCount2 = 0; fileCount2 < fileCount; fileCount2++) {
+				students[fileCount2] = studentList[fileCount2];
+			}
+			return students;
 		}
 		catch (FileNotFoundException e) {
 			return new StudentData[0];
 		}
-		
+
 	}
-	
+
 	// This function returns array of students that has been read 
 	// from a list of text files that matched the search string.
 	public StudentData [] searchData(String toSearch) {
