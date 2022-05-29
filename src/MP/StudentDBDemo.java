@@ -760,14 +760,34 @@ public class StudentDBDemo {
 						incompleteLabel.setText("Number should not exceed 9 digits!");
 					}
 					else {
-						new StudentDB().editData(name, SAISID, comboBox.getSelectedIndex() + 1, editWindowField.getText());
-						try {
-							createPanel(editCard, 3, mainFrame);
-						} catch (FileNotFoundException e1) {
-							e1.printStackTrace();
+						
+						StudentData [] students = new StudentDB().showData();
+						boolean boolChecker = true;
+						for (StudentData student : students) {
+							if (comboBox.getSelectedIndex() == 0) {
+								boolean isIdentical = editWindowField.getText().equals(student.name) && SAISID == student.SAISID;
+								if (isIdentical) boolChecker = false;
+							}
+							if (comboBox.getSelectedIndex() == 1) {
+								boolean isIdentical = name.equals(student.name) && Integer.parseInt(editWindowField.getText()) == student.SAISID;
+								if (isIdentical) boolChecker = false;
+							}
+									
 						}
-						editFrame.dispose();
-						mainFrame.setEnabled(true);
+						
+						if (!boolChecker) {
+							incompleteLabel.setText("Entry with same name and ID already exists!");
+						}
+						else {
+							new StudentDB().editData(name, SAISID, comboBox.getSelectedIndex() + 1, editWindowField.getText());
+							try {
+								createPanel(editCard, 3, mainFrame);
+							} catch (FileNotFoundException e1) {
+								e1.printStackTrace();
+							}
+							editFrame.dispose();
+							mainFrame.setEnabled(true);	
+						}
 					}
 				}
 			});
