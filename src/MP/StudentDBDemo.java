@@ -426,8 +426,8 @@ public class StudentDBDemo {
 					searchPanel.repaint();
 				}
 				else {
+					scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 					searchPanel.removeAll();
-
 					StudentData [] students = new StudentDB().searchData(searchTextField.getText());
 					int studentCount = 1;
 
@@ -639,7 +639,7 @@ public class StudentDBDemo {
 				editButton.setBackground(new Color(0x8c52ff));
 				searchButton.setBackground(new Color(0x6827e8));
 				homeButton.setBackground(new Color(0x8c52ff));
-				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+				scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 				cl2.show(displayPanel, "search");
 			}
 		});
