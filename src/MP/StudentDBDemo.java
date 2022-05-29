@@ -340,7 +340,7 @@ public class StudentDBDemo {
 					StudentData [] students = new StudentDB().showData();
 					boolean boolChecker = true;
 					for (StudentData student : students) {
-						boolean isIdentical = nameAddField.getText().equals(student.name) && Integer.parseInt(saisAddField.getText()) == student.SAISID;
+						boolean isIdentical = nameAddField.getText().toLowerCase().equals(student.name.toLowerCase()) && Integer.parseInt(saisAddField.getText()) == student.SAISID;
 						if (isIdentical) boolChecker = false;		
 					}
 					if (boolChecker) {
@@ -763,11 +763,11 @@ public class StudentDBDemo {
 						boolean boolChecker = true;
 						for (StudentData student : students) {
 							if (comboBox.getSelectedIndex() == 0) {
-								boolean isIdentical = editWindowField.getText().equals(student.name) && SAISID == student.SAISID;
+								boolean isIdentical = editWindowField.getText().toLowerCase().equals(student.name.toLowerCase()) && SAISID == student.SAISID;
 								if (isIdentical) boolChecker = false;
 							}
 							if (comboBox.getSelectedIndex() == 1) {
-								boolean isIdentical = name.equals(student.name) && Integer.parseInt(editWindowField.getText()) == student.SAISID;
+								boolean isIdentical = name.toLowerCase().equals(student.name.toLowerCase()) && Integer.parseInt(editWindowField.getText()) == student.SAISID;
 								if (isIdentical) boolChecker = false;
 							}
 									
