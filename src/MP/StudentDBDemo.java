@@ -422,6 +422,7 @@ public class StudentDBDemo {
 		searchEntryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (searchTextField.getText().isEmpty()) {
+					scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 					searchPanel.removeAll();
 					searchPanel.repaint();
 				}
