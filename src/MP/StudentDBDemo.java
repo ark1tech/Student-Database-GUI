@@ -544,6 +544,7 @@ public class StudentDBDemo {
 		addButton.setHorizontalAlignment(SwingConstants.LEFT);
 
 		addButton.setBounds(-2, 118, 200, 58);
+		addButton.setBackground(new Color(0x8c52ff));
 		addButton.setBorderPainted(false);
 		addButton.setPreferredSize(new Dimension(200, 60));
 		addButton.setForeground(Color.WHITE);
@@ -573,6 +574,7 @@ public class StudentDBDemo {
 		deleteButton.setIconTextGap(25);
 		deleteButton.setHorizontalAlignment(SwingConstants.LEFT);
 
+		deleteButton.setBackground(new Color(0x8c52ff));
 		deleteButton.setBorderPainted(false);
 		deleteButton.setBounds(-2, 176, 200, 58);
 		deleteButton.setForeground(Color.WHITE);
@@ -603,6 +605,7 @@ public class StudentDBDemo {
 		editButton.setHorizontalAlignment(SwingConstants.LEFT);
 		editButton.setIconTextGap(25);
 
+		editButton.setBackground(new Color(0x8c52ff));
 		editButton.setBorderPainted(false);
 		editButton.setForeground(Color.WHITE);
 		editButton.setBounds(-2, 236, 200, 58);
@@ -628,6 +631,7 @@ public class StudentDBDemo {
 		searchButton.setHorizontalAlignment(SwingConstants.LEFT);
 		searchButton.setIconTextGap(25);
 
+		searchButton.setBackground(new Color(0x8c52ff));
 		searchButton.setBorderPainted(false);
 		searchButton.setBounds(-2, 295, 200, 58);
 		searchButton.setForeground(Color.WHITE);
@@ -652,6 +656,8 @@ public class StudentDBDemo {
 		homeButton.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/homeIcon2.png")));
 		homeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		homeButton.setIconTextGap(25);
+		
+		homeButton.setBackground(new Color(0x8c52ff));
 		homeButton.setBorderPainted(false);
 		homeButton.setForeground(Color.WHITE);
 		homeButton.setBounds(-2, 353, 200, 58);
