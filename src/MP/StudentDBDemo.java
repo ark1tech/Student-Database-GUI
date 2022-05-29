@@ -140,6 +140,7 @@ public class StudentDBDemo {
 				scrollPane.getViewport().setViewPosition(new Point(0,0));
 				cl.show(mainFrame.getContentPane(), "2");
 				cl2.show(displayPanel, "title");
+				bottomCard.repaint();
 			}
 		});
 		accessButton.setOpaque(true);
@@ -257,7 +258,7 @@ public class StudentDBDemo {
 		JLabel studNumPreviewLabel = new JLabel("STUDENT NUMBER:");
 		studNumPreviewLabel.setForeground(Color.DARK_GRAY);
 		studNumPreviewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNumPreviewLabel.setBounds(168, 101, 150, 24);
+		studNumPreviewLabel.setBounds(196, 101, 150, 24);
 		previewPanel.add(studNumPreviewLabel);
 
 		JLabel addressPreviewLabel = new JLabel("ADDRESS:");
@@ -273,12 +274,12 @@ public class StudentDBDemo {
 
 		JLabel saisPreviewInfo = new JLabel();
 		saisPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisPreviewInfo.setBounds(93, 101, 63, 24);
+		saisPreviewInfo.setBounds(93, 101, 80, 24);
 		previewPanel.add(saisPreviewInfo);
 
 		JLabel studNumPreviewInfo = new JLabel();
 		studNumPreviewInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNumPreviewInfo.setBounds(322, 101, 105, 24);
+		studNumPreviewInfo.setBounds(350, 101, 105, 24);
 		previewPanel.add(studNumPreviewInfo);
 
 		JLabel addressPreviewInfo = new JLabel();
@@ -871,17 +872,17 @@ public class StudentDBDemo {
 			JLabel studNoLabel = new JLabel("STUDENT NUMBER:");
 			studNoLabel.setForeground(Color.DARK_GRAY);
 			studNoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-			studNoLabel.setBounds(172, 69, 150, 24);
+			studNoLabel.setBounds(200, 69, 150, 24);
 			entryPanel.add(studNoLabel);
 
 			JLabel saisInfo = new JLabel(Integer.toString(student.SAISID));
 			saisInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			saisInfo.setBounds(97, 69, 63, 24);
+			saisInfo.setBounds(97, 69, 80, 24);
 			entryPanel.add(saisInfo);
 
 			JLabel studNoInfo = new JLabel(Integer.toString(student.num));
 			studNoInfo.setFont(new Font("Arial", Font.PLAIN, 15));
-			studNoInfo.setBounds(326, 69, 105, 24);
+			studNoInfo.setBounds(354, 69, 105, 24);
 			entryPanel.add(studNoInfo);
 
 			JLabel addressLabel = new JLabel("ADDRESS:");
