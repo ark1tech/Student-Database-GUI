@@ -55,7 +55,7 @@ public class StudentDB implements DBInterface {
 			}
 
 			StudentData dbd = new StudentData(name, SAISID, Integer.parseInt(num), address);
-			return new StudentDB().addData(dbd);
+			return addData(dbd);
 		}
 		catch (FileNotFoundException e) {
 			return false;
