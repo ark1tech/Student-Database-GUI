@@ -169,7 +169,7 @@ public class StudentDBDemo {
 		JPanel addPanel = new JPanel();
 		addPanel.setLayout(null);
 		addPanel.setBackground(new Color(230, 230, 250));
-		addPanel.setBounds(6, 6, 672, 207);
+		addPanel.setBounds(6, 6, 672, 270);
 		addCard.add(addPanel);
 
 		JLabel nameAddLabel = new JLabel("NAME:");
@@ -181,19 +181,19 @@ public class StudentDBDemo {
 		JLabel saisAddLabel = new JLabel("SAIS ID:");
 		saisAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		saisAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		saisAddLabel.setBounds(57, 72, 112, 24);
+		saisAddLabel.setBounds(56, 85, 112, 24);
 		addPanel.add(saisAddLabel);
 
 		JLabel studNoAddLabel = new JLabel("STUDENT NO.:");
 		studNoAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		studNoAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		studNoAddLabel.setBounds(57, 95, 112, 24);
+		studNoAddLabel.setBounds(57, 120, 112, 24);
 		addPanel.add(studNoAddLabel);
 
 		JLabel addressAddLabel = new JLabel("ADDRESS:");
 		addressAddLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		addressAddLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addressAddLabel.setBounds(57, 118, 112, 24);
+		addressAddLabel.setBounds(57, 154, 112, 24);
 		addPanel.add(addressAddLabel);
 
 		JTextField nameAddField = new JTextField();
@@ -203,17 +203,17 @@ public class StudentDBDemo {
 
 		JTextField saisAddField = new JTextField();
 		saisAddField.setColumns(10);
-		saisAddField.setBounds(182, 71, 426, 26);
+		saisAddField.setBounds(182, 83, 426, 26);
 		addPanel.add(saisAddField);
 
 		JTextField studNoAddField = new JTextField();
 		studNoAddField.setColumns(10);
-		studNoAddField.setBounds(182, 94, 426, 26);
+		studNoAddField.setBounds(182, 118, 426, 26);
 		addPanel.add(studNoAddField);
 
 		JTextField addressAddField = new JTextField();
 		addressAddField.setColumns(10);
-		addressAddField.setBounds(182, 117, 426, 26);
+		addressAddField.setBounds(182, 153, 426, 26);
 		addPanel.add(addressAddField);
 
 		JLabel addInstruc = new JLabel("Kindly enter the information below.");
@@ -227,7 +227,7 @@ public class StudentDBDemo {
 		addFailLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		addFailLabel.setForeground(Color.RED);
 		addFailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		addFailLabel.setBounds(184, 146, 424, 24);
+		addFailLabel.setBounds(182, 184, 424, 24);
 		addPanel.add(addFailLabel);
 
 		JLabel addSuccessLabel = new JLabel("");
@@ -239,7 +239,7 @@ public class StudentDBDemo {
 
 		JPanel previewPanel = new JPanel();
 		previewPanel.setBackground(new Color(230, 230, 250));
-		previewPanel.setBounds(6, 219, 672, 172);
+		previewPanel.setBounds(6, 284, 672, 172);
 		previewPanel.setLayout(null);
 		addCard.add(previewPanel);
 
@@ -289,7 +289,7 @@ public class StudentDBDemo {
 		previewPanel.add(addressPreviewInfo);
 
 		JButton addEntryBtn = new JButton("Add");
-		addEntryBtn.setBounds(553, 164, 100, 29);
+		addEntryBtn.setBounds(561, 227, 85, 22);
 		addEntryBtn.setOpaque(true);
 		addEntryBtn.setBorderPainted(false);
 		addEntryBtn.setBackground(Color.WHITE);
@@ -372,7 +372,7 @@ public class StudentDBDemo {
 		addPanel.add(addEntryBtn);
 
 		JButton btnReset = new JButton("Reset");
-		btnReset.setBounds(427, 164, 100, 29);
+		btnReset.setBounds(453, 227, 85, 22);
 		btnReset.setOpaque(true);
 		btnReset.setBorderPainted(false);
 		btnReset.setBackground(Color.WHITE);
@@ -413,7 +413,7 @@ public class StudentDBDemo {
 		searchCard.add(searchPanel);
 
 		JButton searchEntryBtn = new JButton("Search");
-		searchEntryBtn.setBounds(549, 6, 117, 24);
+		searchEntryBtn.setBounds(546, 7, 117, 22);
 		searchEntryBtn.setOpaque(true);
 		searchEntryBtn.setBorderPainted(false);
 		searchEntryBtn.setBackground(Color.WHITE);
@@ -708,7 +708,7 @@ public class StudentDBDemo {
 			editFrame.getContentPane().add(editWindowField);
 
 			JButton cancelEditBtn = new JButton("Cancel");
-			cancelEditBtn.setBounds(46, 112, 104, 27);
+			cancelEditBtn.setBounds(46, 117, 104, 22);
 			cancelEditBtn.setOpaque(true);
 			cancelEditBtn.setBorderPainted(false);
 			cancelEditBtn.setBackground(Color.WHITE);
@@ -733,7 +733,7 @@ public class StudentDBDemo {
 			editFrame.getContentPane().add(incompleteLabel);
 
 			JButton saveEditBtn  = new JButton("Save");
-			saveEditBtn.setBounds(162, 112, 104, 27);
+			saveEditBtn.setBounds(162, 117, 104, 22);
 			saveEditBtn.setOpaque(true);
 			saveEditBtn.setBorderPainted(false);
 			saveEditBtn.setBackground(Color.WHITE);
@@ -818,7 +818,7 @@ public class StudentDBDemo {
 
 			JButton yesDeleteBtn = new JButton("Yes, delete!");
 			yesDeleteBtn.setForeground(Color.RED);
-			yesDeleteBtn.setBounds(117, 58, 117, 29);
+			yesDeleteBtn.setBounds(117, 65, 117, 22); 
 			yesDeleteBtn.setOpaque(true);
 			yesDeleteBtn.setBorderPainted(false);
 			yesDeleteBtn.setBackground(Color.WHITE);
@@ -838,7 +838,7 @@ public class StudentDBDemo {
 			deleteFrame.getContentPane().add(yesDeleteBtn);
 
 			JButton noDeleteBtn = new JButton("No");
-			noDeleteBtn.setBounds(20, 58, 75, 29);
+			noDeleteBtn.setBounds(20, 65, 75, 22);
 			noDeleteBtn.setOpaque(true);
 			noDeleteBtn.setBorderPainted(false);
 			noDeleteBtn.setBackground(Color.WHITE);
@@ -902,7 +902,7 @@ public class StudentDBDemo {
 						new openDeleteWindow(student.name, student.SAISID, mainFrame);
 					}
 				});
-				deleteEntryBtn.setBounds(551, 102, 110, 29);
+				deleteEntryBtn.setBounds(576, 109, 85, 22);
 				deleteEntryBtn.setForeground(Color.RED);
 				entryPanel.add(deleteEntryBtn);
 			}
@@ -918,7 +918,7 @@ public class StudentDBDemo {
 						new openEditWindow(student.name, student.SAISID, mainFrame);
 					}
 				});
-				editEntryBtn.setBounds(551, 102, 110, 29);
+				editEntryBtn.setBounds(576, 109, 85, 22);
 				editEntryBtn.setForeground(Color.BLACK);
 				entryPanel.add(editEntryBtn);
 			}
