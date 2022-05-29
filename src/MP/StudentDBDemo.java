@@ -122,7 +122,7 @@ public class StudentDBDemo {
 		titleCard.setLayout(null);
 
 		JLabel displayTitlePage = new JLabel("");
-		displayTitlePage.setBounds(0, 5, 716, 573);
+		displayTitlePage.setBounds(0, 0, 716, 573);
 		titleCard.add(displayTitlePage);
 		displayTitlePage.setIcon(new ImageIcon(StudentDBDemo.class.getResource("/MP/displayPage.png")));
 
