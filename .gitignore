@@ -1,4 +1,10 @@
-# .metadata
+.metadata
+.DS_Store
+.classpath
+.gitattributes
+.project
+*.jar
+.zip
 # bin/
 # tmp/
 # *.tmp
@@ -6,7 +12,7 @@
 # *.swp
 # *~.nib
 # local.properties
-# .settings/
+.settings/
 # .loadpath
 # .recommenders
 
